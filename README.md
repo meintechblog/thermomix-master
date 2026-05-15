@@ -20,7 +20,9 @@ Dieses Repo löst das. Es enthält:
 
 ## Status
 
-🎉 **Voll funktional.** Erstes durchgepipte Rezept: [Sweet-Chili-Bowl mit glasierter Aubergine](recipes/sweet-chili-bowl/) — alle 13 Schritte, alle Koch-Befehle als interaktive Chips, alle Zutaten verlinkt.
+🎉 **Voll funktional + erstes Rezept öffentlich auf Cookidoo:**
+- Rezept: [Sweet-Chili-Bowl mit glasierter Aubergine](recipes/sweet-chili-bowl/) — 8 Schritte, 2 interaktive Koch-Befehle, alle Zutaten als Chips verlinkt
+- **Live auf Cookidoo (öffentlich, ohne Login einsehbar):** https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D
 
 ![Step 5 mit interaktivem Koch-Befehl-Chip](docs/assets/zoom-step5-with-chips.png)
 

@@ -14,7 +14,9 @@ dazu Sesam-Reis, Gurkensalat & Sriracha-Mayo · vegan · ca. 610 kcal/Portion
 | **Gesamtzeit** | ca. 35 Min. |
 | **Schwierigkeit** | einfach |
 | **Diät** | vegan |
-| **Cookidoo-Rezept** | [Sweet-Chili-Bowl mit glasierter Aubergine](https://cookidoo.de/created-recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D) *(privat — Bild aus HelloFresh, daher nicht publik geschaltet)* |
+| **Cookidoo-Rezept (privat, eingeloggt)** | https://cookidoo.de/created-recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D |
+| **Cookidoo-Rezept (öffentlich)** | https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D |
+| **Foto** | © Jörg Hofmann (eigene Aufnahme) |
 
 ## Zutaten (4P)
 
@@ -68,5 +70,6 @@ dazu Sesam-Reis, Gurkensalat & Sriracha-Mayo · vegan · ca. 610 kcal/Portion
 
 ## Quelle & Lizenz
 
-Original-Rezept und -Foto stammen aus der HelloFresh-Wochenbox („Sweet-Chili-Bowl mit glasierter Aubergine", Karte #33, Variante „Thermomix kocht").
-Das Foto ist Eigentum von HelloFresh und wird hier nur als technisches Demo des Workflows referenziert. Wer das Rezept nachbauen will, kauft sich entweder eine HelloFresh-Box, oder findet ähnliche Bowl-Rezepte z.B. bei Cookidoo selbst.
+Original-Rezept stammt aus der HelloFresh-Wochenbox („Sweet-Chili-Bowl mit glasierter Aubergine", Karte #33, Variante „Thermomix kocht"). Die Anpassung (Schritt-Reihenfolge, Sprache, Mengen-Konsistenz, Tipps) ist die Eigenarbeit für die Cookidoo-Version.
+
+Das Hero-Bild ist eine **eigene Aufnahme** (© Jörg Hofmann, 2026) — daher kann das Rezept auf Cookidoo öffentlich geteilt werden.
