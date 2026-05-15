@@ -136,6 +136,96 @@ getAnnotation() {  // wird vom Save serialisiert
 <cr-tts time="360" temperature="100" temperature-unit="C" speed="1" direction="CCW">6 Min./100°C/Linkslauf/Stufe 1</cr-tts>
 ```
 
+## Konsistenz / Redundanz beim Step-Text — die nicht-offensichtlichen Fallen
+
+Beim Schreiben der Plain-Text-Steps, die später durch `annotate/steps` zu Chips werden, gibt es ein paar Gotchas, die das gerenderte Rezept „besoffen" aussehen lassen wenn man sie ignoriert:
+
+### Regel: jede Zutat höchstens 1x pro Step
+
+Die AI annotiert ALLE Vorkommen einer Zutat im Step-Text, jedes mit eigenem Chip. Zwei Chips zur gleichen Zutat im gleichen Step ist visuelle Redundanz. Beispiele:
+
+**Bad** (Step 4):
+```
+... Reis in den Gareinsatz geben und unter kaltem WASSER spülen.
+... 1200 g WASSER, 1,5 TL Salz und 5 g Öl in den Mixtopf ...
+```
+→ 2x „Wasser" als Chip nebeneinander, sieht doppelt-bezahlt aus.
+
+**Good**:
+```
+... Reis in den Gareinsatz geben, kurz abspülen.
+... 1200 g Wasser, 1,5 TL Salz und 5 g Öl in den Mixtopf ...
+```
+→ 1x „1200 g Wasser" als Chip, sauber.
+
+### Regel: Compound-Namen die andere Zutaten als Substring enthalten vermeiden
+
+Die AI matcht via Substring. „Sriracha-Mayo" ist kein eigener Zutaten-Eintrag, aber enthält „Sriracha" — das matched die Sriracha-Sauce-Zutat zweimal wenn beide im gleichen Step auftauchen.
+
+**Bad**:
+```
+50 g vegane Mayonnaise mit 16 g Sriracha-Sauce zur Sriracha-Mayo verrühren ...
+```
+→ „Sriracha-Sauce" + „Sriracha-Mayo" beide annotiert.
+
+**Good**: einfach den Compound-Namen weglassen, der User weiß aus dem Rezepttitel wie das Ergebnis heißt.
+```
+50 g vegane Mayonnaise mit 16 g Sriracha-Sauce und 2 Limettenspalten verrühren ...
+```
+
+Gleiches gilt für „Sweet-Chili-Dip" (würde mit „Sweet-Chili-Soße" doppeln). Workaround in der Folgeverwendung: „2 EL des Dips aus Schritt 6" — „Dip" alleine matcht keine Zutat.
+
+### Regel: Synonyme wie „Basmatireis" / „Reis" oder „Buschbohnen" / „Bohnen" — auch 1x pro Step
+
+Die AI behandelt sie als overuse-Match. Lieber EIN Wort konsistent verwenden, oder den zweiten Vorfall durch Pronomen / Referenzphrase ersetzen.
+
+**Bad**: „Gareinsatz herausnehmen und Reis 6 Min. ruhen lassen. ... Den Reis mit Gabel auflockern."
+**Good**: „Gareinsatz herausnehmen und abgedeckt 6 Min. ruhen lassen. ... Den Reis mit Gabel auflockern."
+
+### Regel: keine zwei aufeinanderfolgenden Steps enden gleich
+
+Wenn zwei aufeinanderfolgende Steps beide mit „mit Salz und Pfeffer abschmecken." enden (oder anderen identischen Schluss-Phrasen wie „verrühren.", „abschmecken."), liest sich das wie eine Doppelung. **Lösung**: die beiden Steps zu einem zusammenfassen mit kollektivem Schluss: „... Beide Soßen mit Salz und Pfeffer abschmecken.".
+
+Quick self-check script:
+```python
+for i in range(1, len(instructions)):
+    for ending in ['abschmecken.', 'verrühren.', 'vermengen.']:
+        if instructions[i-1].endswith(ending) and instructions[i].endswith(ending):
+            print(f"⚠️ Step {i} and {i+1} both end with '...{ending}'")
+```
+
+### Regel: keine doppelten Zutatenlisten-Einträge mit Catch-all-Sammelposten
+
+Wer „Salz, Pfeffer, Zucker, Öl nach Bedarf" als Catch-all-Zeile in der Zutatenliste hat, sollte NICHT zusätzlich „1,5 TL Salz (zum Reis)" als separate Zeile listen. Die AI kann beide matchen → mehrfache Salz-Chips für die gleiche Salz-Erwähnung. Lösung: spezifische Salz-Mengen nur inline im Step, Catch-all-Zeile reicht als Zutat.
+
+## Meta-Felder (Arbeitszeit, Gesamtzeit, Portionen)
+
+Auf der Meta-Edit-Seite (`/edit` ohne `/ingredients-and-preparation-steps`) sind drei Tiles unter dem Rezepttitel:
+- 🔪 Arbeitszeit hinzufügen (PT…M / `prepTime`)
+- 🕐 Gesamtzeit hinzufügen (PT…M / `totalTime`)
+- 👥 X Portionen (yield)
+
+Jeder Tile ist ein `<div class="cr-recipe-settings-tiles__item">`. **Klick öffnet ein Modal mit drei Tabs** (Zubereitungszeit / Gesamtzeit / Portionsgröße). Jeder Tab hat 2 visible `input[type=number]` für Stunden + Minuten (bzw. Portionszahl).
+
+- Tab-Button: `button:has-text('Gesamtzeit')` / `'Zubereitungszeit'` / `'Portionsgröße'`
+- Speichern: `button:has-text('Bestätigen')` im Modal-Footer (Button, kein Anchor)
+
+Werte werden im Recipe-JSON als ISO-8601-Duration gespeichert: `prepTime: "PT25M"`, `totalTime: "PT35M"`.
+
+## Tipps-Feld Rendering
+
+`textarea[name='hints']`. Cookidoo rendert die Tipps in der View als **fortlaufenden Text-Block** ohne automatische Bullets. Wer Tipps als Liste haben will, muss **jede Zeile mit `— ` (em-dash + space) prefixen** — sonst verschwimmen alle Tipps zu einem Absatz.
+
+Was NICHT funktioniert:
+- `•` (bullet) Prefix — rendert als nacktes Bullet ohne Hanging-Indent
+- `- ` (ASCII-Dash) — wird kosmetisch fade
+- Leerzeilen zwischen Tipps — werden vom Renderer auf einfachen Linebreak normalisiert
+
+Was gut funktioniert:
+- `— ` (em-dash + space) — visuell sauber, signalisiert „Liste"
+
+**Per-field Save**: NACHDEM man die Tipps geändert hat, erscheint ein **`<button>Bestätigen</button>`** direkt am Textarea. Den klicken **bevor** man den globalen `<a>Bestätigen</a>` oben klickt — sonst geht der Tipps-Inhalt verloren.
+
 ## Was NICHT geht (Hard Limits)
 
 - **Direkt-Injection von `<nobr>`-Tags** in user-content wird serverseitig gestrippt. Nur Vorwerk-published Recipes dürfen `<nobr>` als persistenten Format-Tag. User-created Recipes nutzen `<cr-tts>` etc. (die im View dann als `<nobr class="recipe-content__accent">` gerendert werden).

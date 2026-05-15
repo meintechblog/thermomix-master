@@ -3,27 +3,25 @@
 The tips field has its own per-field 'Bestätigen' BUTTON that must be clicked first,
 before the global 'Bestätigen' ANCHOR at the top.
 
+Format: plain text, ONE TIP PER LINE. Prefix each line with '— ' (em-dash + space)
+for visual bullet effect — Cookidoo's view doesn't auto-bullet user tips, so
+without the prefix the tips run together as a single paragraph block.
+
 Edit TIPS below, then run.
 """
 import pathlib, sys
 from playwright.sync_api import sync_playwright
 
-# === EDIT THESE ===
+# === EDIT THESE — one tip per line, prefix with '— ' for bullet effect ===
 TIPS = (
-    "• Aubergine 10 Min. vor dem Marinieren leicht salzen — zieht Bitterstoffe & Wasser raus, "
-    "die Glasur haftet besser und sie wird außen knuspriger.\n\n"
-    "• Reis VOR dem Garen im Gareinsatz unter kaltem Wasser spülen, bis das Wasser klar ist — "
-    "weniger Stärke = lockerer, nicht klebriger Reis.\n\n"
-    "• Bohnen im Mixtopf unbedingt im Linkslauf dünsten, sonst werden sie zerhäckselt.\n\n"
-    "• Sesamöl erst nach dem Garen unterheben (nicht miterhitzen) — sonst verfliegt das Röstaroma.\n\n"
-    "• Schärfe getrennt servieren: Chili-Ringe und Sriracha-Mayo separat reichen, dann kann jeder "
-    "selbst dosieren — vor allem für Kids/Empfindliche.\n\n"
-    "• Mise en place lohnt sich: Gemüse vorab schnippeln, Dips anrühren — die Thermomix-Schritte "
-    "(Reis dampfgaren + Aubergine im Ofen) laufen parallel, dann gibt's keine Pausen.\n\n"
-    "• Variation: Tofu in Würfeln statt Aubergine glasieren (gleiche Marinade, 12 Min. bei 200 °C). "
-    "Oder Edamame zusätzlich zu den Buschbohnen mit dampfgaren — mehr Protein.\n\n"
-    "• Reste halten 2 Tage im Kühlschrank. Dips und Gurkensalat IMMER separat aufbewahren. "
-    "Aubergine vorm Servieren kurz in der Pfanne aufwärmen, dann wird sie wieder knusprig."
+    "— Aubergine 10 Min. vor dem Marinieren leicht salzen — zieht Bitterstoffe und Flüssigkeit raus, die Glasur haftet besser und sie wird außen knuspriger.\n"
+    "— Reis VOR dem Garen im Gareinsatz unter dem Hahn klar abspülen — weniger Stärke = lockerer, nicht klebriger Reis.\n"
+    "— Bohnen im Mixtopf unbedingt im Linkslauf dünsten, sonst werden sie zerhäckselt.\n"
+    "— Sesamöl erst nach dem Garen unterheben (nicht miterhitzen) — sonst verfliegt das Röstaroma.\n"
+    "— Schärfe getrennt servieren: Chili-Ringe und Sriracha-Mayo separat reichen, dann kann jeder selbst dosieren.\n"
+    "— Mise en place lohnt sich: Gemüse vorab schnippeln, Dips anrühren — Reis dampfgaren + Aubergine im Ofen laufen parallel, dann gibt's keine Pausen.\n"
+    "— Variation: Tofu in Würfeln statt Aubergine glasieren (gleiche Marinade, 12 Min. bei 200 °C). Oder Edamame zusätzlich zu den Buschbohnen mit dampfgaren — mehr Protein.\n"
+    "— Reste halten 2 Tage im Kühlschrank. Dips und Gurkensalat IMMER separat aufbewahren. Aubergine vorm Servieren kurz in der Pfanne aufwärmen, dann wird sie wieder knusprig."
 )
 # === END EDIT ===
 
@@ -59,19 +57,15 @@ def main():
         # Per-field save BUTTON (not anchor!)
         for b in page.locator("button:has-text('Bestätigen')").all():
             try:
-                if b.is_visible():
-                    b.click(); print("clicked per-field Bestätigen"); break
-            except Exception:
-                pass
+                if b.is_visible(): b.click(); print("clicked per-field Bestätigen"); break
+            except Exception: pass
         page.wait_for_timeout(2000)
 
-        # Global save ANCHOR
+        # Global save ANCHOR (visible one — not the mobile-only)
         for a in page.locator("a:has-text('Bestätigen')").all():
             try:
-                if a.is_visible():
-                    a.click(); break
-            except Exception:
-                pass
+                if a.is_visible(): a.click(); break
+            except Exception: pass
         page.wait_for_load_state("networkidle", timeout=15000)
         page.wait_for_timeout(2000)
         print("Tips saved.")
