@@ -16,6 +16,7 @@ dazu Sesam-Reis, Gurkensalat & Sriracha-Mayo · vegan · ca. 610 kcal/Portion
 | **Diät** | vegan |
 | **Cookidoo-Rezept (privat, eingeloggt)** | https://cookidoo.de/created-recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D |
 | **Cookidoo-Rezept (öffentlich)** | https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D |
+| **Original HelloFresh-Rezept** | https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd |
 | **Foto** | © Jörg Hofmann (eigene Aufnahme) |
 
 ## Zutaten (4P)

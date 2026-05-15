@@ -1,155 +1,222 @@
 # Playbook — Rezept in 2 Minuten als native-quality Cookidoo Eigenes Rezept
 
-End-to-End-Anleitung: vom Foto/Karte zum interaktiv-startbaren Cookidoo-Rezept inkl. Guided-Cooking-Chips.
+End-to-End-Anleitung: vom Foto/Karte zum interaktiv-startbaren Cookidoo-Rezept mit Guided-Cooking-Chips. Stand 2026-05-15 nach Abschluss des ersten produktiv durchgepipten Rezepts (Sweet-Chili-Bowl).
 
 ## Voraussetzungen (einmalig)
 
 ```bash
-# Playwright + Chromium
 pip3 install playwright
 playwright install chromium
 
-# Repo klonen
 git clone https://github.com/meintechblog/cookidoo-master.git ~/cookidoo-master
 cd ~/cookidoo-master
-```
-
-Browser-Profil einrichten und manuell bei cookidoo.de einloggen:
-
-```bash
 python3 automation/00_setup_profile.py
-# Im sich öffnenden Browser einloggen, Cookie-Banner akzeptieren, Fenster schließen.
-# Profil wird nach ~/cookidoo-automation/profile/ persistent abgelegt.
+# Im Browser bei cookidoo.de einloggen, Cookie-Banner akzeptieren, Fenster schließen.
+# Profil persistiert in ~/cookidoo-automation/profile/
 ```
 
-## Pro Rezept — der Workflow
+## Workflow pro Rezept
 
-### 1. Quellmaterial bereitlegen
+```bash
+# 1. Quellmaterial bereitlegen
+mkdir -p recipes/{slug}
+cp ~/eigenes-foto.jpg recipes/{slug}/hero.jpg
 
-- Foto vom Rezept (HelloFresh-Karte, Buchseite, Webseite-Screenshot)
-- Liste der Zutaten + Mengen
-- Liste der Zubereitungsschritte als Plain-Text
+# 2. INGREDIENTS + STEPS in automation/01_create_recipe.py editieren
+# 3. Pipeline durchlaufen:
+python3 automation/01_create_recipe.py     # Recipe + Zutaten + Plain-Text Steps
+python3 automation/02_upload_image.py recipes/{slug}    # Hero
+python3 automation/03_add_tips.py          # Tipps (mit '— ' Prefix!)
+python3 automation/04_set_times.py         # Arbeitszeit + Gesamtzeit
+python3 automation/05_annotate_chips.py    # 🪄 AI-Annotate → echte Chips
+# Optional:
+python3 automation/06_publish.py           # nur mit EIGENEM Foto!
+```
 
-Für HelloFresh-Karten reicht oft schon der Suchname — der Bild-Loader (`03_upload_image.py`) zieht das Hero-Bild via `og:image` direkt von hellofresh.de.
+Gesamtzeit: ~2 Minuten pro Rezept.
 
-### 2. Rezept anlegen + Zutaten + Schritte
+## Die 8 nicht-offensichtlichen Qualitätsregeln (aus erstem Live-Run gelernt)
 
-Edit `automation/01_create_recipe.py`:
-```python
-RECIPE_NAME = "Mein Rezeptname"
-INGREDIENTS = ["300 g Basmatireis", "2 Auberginen", ...]
-STEPS = [
-    "Aubergine längs vierteln, ...",
-    "1200 g Wasser, 1,5 TL Salz und 5 g Öl in den Mixtopf geben, Varoma aufsetzen und 18 Min./Varoma/Stufe 1 dampfgaren.",
+Wer einfach blind eine HelloFresh-Karte in die Step-Texte tippt, bekommt ein „besoffenes" Rezept — die AI-Annotation doppelt Bold-Chips, die Schritte lesen sich repetitiv. Diese acht Regeln sind aus dem ersten Praxis-Iterationszyklus mit Sweet-Chili-Bowl entstanden.
+
+### 1. Per-Step Ingredient Uniqueness
+
+Jede Zutat darf höchstens **1x pro Step** vorkommen. Die AI annotiert ALLE Vorkommen einzeln → zwei Bold-Chips zur gleichen Zutat in einem Step liest sich wie ein Bug.
+
+**Bad**: „...unter kaltem **Wasser** spülen. **1200 g Wasser**, **1,5 TL Salz** ..."
+**Good**: „...kurz abspülen. **1200 g Wasser**, **1,5 TL Salz** ..."
+
+### 2. Keine zwei aufeinanderfolgenden Steps mit gleicher End-Phrase
+
+Wenn Step 5 und Step 6 beide mit „mit Salz und Pfeffer abschmecken." enden, liest sich das wie Copy-Paste. **Lösung**: Steps zusammenfassen mit kollektivem Schluss.
+
+**Bad**:
+> 5. ... **Sriracha-Mayo** verrühren und mit **Salz** und **Pfeffer** abschmecken.
+> 6. ... **Sweet-Chili-Dip** vermengen und ebenfalls mit **Salz** und **Pfeffer** abschmecken.
+
+**Good** (merged in einen Step):
+> 5. ... **Sriracha-Mayo** verrühren. ... **Sweet-Chili-Dip** vermengen. Beide Soßen mit **Salz** und **Pfeffer** abschmecken.
+
+### 3. Compound-Namen die Zutaten als Substring enthalten vermeiden
+
+„Sriracha-**Mayo**" enthält das Wort „Mayo", was die AI an „vegane Mayonnaise" matchen könnte. Im gleichen Step wäre dann „Mayonnaise" + „Mayo" beide annotiert → doppelt.
+
+**Bad**: „50 g vegane **Mayonnaise** mit 16 g **Sriracha-Sauce** zur Sriracha-**Mayo** verrühren"
+**Good**: Compound-Namen weglassen, der User weiß aus dem Rezepttitel was rauskommt. „50 g vegane Mayonnaise mit 16 g Sriracha-Sauce verrühren."
+
+Gleiches gilt für „Sweet-Chili-**Dip**" / „Sweet-Chili-**Soße**".
+
+### 4. Synonyme zählen als Doppelung
+
+„Basmatireis ... Reis" oder „Buschbohnen ... Bohnen" wird von der AI als overuse erkannt.
+
+**Bad**: „... **Reis** abgedeckt 6 Min. ziehen lassen ... **Reis** mit Gabel auflockern"
+**Good**: „... abgedeckt 6 Min. ziehen lassen ... Den **Reis** mit Gabel auflockern"
+
+### 5. Keine doppelten Zutaten mit Catch-all-Sammelposten
+
+Wer „Salz, Pfeffer, Zucker, Öl nach Bedarf" als Sammelposten hat, **nicht zusätzlich** „1,5 TL Salz (zum Reis)" als separate Zeile listen. Sonst entstehen doppelte Salz-Chips.
+
+### 6. Tipps brauchen '— ' Prefix als Bullet
+
+Cookidoo rendert die Tipps **ohne** Auto-Bullets. Jede Zeile mit `— ` (em-dash + Space) starten, sonst verschwimmen alle Tipps zu einem Text-Block.
+
+```
+TIPS = (
+    "— Aubergine 10 Min. vor dem Marinieren leicht salzen — ...\n"
+    "— Reis VOR dem Garen ... klar abspülen — ...\n"
     ...
-]
+)
 ```
 
-**Wichtig zur Step-Granularität** (basierend auf Research nativer Rezepte):
-- 1 Schritt = 1 atomare Aktion (vermeide „und dann ... und dann ...")
-- Max. 1 Koch-Befehl pro Schritt
-- Koch-Befehl steht im Step-Text als plain `18 Min./Varoma/Stufe 1` — die AI erkennt das in Schritt 5
-- Zielgranularität: 8-15 Schritte für ein normales Hauptgericht (Vergleichswerte: Suppe 5, Bowl 5-7, Brot 5-7 mit Sektionen)
+### 7. Quellen-Link gehört ans Ende der Tipps
 
-Run:
-```bash
-python3 automation/01_create_recipe.py
+Wenn das Rezept aus einer fremden Quelle stammt (HelloFresh-Karte, Buch, Webseite), den Link am Ende der Tipps-Sektion. Cookidoo hat kein eigenes „Quelle"-Feld für Eigene Rezepte.
+
+```
+"...\n"
+"\n"
+"Quelle: HelloFresh Wochenbox, Karte #33\n"
+"https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd"
 ```
 
-### 3. Bild hochladen
+Cookidoo macht die URL klickbar im Render-View.
 
-```bash
-# Bild manuell ins ./recipes/{slug}/hero.jpg legen, dann:
-python3 automation/02_upload_image.py recipes/sweet-chili-bowl
+### 8. Step-Granularität: 6-10 Steps für ein Hauptgericht
+
+Native Vorwerk-Rezepte packen oft 3-4 Aktionen in einen Step. HelloFresh-Karten haben typisch 6 Steps, ich landete für die Sweet-Chili-Bowl bei **8 Steps**. Mehr als 10-12 wirkt überspezifiziert für ein normales Gericht.
+
+Beispiel-Mapping (Sweet-Chili-Bowl):
+
+| Aktion | HF-Karte (6) | Mein Rezept (8) |
+|---|---|---|
+| Aubergine schneiden + Ofen vorheizen + Aubergine marinieren | 1 Step | 2 Steps |
+| Bohnen prep + Reis prep + Wasser + Dampfgaren + Aubergine im Ofen | 1 Step | 2 Steps |
+| Chili + Frühlingszwiebel + beide Dips + abschmecken | 1 Step | 1 Step ← merged |
+| Gurkensalat | 1 Step | 1 Step |
+| Bohnen vollenden + Reis fertig | 1 Step | 1 Step |
+| Anrichten | 1 Step | 1 Step |
+
+## Konsistenz-Audit-Schritt vor Publish
+
+Vor dem `05_annotate_chips.py`-Run ein 30-Sekunden-Eigen-Audit machen:
+
+```python
+# Quick-Check direkt in Python:
+from collections import Counter
+import re
+
+for i, step in enumerate(STEPS, 1):
+    # Zutaten-Mentions im Step finden
+    tokens = re.findall(r'\b(?:Wasser|Salz|Pfeffer|Öl|Reis|Aubergine|Buschbohnen|Limette|Limettenspalten|Chili|Gurke|Frühlingszwiebel|Mayonnaise|Sriracha|Sweet-Chili-Soße|Teriyakisoße|Sesamöl)\w*\b', step)
+    c = Counter(tokens)
+    dupes = [(w,n) for w,n in c.items() if n > 1]
+    if dupes:
+        print(f"⚠️ Step {i} duplicates: {dupes}")
+
+# Consecutive endings
+endings = ['abschmecken.', 'verrühren.', 'vermengen.']
+for i in range(1, len(STEPS)):
+    for e in endings:
+        if STEPS[i-1].endswith(e) and STEPS[i].endswith(e):
+            print(f"⚠️ Step {i} and {i+1} both end with '...{e}'")
 ```
 
-Cookidoo öffnet das Cloudinary-Widget-Iframe; das Script setzt die Datei via `input[type=file].set_input_files()` und klickt „Zuschneiden".
+## Meta-Felder (Arbeitszeit, Gesamtzeit, Portionen)
 
-### 4. Tipps hinzufügen
+Die drei Tiles unter dem Rezepttitel:
+- 🔪 Arbeitszeit (Messer-Icon → `prepTime`)
+- 🕐 Gesamtzeit (Uhr-Icon → `totalTime`)
+- 👥 X Portionen (Personen-Icon → `recipeYield`)
 
-```bash
-python3 automation/03_add_tips.py
+Klick auf eines der Tiles öffnet ein **gemeinsames Modal** mit 3 Tabs (Zubereitungszeit/Gesamtzeit/Portionsgröße). `automation/04_set_times.py` macht das automatisch — Werte oben im Script editieren:
+
+```python
+PREP_MIN = 25     # Arbeitszeit
+TOTAL_MIN = 35    # Gesamtzeit
 ```
 
-Beachten: das Tipps-Feld hat einen **eigenen** Per-Field-Save-Button (echter `<button>`, nicht der globale `<a>Bestätigen</a>`). Beide klicken sonst gehen die Tipps verloren.
+## Image-Upload-Spezialitäten
 
-### 5. 🪄 Das Goldstück — AI-Annotate für Koch-Chips
+Der Hero-Image-Upload läuft über Cloudinary's Widget in einem **iframe**. Das Script (`02_upload_image.py`) erwartet:
 
-```bash
-python3 automation/05_annotate_chips.py
-```
+1. `button.cr-manage-image__trigger` — klickt den Bild-Tile (NICHT den Dropdown-Item „Bild hochladen"!)
+2. Cloudinary-iframe lokalisieren via `f.url.includes('cloudinary')`
+3. `frame.locator("input[type='file']").set_input_files(path)` — Datei setzen
+4. `frame.locator("button:has-text('Zuschneiden')")` — Crop bestätigen
+5. Top-level `<a>Bestätigen</a>` zum Speichern
 
-Das Script:
-1. Liest die aktuelle Rezept-Definition aus dem Editor (`getInstructions()` + `getIngredients()`)
-2. Schickt sie per `POST /created-recipes/de-DE/annotate/steps` an Cookidoo's AI
-3. Bekommt für jeden Schritt die strukturierten Tokens zurück (TEXT, INGREDIENT, TTS, MODE)
-4. Wandelt sie in HTML um (Replikation des `convertInstructionToHtml`-Helpers aus dem Bundle)
-5. Setzt die Token-HTML als `innerHTML` jedes Schritt-Textfeldes
-6. Triggert `cr-manage-steps.save()` → PATCH speichert die Annotationen server-side
-7. Im Recipe-View erscheinen die Befehle nun als `<nobr class="recipe-content__accent">`-Chips
-8. Auf dem Thermomix sind sie klick-/auto-ausführbar
+## Publishing (nur mit eigenem Foto!)
 
-### 6. Final-Check
+`automation/06_publish.py` macht `PATCH {workStatus: "PUBLIC", isImageOwnedByUser: true}`. Der zweite Toggle ist eine **rechtliche Selbstzusicherung** des Users. **Nur ausführen wenn das Foto wirklich von dir kommt** — sonst Copyright-Ärger.
 
-Öffne https://cookidoo.de/created-recipes/de-DE/ und such dein Rezept. Es sollte:
-- ✅ Hero-Bild zeigen
-- ✅ Alle Zutaten als bullet list
-- ✅ Schritte mit **fett** hervorgehobenen Zutaten-Mentions
-- ✅ Koch-Befehle als hervorgehobene Chips
-- ✅ Tipps-Sektion
-- ✅ Großen grünen **„Heute kochen"**-Button → startet Guided Cooking am Thermomix
-
-## Optionales: Öffentlich teilen
-
-```bash
-python3 automation/06_publish.py
-```
-
-⚠️ **Wichtig**: Nur ausführen wenn du das Bild selbst gemacht hast oder die Rechte daran hast. Cookidoo verlangt eine Eigentumsbestätigung — wer Fremdbilder nutzt riskiert Copyright-Probleme.
-
-Public-URL-Format:
+Public-URL-Pattern:
 ```
 https://cookidoo.de/created-recipes/public/recipes/de-DE/{recipeId}
 ```
 
-## Troubleshooting
+Anonymous-Besucher sehen Titel + Bild + Zutaten + Geräte + Beschreibung. Die vollständigen Steps + Chips sind hinter dem Cookidoo-Login (Freemium-Modell).
 
-### „Bestätigen" klickt nicht
-Es gibt zwei `Bestätigen`-Trigger:
-- **Global oben rechts**: `<a class="cr-edit-tabs__confirm-button">` — speichert die ganze Edit-Session
-- **Pro Feld** (z.B. Tipps): `<button>` — speichert nur das Feld
+## Häufige Fehler
 
-Beim Tipps-Feld den Button ZUERST klicken, dann den Anchor. Sonst verlierst du den Tipps-Inhalt.
+### „Bestätigen" klickt nicht / klickt das Falsche
 
-### Schritte werden auseinandergerissen
-Im Cookidoo-Step-Editor erzeugt **jedes Enter** (auch Shift+Enter) einen **neuen** Schritt. Soft-Newlines gibt's nicht. Wenn dein Step einen „Titel" haben soll, mit `: ` trennen statt `\n`.
+Zwei verschiedene Save-Trigger:
+- **Global oben rechts**: `<a>Bestätigen</a>` (Anchor!) — speichert die gesamte Edit-Session
+- **Pro Feld** (Tipps, Modal): `<button>Bestätigen</button>` (Button!) — speichert nur das Feld
+
+**Reihenfolge wichtig**: erst per-Field-Button, dann global-Anchor. Sonst geht der Feld-Inhalt verloren.
 
 ### Cookie-Banner blockt alles
+
+Immer am Anfang:
 ```python
-try:
-    page.locator("#onetrust-accept-btn-handler").first.click(timeout=2000)
+try: page.locator("#onetrust-accept-btn-handler").first.click(timeout=2000)
 except: pass
 ```
-…sollte am Anfang jedes Scripts stehen. Persistent-Profile merken sich die Akzeptanz dauerhaft.
 
-### AI-Annotate liefert komische Mentions („overuse" Notes)
-Wenn die AI z.B. „Aubergine" in mehreren Schritten findet, markiert sie ab dem zweiten Mal mit `notes: [{type: "overuse"}]`. Das ist nur ein Hinweis im Editor, sieht im View unauffällig aus. Kein Bug.
+### Schritte werden auseinandergerissen
 
-### TTS-Chip fehlt obwohl Befehlstext im Step steht
+Im Step-Editor erzeugt **jedes Enter** (auch Shift+Enter) einen **neuen** Step. Soft-Newlines gibt's nicht. Titel und Body in einem Step → mit `: ` oder `. ` trennen, **niemals `\n`**.
+
+### Annotate-API liefert weniger Chips als erwartet
+
 Mögliche Ursachen:
-- Befehl-Format passt nicht zum AI-Pattern. Akzeptierte Formate (aus Research):
-  - `30 Sek./Stufe 4`
-  - `3 Min./120°C/Stufe 2`
-  - `15 Min./Varoma/Stufe 1`
-  - `6 Min./100 °C/Linkslauf/Stufe 1`
-- Tippfehler in der Einheit (`100C` statt `100°C`)
-- Stufe-Wert nicht erlaubt (Thermomix kennt 0.5, 1, 1.5, 2, ..., 10, soft, Teig)
+- Cooking-Befehl in unbekanntem Format. Akzeptiert (aus Research):
+  - `30 Sek./Stufe 4` · `3 Min./120°C/Stufe 2` · `15 Min./Varoma/Stufe 1` · `6 Min./100 °C/Linkslauf/Stufe 1`
+- Stufe-Wert nicht erlaubt (Thermomix kennt 0.5, 1, 1.5, ..., 10, soft, Teig)
+- Temperatur nicht in der Liste (`OFF, 37, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 98, 100, 105, 110, 115, 120, 140, 145, 150, 155, 160, Varoma`)
 
-Workaround: TTS-Modal manuell öffnen (⚡-Icon unter dem Step) und Werte eintragen, dann normaler Save.
+Workaround: TTS-Modal manuell öffnen (⚡-Icon unter dem Step) und Werte eintragen.
 
-## Nächste Schritte
+### Tipps werden zu einem Block
 
-- Mehrere Rezepte parallel batchen (Loop über `recipes/*` Ordner)
-- Auto-OCR aus HelloFresh-PDF → Zutaten- und Step-Listen
-- Native section headers per CSS-Hack injizieren?
-- Auto-Publish-Pipeline (nur wenn Bild self-shot)
+Du hast die `— ` Prefixe vergessen. Cookidoo's View rendert sonst alle Tipps zu einem Absatz ohne Bullets.
+
+## Nächste Rezepte
+
+Vorschläge für Folge-Rezepte (jeweils mit eigenem Foto):
+- Klassische Hausmannskost (z.B. Geschnetzeltes mit Spätzle) — testet andere Cooking-Modes
+- Backrezept (z.B. Brot mit Quellstück) — testet Mode-Glyphs (Teig kneten ``)
+- Smoothie / Kalter Salat — kein TTS-Chip, nur Ingredient-Linking
+- Suppe / Eintopf — testet längere Garzeiten / Temperaturen

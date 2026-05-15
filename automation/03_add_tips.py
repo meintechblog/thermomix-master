@@ -21,7 +21,13 @@ TIPS = (
     "— Schärfe getrennt servieren: Chili-Ringe und Sriracha-Mayo separat reichen, dann kann jeder selbst dosieren.\n"
     "— Mise en place lohnt sich: Gemüse vorab schnippeln, Dips anrühren — Reis dampfgaren + Aubergine im Ofen laufen parallel, dann gibt's keine Pausen.\n"
     "— Variation: Tofu in Würfeln statt Aubergine glasieren (gleiche Marinade, 12 Min. bei 200 °C). Oder Edamame zusätzlich zu den Buschbohnen mit dampfgaren — mehr Protein.\n"
-    "— Reste halten 2 Tage im Kühlschrank. Dips und Gurkensalat IMMER separat aufbewahren. Aubergine vorm Servieren kurz in der Pfanne aufwärmen, dann wird sie wieder knusprig."
+    "— Reste halten 2 Tage im Kühlschrank. Dips und Gurkensalat IMMER separat aufbewahren. Aubergine vorm Servieren kurz in der Pfanne aufwärmen, dann wird sie wieder knusprig.\n"
+    "\n"
+    "Quelle: HelloFresh Wochenbox, Karte #33 (Thermomix-Variante)\n"
+    "https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd\n"
+    "\n"
+    "Dieses Cookidoo-Rezept ist Teil des Open-Source-Toolkits cookidoo-master, das beliebige Rezepte automatisch in native-quality Cookidoo-Rezepte (mit interaktiven Koch-Befehl-Chips) umwandelt:\n"
+    "https://github.com/meintechblog/cookidoo-master"
 )
 # === END EDIT ===
 
