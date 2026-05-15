@@ -24,6 +24,12 @@ Cookidoo's Editor ist eine Sammlung von Web Components. Die wichtigen:
 | `cr-mode` | Custom Element für Mode-Befehle wie „Teig kneten" (`name` Attribut) |
 | `cr-tts-modal` | Popover für manuelle Koch-Einstellung — hat `openAdd(trigger)` und Save via Event-Dispatch |
 
+So sieht das `cr-tts-modal` aus (Tab „Manuell" mit Min/Sek-Inputs, Temperatur-Dropdown, Stufe-Dropdown, grüner Save-Haken oben rechts):
+
+![cr-tts-modal Popover](docs/assets/tts-popover.png)
+
+Den Weg via UI-Klick auf den grünen Haken zu emulieren ist unzuverlässig (Trusted-Event-Check schlägt fehl). Stattdessen direkt das `annotation-modal-save`-Event dispatchen — oder besser die `annotate/steps`-API nutzen (siehe unten).
+
 ### Wichtige Selektoren (Cheat-Sheet)
 
 ```python

@@ -71,6 +71,20 @@ Für diese Cookidoo-Version habe ich die Karte deshalb komplett in **echtes Ther
 
 Erstellt mit dem Open-Source-Toolkit [cookidoo-master](https://github.com/meintechblog/cookidoo-master), das beliebige Rezepte (HelloFresh-Karte, Kochbuch, Webseite) in ~2 Minuten in native-quality Cookidoo-Eigene-Rezepte umwandelt.
 
+## So sieht's live auf Cookidoo aus
+
+Öffentliche Vorschau (ohne Cookidoo-Login einsehbar) — die Eigenen Rezepte bekommen den gleichen Render wie originale Vorwerk-Rezepte:
+
+![Public Preview ohne Login](../../docs/assets/public-preview-v2.png)
+
+Die Zubereitung mit den hervorgehobenen Koch-Befehlen (im View nur für eingeloggte Cookidoo-Nutzer):
+
+![Zubereitung mit Chips](../../docs/assets/zubereitung-block.png)
+
+Tipps + Quellen-Narrativ als eigene Sektion unterhalb der Schritte:
+
+![Tipps mit Narrativ](../../docs/assets/tips-with-narrative.png)
+
 ## Nährwerte pro Portion (ca. 700 g)
 
 | | |
