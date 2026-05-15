@@ -26,27 +26,26 @@ dazu Sesam-Reis, Gurkensalat & Sriracha-Mayo · vegan · ca. 610 kcal/Portion
 - 200 g Buschbohnen
 - 2 Gurken
 - 2 Frühlingszwiebeln
-- 1 rote Chilischote
+- 1 rote Chilischote, frisch
 - 100 g Teriyakisoße
 - 20 ml Sesamöl
-- 16 ml Sriracha Sauce
+- 16 ml Sriracha-Sauce
 - 100 g Sweet-Chili-Soße
-- 1 Limette (gewachst), in 6 Spalten geschnitten
+- 1 Limette, gewachst
 - 50 g vegane Mayonnaise
 - 1200 g Wasser
-- 1,5 TL Salz (zum Reis)
-- Salz, Pfeffer, Zucker, Öl nach Bedarf
+- 2 TL Salz
+- 25 g Öl
+- 1-2 Prisen Pfeffer
+- 1 Prise Zucker
 
-## Zubereitung — 8 Schritte mit interaktiven Koch-Befehlen
+## Zubereitung — 5 Schritte mit interaktiven Koch-Befehlen
 
-1. Limette in 6 Spalten schneiden. Aubergine längs vierteln und in ca. 2 cm Stücke schneiden. Backofen auf 220 °C Ober-/Unterhitze (200 °C Umluft) vorheizen.
-2. Aubergine in einer großen Schüssel mit der Hälfte der Teriyakisoße, Saft von 2 Limettenspalten, 1 TL Salz und 2 EL Öl marinieren. Auf einem mit Backpapier belegten Backblech verteilen und kurz beiseitestellen.
-3. Enden der Buschbohnen entfernen und dritteln. In den Varoma-Behälter geben und Varoma verschließen.
-4. Basmatireis in den Gareinsatz einwiegen, kurz abspülen. Gareinsatz einsetzen. **1200 g Wasser**, **1,5 TL Salz** und 5 g Öl in den Mixtopf geben, Varoma aufsetzen und **`18 Min./Varoma/Stufe 1`** dampfgaren. Währenddessen die Aubergine in den vorgeheizten Ofen geben und 15–20 Min. backen, bis sie innen weich und außen schön gebräunt ist.
-5. Chili (Achtung: scharf!) und Frühlingszwiebeln in feine Ringe schneiden. In einer kleinen Schüssel 50 g vegane Mayonnaise, 16 g Sriracha-Sauce und Saft von 2 Limettenspalten verrühren. In einer zweiten Schüssel 100 g Sweet-Chili-Soße mit dem Saft von 4 weiteren Spalten vermengen. Beide Soßen mit Salz und Pfeffer abschmecken.
-6. Gurke in sehr dünne Scheiben schneiden oder hobeln. In der Marinade-Schüssel aus Schritt 2 mit 2 EL des Dips aus Schritt 5, Saft von 2 Limettenspalten, 1 Prise Salz, 1 Prise Pfeffer und 1 Prise Zucker marinieren.
-7. Varoma abnehmen. Gareinsatz herausnehmen und abgedeckt 6 Min. ruhen lassen. Mixtopf leeren. 20 g Öl, Buschbohnen aus dem Varoma, 1 Prise Salz und 1 Prise Pfeffer in den Mixtopf geben und **`6 Min./100 °C/Linkslauf/Stufe 1`** dünsten. Den Reis mit einer Gabel auflockern, dabei 20 ml Sesamöl unterheben.
-8. Reis und Buschbohnen in Schüsseln anrichten. Aubergine nach der Garzeit mit der restlichen Teriyakisoße vermengen und obenauf geben. Gurkensalat daneben anrichten. Mit Frühlingszwiebelringen, Chili (Achtung: scharf!) und den Dips toppen. Guten Appetit!
+1. Limette in 6 Spalten schneiden. Aubergine längs vierteln und in ca. 2 cm Stücke schneiden, in einer großen Schüssel mit der Hälfte der Teriyakisoße, Saft von 2 Limettenspalten, 1 TL Salz und 2 EL Öl marinieren und auf einem mit Backpapier belegten Backblech verteilen. Enden der Buschbohnen entfernen und dritteln, in den Varoma-Behälter geben und verschließen. Backofen auf 220 °C Ober-/Unterhitze (200 °C Umluft) vorheizen.
+2. Gareinsatz einhängen, Basmatireis einwiegen und kurz abspülen. Gareinsatz einsetzen. **1200 g Wasser**, **1,5 TL Salz** und 5 g Öl in den Mixtopf geben, Varoma aufsetzen und **`18 Min./Varoma/Stufe 1`** dampfgaren. Aubergine in den vorgeheizten Ofen geben und 15–20 Min. backen, bis sie innen weich und außen schön gebräunt ist.
+3. In der Zwischenzeit Chili (Achtung: scharf!) und Frühlingszwiebeln in feine Ringe schneiden. In einer kleinen Schüssel 50 g vegane Mayonnaise, 16 g Sriracha-Sauce und Saft von 2 Limettenspalten verrühren. In einer zweiten Schüssel 100 g Sweet-Chili-Soße mit dem Saft von 4 weiteren Spalten vermengen. Gurke in dünne Scheiben (2 mm) hobeln und in der Marinade-Schüssel aus Schritt 1 mit 2 EL aus der zweiten Schüssel, Saft von 2 Limettenspalten und 1 Prise Zucker marinieren. Beide Soßen und Gurkensalat mit Salz und Pfeffer abschmecken.
+4. Varoma absetzen. Gareinsatz mithilfe des Spatels herausnehmen und abgedeckt 6 Min. ruhen lassen. Mixtopf leeren. 20 g Öl, Buschbohnen aus dem Varoma und je 1 Prise Salz und Pfeffer in den Mixtopf geben und **`6 Min./100 °C/Linkslauf/Stufe 1`** dünsten. Reis mit einer Gabel auflockern und 20 ml Sesamöl unterheben.
+5. Reis und Buschbohnen auf 4 Bowls verteilen. Aubergine nach der Garzeit mit der restlichen Teriyakisoße vermengen und obenauf geben. Gurkensalat daneben anrichten, mit Frühlingszwiebelringen, Chili (Achtung: scharf!) und den Dips garnieren und servieren.
 
 ## Tipps
 

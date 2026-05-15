@@ -16,6 +16,16 @@ CRITICAL CONSISTENCY RULES (learned from the first recipe iteration):
    Good: '50 g Sriracha-Sauce mit Mayo verrühren'             → 1x Sriracha-Sauce
 3. Don't list a generic Salz amount AND a catch-all 'Salz, Pfeffer, Zucker, Öl nach Bedarf'
    in the ingredient list — pick one.
+
+NATIVE-STYLE INSIGHTS (learned from deep-research of 12 Vorwerk recipes for Bowls/Currys):
+- Native recipes for 14-17 ingredients have a MEDIAN of 5 steps (range 4-7), not 8.
+- Group preparation + parallel tasks into a single 'In der Zwischenzeit ...' step.
+- Use native verbs: 'einwiegen', 'mithilfe des Spatels herausnehmen', 'aufsetzen',
+  'absetzen', 'einhängen', 'auf 4 Bowls verteilen', '... servieren'.
+- Ingredient lines: shorter is better. '1 Limette, gewachst' (not '1 Limette, gewachst,
+  in 6 Spalten geschnitten' — the verb belongs in the step text).
+- Specify exact amounts ('2 TL Salz', '25 g Öl', '1-2 Prisen Pfeffer', '1 Prise Zucker')
+  instead of a catch-all 'nach Bedarf' line — native recipes always do the former.
 """
 import pathlib
 from playwright.sync_api import sync_playwright
@@ -29,33 +39,37 @@ INGREDIENTS = [
     "200 g Buschbohnen",
     "2 Gurken",
     "2 Frühlingszwiebeln",
-    "1 rote Chilischote",
+    "1 rote Chilischote, frisch",
     "100 g Teriyakisoße",
     "20 ml Sesamöl",
-    "16 ml Sriracha Sauce",
+    "16 ml Sriracha-Sauce",
     "100 g Sweet-Chili-Soße",
-    "1 Limette (gewachst), in 6 Spalten geschnitten",
+    "1 Limette, gewachst",
     "50 g vegane Mayonnaise",
     "1200 g Wasser",
-    "Salz, Pfeffer, Zucker, Öl nach Bedarf",
+    "2 TL Salz",
+    "25 g Öl",
+    "1-2 Prisen Pfeffer",
+    "1 Prise Zucker",
 ]
 
-# 8 native-grained steps. Each ingredient max 1x per step.
+# 5 native-style steps (median for 14-17-ingredient native recipes).
 # Cooking commands embedded as plain text in the format the AI annotator recognizes:
 #   "18 Min./Varoma/Stufe 1"  or  "6 Min./100 °C/Linkslauf/Stufe 1"
 # Script 05_annotate_chips.py converts them to interactive chips.
 #
-# ALSO checked: no two consecutive steps end with the same phrase (e.g. don't have
-# two adjacent steps both ending with 'mit Salz und Pfeffer abschmecken.' — merge them).
+# Per-step uniqueness + cross-step adjacent endings already validated.
 STEPS = [
-    "Limette in 6 Spalten schneiden. Aubergine längs vierteln und in ca. 2 cm Stücke schneiden. Backofen auf 220 °C Ober-/Unterhitze (200 °C Umluft) vorheizen.",
-    "Aubergine in einer großen Schüssel mit der Hälfte der Teriyakisoße, Saft von 2 Limettenspalten, 1 TL Salz und 2 EL Öl marinieren. Auf einem mit Backpapier belegten Backblech verteilen und kurz beiseitestellen.",
-    "Enden der Buschbohnen entfernen und dritteln. In den Varoma-Behälter geben und Varoma verschließen.",
-    "Basmatireis in den Gareinsatz einwiegen, kurz abspülen. Gareinsatz einsetzen. 1200 g Wasser, 1,5 TL Salz und 5 g Öl in den Mixtopf geben, Varoma aufsetzen und 18 Min./Varoma/Stufe 1 dampfgaren. Währenddessen die Aubergine in den vorgeheizten Ofen geben und 15–20 Min. backen, bis sie innen weich und außen schön gebräunt ist.",
-    "Chili (Achtung: scharf!) und Frühlingszwiebeln in feine Ringe schneiden. In einer kleinen Schüssel 50 g vegane Mayonnaise, 16 g Sriracha-Sauce und Saft von 2 Limettenspalten verrühren. In einer zweiten Schüssel 100 g Sweet-Chili-Soße mit dem Saft von 4 weiteren Spalten vermengen. Beide Soßen mit Salz und Pfeffer abschmecken.",
-    "Gurke in sehr dünne Scheiben schneiden oder hobeln. In der Marinade-Schüssel aus Schritt 2 mit 2 EL des Dips aus Schritt 5, Saft von 2 Limettenspalten, 1 Prise Salz, 1 Prise Pfeffer und 1 Prise Zucker marinieren.",
-    "Varoma abnehmen. Gareinsatz herausnehmen und abgedeckt 6 Min. ruhen lassen. Mixtopf leeren. 20 g Öl, Buschbohnen aus dem Varoma, 1 Prise Salz und 1 Prise Pfeffer in den Mixtopf geben und 6 Min./100 °C/Linkslauf/Stufe 1 dünsten. Den Reis mit einer Gabel auflockern, dabei 20 ml Sesamöl unterheben.",
-    "Reis und Buschbohnen in Schüsseln anrichten. Aubergine nach der Garzeit mit der restlichen Teriyakisoße vermengen und obenauf geben. Gurkensalat daneben anrichten. Mit Frühlingszwiebelringen, Chili (Achtung: scharf!) und den Dips toppen. Guten Appetit!",
+    # 1 — Vorbereitung (Limette, Aubergine, Buschbohnen, Ofen)
+    "Limette in 6 Spalten schneiden. Aubergine längs vierteln und in ca. 2 cm Stücke schneiden, in einer großen Schüssel mit der Hälfte der Teriyakisoße, Saft von 2 Limettenspalten, 1 TL Salz und 2 EL Öl marinieren und auf einem mit Backpapier belegten Backblech verteilen. Enden der Buschbohnen entfernen und dritteln, in den Varoma-Behälter geben und verschließen. Backofen auf 220 °C Ober-/Unterhitze (200 °C Umluft) vorheizen.",
+    # 2 — Reis dampfgaren + Aubergine backen
+    "Gareinsatz einhängen, Basmatireis einwiegen und kurz abspülen. Gareinsatz einsetzen. 1200 g Wasser, 1,5 TL Salz und 5 g Öl in den Mixtopf geben, Varoma aufsetzen und 18 Min./Varoma/Stufe 1 dampfgaren. Aubergine in den vorgeheizten Ofen geben und 15–20 Min. backen, bis sie innen weich und außen schön gebräunt ist.",
+    # 3 — Toppings + Gurkensalat (parallel zum Dampfgaren)
+    "In der Zwischenzeit Chili (Achtung: scharf!) und Frühlingszwiebeln in feine Ringe schneiden. In einer kleinen Schüssel 50 g vegane Mayonnaise, 16 g Sriracha-Sauce und Saft von 2 Limettenspalten verrühren. In einer zweiten Schüssel 100 g Sweet-Chili-Soße mit dem Saft von 4 weiteren Spalten vermengen. Gurke in dünne Scheiben (2 mm) hobeln und in der Marinade-Schüssel aus Schritt 1 mit 2 EL aus der zweiten Schüssel, Saft von 2 Limettenspalten und 1 Prise Zucker marinieren. Beide Soßen und Gurkensalat mit Salz und Pfeffer abschmecken.",
+    # 4 — Bohnen vollenden + Reis fertig
+    "Varoma absetzen. Gareinsatz mithilfe des Spatels herausnehmen und abgedeckt 6 Min. ruhen lassen. Mixtopf leeren. 20 g Öl, Buschbohnen aus dem Varoma und je 1 Prise Salz und Pfeffer in den Mixtopf geben und 6 Min./100 °C/Linkslauf/Stufe 1 dünsten. Reis mit einer Gabel auflockern und 20 ml Sesamöl unterheben.",
+    # 5 — Anrichten
+    "Reis und Buschbohnen auf 4 Bowls verteilen. Aubergine nach der Garzeit mit der restlichen Teriyakisoße vermengen und obenauf geben. Gurkensalat daneben anrichten, mit Frühlingszwiebelringen, Chili (Achtung: scharf!) und den Dips garnieren und servieren.",
 ]
 # === END EDIT ===
 

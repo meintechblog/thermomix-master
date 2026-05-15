@@ -272,6 +272,49 @@ Native Sharing-Buttons (Facebook/Twitter/WhatsApp/Pinterest/Mail) bauen die URL 
 
 `#onetrust-accept-btn-handler` muss bei jedem fresh-launch des Profils einmal geklickt werden, sonst overlay-blockt OneTrust alle anderen Klicks. Persistent-Profile akzeptieren das einmal und merken's.
 
+## Native-Style Step-Granularität (Deep-Research 12 Vorwerk-Rezepte)
+
+Nach dem ersten 8-Step-Rezept Deep-Research auf 12 native Vorwerk-Bowls/Currys/Pfannen-Rezepte (gesammelt via Search-API + URL-Scraping, persisted in `/tmp/cookidoo/deep/research.json`) ergab folgendes Muster:
+
+### Step-Anzahl ≠ Zutaten-Anzahl
+
+| Zutaten | Native median Steps | Native Range |
+|---|---|---|
+| 8-12 | 4 | 3-5 |
+| 13-17 | **5** | 4-7 |
+| 18-25 | 6 | 5-8 |
+
+Mein erstes Rezept hatte 14 Zutaten und **8 Steps** — die native Median-Erwartung wären **5 Steps** gewesen. Native Rezepte gruppieren Vorbereitungsphasen aggressiver in einen einzigen „Vorbereitung"-Step und bündeln parallele Tasks in einen „In der Zwischenzeit ..."-Step.
+
+### Native Verb-Vokabular
+
+Native Vorwerk-Steps sind **kompakter** und nutzen technische Verben, die der Thermomix-Display kennt:
+- `einwiegen` (in den Gareinsatz/Mixtopf) — nicht „einfüllen"
+- `einhängen` (Gareinsatz) — nicht „einsetzen"
+- `aufsetzen` / `absetzen` (Varoma) — nicht „aufstellen / abnehmen"
+- `mithilfe des Spatels herausnehmen` — nicht nur „herausnehmen"
+- `unterheben` (Sesamöl etc.) — nicht „dazugeben"
+- `auf X Bowls/Tellern verteilen` — nicht „in Schüsseln anrichten"
+- `... servieren` als Schluss-Verb — nicht „Guten Appetit!"
+- `In der Zwischenzeit ...` als Lead-in für Parallel-Schritte
+
+### Native Zutaten-Format
+
+- **Adjektive nach Komma**: `1 rote Chilischote, frisch` (nicht „1 frische rote Chilischote")
+- **Modifikator nach Komma**: `1 Limette, gewachst` (nicht „1 Limette (gewachst), in 6 Spalten geschnitten" — der Verb-Teil gehört in den Step!)
+- **Spezifische Mengen** statt Catch-all: `2 TL Salz`, `25 g Öl`, `1-2 Prisen Pfeffer`, `1 Prise Zucker` (statt „Salz, Pfeffer, Zucker, Öl nach Bedarf")
+- **Bindestrich-Soßen**: `Sriracha-Sauce`, `Sweet-Chili-Soße`, `Teriyakisoße`
+
+### Step-Längen-Verteilung
+
+Native Steps für 14-17-Zutaten-Rezepte haben **250-550 Zeichen pro Step**. Mein 5-Step-Rewrite landete bei 253, 308, 314, 425, 536 Zeichen — passt zur nativen Verteilung. Kürzere Steps (< 200 Zeichen) sind selten und meist nur „Anrichten"-Schluss.
+
+### Was native Rezepte NICHT haben
+
+- `Guten Appetit!` — wird in 0 von 12 native Rezepten gefunden
+- Doppelpunkte vor Listen („Toppings: Reis, Bohnen ...") — native nutzt Fließtext
+- Hinweise in Klammern direkt in der Zutatenliste — native packt sie in den Step
+
 ## Locale-Awareness
 
 Alle Pfade hier sind `de-DE`. Andere Locales (`en-US`, `fr-FR`, etc.) haben die gleiche Struktur, nur die URL-Segmente und die Texte sind anders. Die TTS-Glyphs (`` kneten, `` steaming, `` weighing, `` blend, `` direction) sind locale-unabhängig.

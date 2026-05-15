@@ -35,7 +35,7 @@ python3 automation/06_publish.py           # nur mit EIGENEM Foto!
 
 Gesamtzeit: ~2 Minuten pro Rezept.
 
-## Die 8 nicht-offensichtlichen Qualitätsregeln (aus erstem Live-Run gelernt)
+## Die 9 nicht-offensichtlichen Qualitätsregeln (aus erstem Live-Run gelernt)
 
 Wer einfach blind eine HelloFresh-Karte in die Step-Texte tippt, bekommt ein „besoffenes" Rezept — die AI-Annotation doppelt Bold-Chips, die Schritte lesen sich repetitiv. Diese acht Regeln sind aus dem ersten Praxis-Iterationszyklus mit Sweet-Chili-Bowl entstanden.
 
@@ -102,20 +102,44 @@ Wenn das Rezept aus einer fremden Quelle stammt (HelloFresh-Karte, Buch, Webseit
 
 Cookidoo macht die URL klickbar im Render-View.
 
-### 8. Step-Granularität: 6-10 Steps für ein Hauptgericht
+### 8. Step-Granularität: Median 5 Steps für ein 14-17-Zutaten-Hauptgericht
 
-Native Vorwerk-Rezepte packen oft 3-4 Aktionen in einen Step. HelloFresh-Karten haben typisch 6 Steps, ich landete für die Sweet-Chili-Bowl bei **8 Steps**. Mehr als 10-12 wirkt überspezifiziert für ein normales Gericht.
+Nach Deep-Research von 12 native Vorwerk-Bowls/Currys: bei **14-17 Zutaten = 5 Steps** Median (Range 4-7). Mein erster 8-Step-Versuch war zu fein-granular. Native gruppiert Vorbereitungs-Phasen aggressiver und nutzt „In der Zwischenzeit ..." als Lead-in für Parallel-Tasks.
 
-Beispiel-Mapping (Sweet-Chili-Bowl):
-
-| Aktion | HF-Karte (6) | Mein Rezept (8) |
+| Zutaten | Native median Steps | Native Range |
 |---|---|---|
-| Aubergine schneiden + Ofen vorheizen + Aubergine marinieren | 1 Step | 2 Steps |
-| Bohnen prep + Reis prep + Wasser + Dampfgaren + Aubergine im Ofen | 1 Step | 2 Steps |
-| Chili + Frühlingszwiebel + beide Dips + abschmecken | 1 Step | 1 Step ← merged |
-| Gurkensalat | 1 Step | 1 Step |
+| 8-12 | 4 | 3-5 |
+| 13-17 | **5** | 4-7 |
+| 18-25 | 6 | 5-8 |
+
+Beispiel-Mapping nach Rewrite (Sweet-Chili-Bowl, 17 Zutaten):
+
+| Aktion | HF-Karte (6) | Mein Rezept v2 (5) |
+|---|---|---|
+| Limette + Aubergine schneiden + marinieren + Bohnen prep + Ofen heizen | 1+2 Steps | **1 Step** (merged) |
+| Reis + Wasser + Dampfgaren + Aubergine in Ofen | 1 Step | 1 Step |
+| In der Zwischenzeit: Chili + Frühlingszwiebel + 2 Dips + Gurkensalat | 2 Steps | **1 Step** ("In der Zwischenzeit ...") |
 | Bohnen vollenden + Reis fertig | 1 Step | 1 Step |
 | Anrichten | 1 Step | 1 Step |
+
+### 9. Native Verb-Vokabular + Zutaten-Format
+
+Native Steps nutzen **technische Verben** die der Thermomix-Display kennt:
+- `einwiegen` (in Gareinsatz/Mixtopf) — nicht „einfüllen"
+- `einhängen` (Gareinsatz) — nicht „einsetzen"
+- `aufsetzen` / `absetzen` (Varoma) — nicht „aufstellen / abnehmen"
+- `mithilfe des Spatels herausnehmen` — nicht nur „herausnehmen"
+- `unterheben` — nicht „dazugeben"
+- `auf X Bowls verteilen` — nicht „in Schüsseln anrichten"
+- `... servieren` (Schluss) — nicht „Guten Appetit!"
+
+Zutaten-Format: **Modifikatoren nach Komma**, Verb-Teile gehören in den Step:
+
+| Bad (HF-Style) | Good (Native-Style) |
+|---|---|
+| `1 rote Chilischote` | `1 rote Chilischote, frisch` |
+| `1 Limette (gewachst), in 6 Spalten geschnitten` | `1 Limette, gewachst` (Schneiden im Step) |
+| `Salz, Pfeffer, Zucker, Öl nach Bedarf` | `2 TL Salz` + `25 g Öl` + `1-2 Prisen Pfeffer` + `1 Prise Zucker` (vier Zeilen) |
 
 ## Konsistenz-Audit-Schritt vor Publish
 
