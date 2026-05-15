@@ -49,14 +49,27 @@ dazu Sesam-Reis, Gurkensalat & Sriracha-Mayo · vegan · ca. 610 kcal/Portion
 
 ## Tipps
 
-- **Aubergine 10 Min. vor dem Marinieren leicht salzen** — zieht Bitterstoffe & Wasser raus, die Glasur haftet besser und sie wird außen knuspriger.
-- **Reis VOR dem Garen** im Gareinsatz unter kaltem Wasser spülen, bis das Wasser klar ist — weniger Stärke = lockerer, nicht klebriger Reis.
+- **Aubergine 10 Min. vor dem Marinieren leicht salzen** — zieht Bitterstoffe und Flüssigkeit raus, die Glasur haftet besser und sie wird außen knuspriger.
+- **Reis VOR dem Garen** im Gareinsatz unter dem Hahn klar abspülen — weniger Stärke = lockerer, nicht klebriger Reis.
 - **Bohnen im Mixtopf unbedingt im Linkslauf** dünsten, sonst werden sie zerhäckselt.
 - **Sesamöl erst nach dem Garen unterheben** (nicht miterhitzen) — sonst verfliegt das Röstaroma.
-- **Schärfe getrennt servieren**: Chili-Ringe und Sriracha-Mayo separat reichen, dann kann jeder selbst dosieren — vor allem für Kids/Empfindliche.
-- **Mise en place lohnt sich**: Gemüse vorab schnippeln, Dips anrühren — die Thermomix-Schritte (Reis dampfgaren + Aubergine im Ofen) laufen parallel, dann gibt's keine Pausen.
+- **Schärfe getrennt servieren**: Chili-Ringe und Sriracha-Mayo separat reichen, dann kann jeder selbst dosieren.
+- **Mise en place lohnt sich**: Gemüse vorab schnippeln, Dips anrühren — Reis dampfgaren + Aubergine im Ofen laufen parallel, dann gibt's keine Pausen.
 - **Variation**: Tofu in Würfeln statt Aubergine glasieren (gleiche Marinade, 12 Min. bei 200 °C). Oder Edamame zusätzlich zu den Buschbohnen mit dampfgaren — mehr Protein.
 - **Reste** halten 2 Tage im Kühlschrank. Dips und Gurkensalat IMMER separat aufbewahren. Aubergine vorm Servieren kurz in der Pfanne aufwärmen, dann wird sie wieder knusprig.
+
+## Warum diese Cookidoo-Adaption
+
+Die HelloFresh-Kreationen sind grandios — frisch, kreativ, jede Woche was Neues in der Box. Schade nur, dass die als „Thermomix-Variante" gelabelten Karten das Gerät bisher kaum nutzen: keine geführte Bedienung, keine Chips für Zeit/Temperatur/Stufe, kein Start aus Cookidoo. Effektiv ist die „Thermomix-Variante" auf der Rückseite der Karte der gleiche Fließtext wie die Pfannen-Variante — nur mit ein paar Sätzen wie _„Wasser dazu, kochen"_.
+
+Für diese Cookidoo-Version habe ich die Karte deshalb komplett in **echtes Thermomix-Wording** übersetzt:
+
+- **Native Verben** statt generischer Anweisungen: `einwiegen`, `einhängen`, `aufsetzen`, `dampfgaren`, `mithilfe des Spatels herausnehmen`, `unterheben`, `auf 4 Bowls verteilen` — die Verben, die der Thermomix-Display und Cookidoo selbst auch in originalen Vorwerk-Rezepten verwenden.
+- **Step-Granularität nach Native-Standard**: 5 Steps statt 8 in der Original-Karte, weil Vorwerk-Bowls/Currys bei 14-17 Zutaten typisch 5 Steps haben. Vorbereitungs-Phasen sind aggressiver zusammengefasst, parallel laufende Tasks via `In der Zwischenzeit …` gebündelt.
+- **Spezifische Mengen** statt Catch-all: `2 TL Salz`, `25 g Öl`, `1-2 Prisen Pfeffer`, `1 Prise Zucker` als separate Zutatenzeilen — nicht „Salz, Pfeffer, Zucker, Öl nach Bedarf" wie die HelloFresh-Karte. Damit kennt der Thermomix die Mengen exakt.
+- **Interaktive Koch-Befehl-Chips**: `18 Min./Varoma/Stufe 1` und `6 Min./100 °C/Linkslauf/Stufe 1` sind im Cookidoo-Render keine Plain-Text-Strings, sondern hervorgehobene Chips. Der Thermomix erkennt sie und führt sie beim Antippen direkt aus — die Maschine dreht den Mixer wirklich 18 Minuten auf Varoma/Stufe 1, ohne dass man am Display Werte eintippen muss.
+
+Erstellt mit dem Open-Source-Toolkit [cookidoo-master](https://github.com/meintechblog/cookidoo-master), das beliebige Rezepte (HelloFresh-Karte, Kochbuch, Webseite) in ~2 Minuten in native-quality Cookidoo-Eigene-Rezepte umwandelt.
 
 ## Nährwerte pro Portion (ca. 700 g)
 

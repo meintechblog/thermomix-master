@@ -1,7 +1,9 @@
-"""Delete ALL existing steps and replace with a fresh native-style list.
+"""Out-of-band helper: delete ALL existing steps and replace with a fresh list.
 
-Use this if 01_create_recipe.py left chunky/wrong steps (e.g. titles got split
-into separate steps due to embedded newlines).
+NOT part of the main 00→06 pipeline — only use this as a rescue tool if
+01_create_recipe.py left a recipe with messy steps (e.g. titles got split
+into separate step rows because of embedded newlines, or you want to swap
+the whole step list for an existing recipe without re-creating it).
 
 Edit STEPS list below, then run.
 """

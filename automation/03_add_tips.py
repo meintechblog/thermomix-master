@@ -23,10 +23,14 @@ TIPS = (
     "— Variation: Tofu in Würfeln statt Aubergine glasieren (gleiche Marinade, 12 Min. bei 200 °C). Oder Edamame zusätzlich zu den Buschbohnen mit dampfgaren — mehr Protein.\n"
     "— Reste halten 2 Tage im Kühlschrank. Dips und Gurkensalat IMMER separat aufbewahren. Aubergine vorm Servieren kurz in der Pfanne aufwärmen, dann wird sie wieder knusprig.\n"
     "\n"
-    "Quelle: HelloFresh Wochenbox, Karte #33 (Thermomix-Variante)\n"
+    "Warum dieses Rezept als Cookidoo-Version hier liegt:\n"
+    "Die HelloFresh-Kreationen sind grandios — frisch, kreativ, jede Woche was Neues in der Box. Schade nur, dass die als \"Thermomix-Variante\" gelabelten Karten das Gerät bisher kaum nutzen: keine geführte Bedienung, keine Chips für Zeit/Temperatur/Stufe, kein Start aus Cookidoo. Also habe ich die Karte in echtes Thermomix-Wording übersetzt (einwiegen, einhängen, aufsetzen, dampfgaren statt generischem \"Wasser dazu & kochen\") und die Koch-Befehle als interaktive Chips eingebaut — damit das Rezept auf dem Thermomix läuft wie ein originales Vorwerk-Rezept: einmal antippen, und die Maschine führt durch jeden Schritt.\n"
+    "\n"
+    "Original-Karte (HelloFresh Wochenbox #33):\n"
     "https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd\n"
     "\n"
-    "Dieses Cookidoo-Rezept ist Teil des Open-Source-Toolkits cookidoo-master, das beliebige Rezepte automatisch in native-quality Cookidoo-Rezepte (mit interaktiven Koch-Befehl-Chips) umwandelt:\n"
+    "Toolkit (Open Source):\n"
+    "Aus beliebigen Rezepten (HelloFresh-Karte, Kochbuch, Webseite) automatisch native-quality Cookidoo-Rezepte mit interaktiven Koch-Befehl-Chips machen:\n"
     "https://github.com/meintechblog/cookidoo-master"
 )
 # === END EDIT ===
