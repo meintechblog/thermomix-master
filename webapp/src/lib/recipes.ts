@@ -81,7 +81,7 @@ export function readRecipe(slug: string): Recipe | null {
 }
 
 function extractKennzahlen(md: string): Record<string, string | null> {
-  const sectionMatch = md.match(/##\s+Kennzahlen[\s\S]+?(?=##|\Z)/);
+  const sectionMatch = md.match(/##\s+Kennzahlen[\s\S]+?(?=\n##\s+|$)/);
   if (!sectionMatch) return {};
   const section = sectionMatch[0];
   const rows = section.matchAll(/^\|\s*\*\*([^|]+?)\*\*\s*\|\s*([^|]+?)\s*\|$/gm);
@@ -118,7 +118,10 @@ function extractCookidooRecipeId(url: string): string | null {
 }
 
 function extractIngredients(md: string): string[] {
-  const m = md.match(/##\s+Zutaten[^\n]*\n([\s\S]+?)(?=\n##|\Z)/);
+  // BUG-FIX: `\Z` in JS regex falls back to literal `Z` and matched the first
+  // ingredient starting with Z (e.g. "Zwiebeln") — cutting the list short.
+  // Use `$` with no `m` flag = end-of-string, OR explicit `\n##\s+` lookahead.
+  const m = md.match(/##\s+Zutaten[^\n]*\n([\s\S]*?)(?=\n##\s+|$(?![\s\S]))/);
   if (!m) return [];
   return m[1].split("\n")
     .filter(l => l.trim().startsWith("- "))
@@ -126,7 +129,7 @@ function extractIngredients(md: string): string[] {
 }
 
 function extractStepCount(md: string): number {
-  const m = md.match(/##\s+Zubereitung[^\n]*\n([\s\S]+?)(?=\n##|\Z)/);
+  const m = md.match(/##\s+Zubereitung[^\n]*\n([\s\S]*?)(?=\n##\s+|$(?![\s\S]))/);
   if (!m) return 0;
   return m[1].split("\n").filter(l => /^\d+\.\s/.test(l.trim())).length;
 }

@@ -141,12 +141,17 @@ function Tag({ color, children }: { color: "hero" | "cream" | "charcoal"; childr
 }
 
 function splitSections(md: string): { zubereitung?: string; tipps?: string; warum?: string } {
+  // NOTE: JS regex doesn't support \Z (end-of-string). Earlier versions used
+  // \Z and silently fell back to literal `Z`, which matched the first
+  // German word starting with Z — truncating sections. Use $(?![\s\S]) as
+  // an explicit end-of-string assertion.
+  const END = "(?=\\n##\\s+|$(?![\\s\\S]))";
   const result: { zubereitung?: string; tipps?: string; warum?: string } = {};
-  const zubMatch = md.match(/##\s+Zubereitung[^\n]*\n([\s\S]+?)(?=\n##\s+|\Z)/);
+  const zubMatch = md.match(new RegExp(`##\\s+Zubereitung[^\\n]*\\n([\\s\\S]*?)${END}`));
   if (zubMatch) result.zubereitung = zubMatch[1].trim();
-  const tippsMatch = md.match(/##\s+Tipps[^\n]*\n([\s\S]+?)(?=\n##\s+|\Z)/);
+  const tippsMatch = md.match(new RegExp(`##\\s+Tipps[^\\n]*\\n([\\s\\S]*?)${END}`));
   if (tippsMatch) result.tipps = tippsMatch[1].trim();
-  const warumMatch = md.match(/##\s+Warum\s+diese\s+Cookidoo-Adaption[^\n]*\n([\s\S]+?)(?=\n##\s+|\Z)/);
+  const warumMatch = md.match(new RegExp(`##\\s+Warum\\s+diese\\s+Cookidoo-Adaption[^\\n]*\\n([\\s\\S]*?)${END}`));
   if (warumMatch) result.warum = warumMatch[1].trim();
   return result;
 }
