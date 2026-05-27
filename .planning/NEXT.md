@@ -1,6 +1,6 @@
 # NEXT — cookidoo-master Session-Handoff
 
-**Stand:** 2026-05-27, 17:10 lokal · Session-Wrap nach 3 Rezepten + Skill v3 + Webapp-Chat-Umbau. Bei „weiter" hier weitermachen.
+**Stand:** 2026-05-27, 19:30 lokal · Session-Wrap nach 2 Rezepten + Skill v3 + Webapp-Chat + Mobile-Refit + Skill-Extraction. Bei „weiter" hier weitermachen.
 
 ---
 
@@ -75,10 +75,10 @@ Bridge-Daemon ist installiert und läuft: `launchctl print gui/$(id -u)/com.hulk
 
 `~/.claude/skills/thermomix-master/` (hardlinked mit `<repo>/skill/thermomix-master/`):
 - **SKILL.md** — Phase 1–8 mit paralleler Pipeline (Restyle background-task parallel zu Tips/Times/Chips)
-- **`references/hero-image-pipeline.md`** — Pfad A/B/C (eigenes Foto / AI-Restyle / kein Bild)
+- **`references/hero-image-pipeline.md`** — Pfad A/B/C (eigenes Foto / AI-Restyle / kein Bild), verweist seit 28a8ae1 auf den neuen chatgpt-image-restyle Skill
 - **`references/hellofresh-card-numbers.md`** — `HF_Y..R..W..`-Pattern aus image_url
 - **`references/native-style-rules.md`**, **`chip-syntax.md`**, **`quality-checks.md`** — bestehend
-- **`scripts/chatgpt-restyle.sh`** — Background-Mode, Polling, Auto-Verify-Loop, Hub-Push, Diet/Main/Garnish-Flags
+- **`scripts/chatgpt-restyle.sh`** — DEPRECATED (legacy wrapper, replaced by ~/.claude/skills/chatgpt-image-restyle/scripts/restyle.sh)
 - **`scripts/extract-hellofresh.py`**, **`audit-recipe.py`**, **`verify-image-match.py`**, **`_slugify.py`** — bestehend
 - **`style-references/`** im Repo (3 kuratierte hero.jpg als Few-Shot-Anker)
 
@@ -86,6 +86,29 @@ Skill nimmt: HF-URL ODER Karten-Foto (`--image`) ODER plain-text (`--text`).
 Skill outputt: Cookidoo public + Webapp live + AI-Hero + Commit + Push + LXC-Trigger.
 
 Funktionierender End-to-End-Test heute mit HF #33 (Stroganoff) — alle Erkenntnisse in Memory + Skill eingebaut.
+
+### Neuer User-Skill chatgpt-image-restyle (2026-05-27, commit 28a8ae1)
+
+Extrahiert aus thermomix-master als reusable, repo-agnostischer Skill:
+
+**`~/.claude/skills/chatgpt-image-restyle/`** (User-global, alle Sessions haben Zugriff)
+- **SKILL.md** — vollständige Doku mit Args + Beispielen
+- **`scripts/restyle.sh`** — generische Few-Shot-Pipeline (Style-Refs als CLI-Arg)
+- **`references/applescript-paths.md`** — ChatGPT.app UI-Tree-Pfade
+- **`references/prompt-recipes.md`** — Default/Card-Mode/Retry Prompts + Bias-Mitigation
+- **`references/failure-modes.md`** — bekannte Fehler + Fixes
+
+Args: `--target`, `--style-refs <dir>`, `--output`, `--background`, `--diet`, `--main-subjects`, `--preserve`, `--verify-url`, `--notify "<cmd>"`, `--source-mode photo|recipe-card|menu-shot`.
+
+Anrufende Skills: thermomix-master (cookidoo). Andere können folgen.
+
+Hulki ist gebeten, das Skill in der Webapp unter neuem `/skills`-Tab zu listen + Doku zu schreiben + Cross-Repo standardisieren.
+
+### Webapp Mobile-Responsive (2026-05-27, commit 5e6a47b)
+
+- **`SiteHeader.tsx`** — Hamburger-Menu auf Mobile, Desktop-Layout ab `md:`
+- **`PinSection.tsx`** — HelloFresh-Pin-Hero standardmäßig collapsed, Tap öffnet
+- **layout.tsx** — `viewport`-Export für iOS Safari, `px-4 sm:px-6` Edge-Padding
 
 ---
 
