@@ -10,8 +10,8 @@ import os
 from playwright.sync_api import sync_playwright
 
 # === EDIT THESE ===
-PREP_MIN = 15     # Arbeitszeit in minutes (Vegane Filetstücke thai Orangensoße, 4P — HelloFresh PT15M)
-TOTAL_MIN = 25    # Gesamtzeit in minutes (Vegane Filetstücke thai Orangensoße, 4P — 25 Min. inkl. Reis-Garen parallel)
+PREP_MIN = 15     # Arbeitszeit in minutes (Portobello-Champignon-Stroganoff, 4P — ohne Pasta-Garzeit, da parallel)
+TOTAL_MIN = 35    # Gesamtzeit in minutes (Portobello-Champignon-Stroganoff, 4P — HelloFresh PT30M, 4P etwas länger)
 # === END EDIT ===
 
 USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")

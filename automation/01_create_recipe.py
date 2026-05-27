@@ -32,38 +32,40 @@ import os
 from playwright.sync_api import sync_playwright
 
 # === EDIT THESE ===
-RECIPE_NAME = "Vegane Filetstücke in thailändischer Orangensoße (HelloFresh)"
+RECIPE_NAME = "Veganes Portobello-Champignon-Stroganoff auf Fusilli mit Kürbiskern-Chili-Topping (HelloFresh)"
 
 INGREDIENTS = [
-    "320 g vegane Filetstücke, Hähnchen-Art",
-    "2 Orangen",
-    "50 g Frühlingszwiebel",
-    "44 g Knoblauch-Ingwer-Zitronengras-Paste",
-    "50 g Sweet-Chili-Soße",
-    "36 g Hoisinsoße",
-    "40 g Cashewkerne, geröstet",
-    "20 g Sesamsamen",
-    "20 g Thai-Basilikum, frisch",
-    "600 g Stir-Fry Mix",
-    "300 g Jasminreis",
-    "700 g Wasser",
+    "540 g Fusilli",
+    "4 Portobello-Pilze",
+    "400 g Champignons",
+    "2 Zwiebeln",
+    "4 Knoblauchzehen",
+    "10 g Petersilie, glatt",
+    "10 g Thymian, frisch",
+    "2 g milder Chili-Mix",
+    "2 Zitronen, gewachst",
+    "500 ml Oatly Bio Cuisine",
+    "50 g Pilzbrühepaste",
+    "20 g Kürbiskerne, geröstet",
+    "16 g Worcester Sauce",
     "30 g Öl",
-    "1 TL Salz",
-    "1-2 Prisen Pfeffer",
+    "50 g pflanzliche Margarine",
+    "2 TL Salz",
+    "1 Prise Pfeffer",
 ]
 
-# 5 native-style steps for 15 ingredients (within native range 4-7, median 5).
+# 5 native-style steps for 17 ingredients (within native range 4-7, median 5).
 STEPS = [
-    # 1 — Reis im Gareinsatz mit Paste-Topping (TTS-Chip 1: 18 Min./Varoma/Stufe 1)
-    "700 g Wasser und 1 TL Salz in den Mixtopf einwiegen. 300 g Jasminreis in den Gareinsatz geben, 44 g Knoblauch-Ingwer-Zitronengras-Paste darauf verteilen und einhängen. 18 Min./Varoma/Stufe 1 garen.",
-    # 2 — Vorbereitung Frühlingszwiebel + Thai-Basilikum (parallel zum Reis)
-    "In der Zwischenzeit 50 g Frühlingszwiebel waschen und weißen sowie grünen Teil getrennt in feine Ringe schneiden. 20 g Thai-Basilikum von den Stielen zupfen und in feine Streifen schneiden.",
-    # 3 — Orangen-Soße im Mixtopf (TTS-Chip 2: 5 Sek./Stufe 4)
-    "2 Orangen halbieren, Saft auspressen und mit 36 g Hoisinsoße und 50 g Sweet-Chili-Soße im Mixtopf 5 Sek./Stufe 4 vermengen. Mit 1 Prise Pfeffer abschmecken und in eine kleine Schüssel umfüllen.",
-    # 4 — Pfanne anbraten + ablöschen
-    "In einer großen Pfanne 30 g Öl erhitzen. Weißen Teil der Frühlingszwiebel, 600 g Stir-Fry Mix und 320 g vegane Filetstücke darin 4-6 Min. goldbraun anbraten. Die Orangen-Mischung dazugießen und 2 Min. glänzend einköcheln lassen.",
-    # 5 — Anrichten
-    "Gareinsatz mithilfe des Spatels herausnehmen, Reis auflockern und auf 4 tiefe Teller verteilen. Stir-Fry-Mischung darauf anrichten und mit grünem Teil der Frühlingszwiebel, 40 g Cashewkerne, 20 g Sesamsamen und Thai-Basilikum bestreuen, sofort servieren.",
+    # 1 — Vorbereitung
+    "2 Zitronen heiß abwaschen und jeweils in 4 Spalten schneiden. 2 Zwiebeln grob würfeln. 4 Portobello-Pilze in 0,5 cm Scheiben schneiden. 400 g Champignons je nach Größe halbieren oder vierteln. 10 g Petersilie und 10 g Thymian von den Stielen zupfen.",
+    # 2 — Kräuter hacken im Mixtopf (TTS-Chip 1: 5 Sek./Stufe 7)
+    "Petersilien- und Thymianblätter in den Mixtopf einwiegen und 5 Sek./Stufe 7 hacken. In eine kleine Schüssel umfüllen, Mixtopf spülen.",
+    # 3 — Pasta im Mixtopf (TTS-Chip 2: 13 Min./100 °C/Linkslauf/Stufe 1)
+    "1,5 l Wasser und 2 TL Salz in den Mixtopf einwiegen. 540 g Fusilli hinzugeben und 13 Min./100 °C/Linkslauf/Stufe 1 garen. Anschließend Pasta in einem Sieb abgießen und dabei 300 ml Kochwasser auffangen.",
+    # 4 — Topping rösten + Pilze anbraten in der Pfanne
+    "In einer großen Pfanne ohne Fett 20 g Kürbiskerne und 2 g milden Chili-Mix 2-3 Min. rösten, herausnehmen und beiseite stellen. Pfanne auswischen, 30 g Öl und 50 g pflanzliche Margarine erhitzen. Zwiebelwürfel, Portobello und Champignons 5-6 Min. kräftig anbraten. 4 Knoblauchzehen hineinpressen, die Hälfte der gehackten Kräuter dazu, 1 Min. mitbraten.",
+    # 5 — Sauce + Anrichten
+    "Mit 300 ml Pastakochwasser, 500 ml Oatly Bio Cuisine, 50 g Pilzbrühepaste, 16 g Worcester Sauce und dem Saft von 2 Zitronenspalten ablöschen, 2-3 Min. cremig einköcheln lassen. Mit 1 Prise Pfeffer abschmecken. Fusilli auf 4 tiefe Teller verteilen, Pilz-Stroganoff daneben anrichten und mit Kürbis-Chili-Topping, restlichen Kräutern und Zitronenspalten servieren.",
 ]
 # === END EDIT ===
 

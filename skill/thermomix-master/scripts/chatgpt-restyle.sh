@@ -74,9 +74,11 @@ fi
 
 log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG"; }
 
-# Save HF original into .received/
-cp "$TARGET" "$RECEIVED/original.jpg"
-log "saved HF original → $RECEIVED/original.jpg"
+# Save HF original into .received/ (skip if target already lives there — common case)
+if [[ "$(cd "$(dirname "$TARGET")" && pwd)/$(basename "$TARGET")" != "$RECEIVED/original.jpg" ]]; then
+  cp "$TARGET" "$RECEIVED/original.jpg"
+fi
+log "HF original ready at $RECEIVED/original.jpg"
 
 # Confirm prerequisites
 command -v cliclick >/dev/null || { log "ERROR cliclick missing — brew install cliclick"; exit 3; }
