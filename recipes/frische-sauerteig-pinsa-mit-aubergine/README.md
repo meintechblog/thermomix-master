@@ -8,7 +8,7 @@ dazu Spitzpaprika, Tomatensoße & Salat mit Senf-Dressing · vegan · 4 Portione
 
 | | |
 |---|---|
-| **Quelle** | HelloFresh Wochenbox, Karte #25 |
+| **Quelle** | HelloFresh Wochenbox, Karte #25 (HF_Y26_R25_W19, vegan) |
 | **Portionen** | 4 |
 | **Arbeitszeit** | ca. 20 Min. |
 | **Gesamtzeit** | ca. 40 Min. |
