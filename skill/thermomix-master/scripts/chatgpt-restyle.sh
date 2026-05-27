@@ -128,11 +128,11 @@ paste_img "$TARGET"
 
 # ─── 4. type prompt + send ──────────────────────────────────────────────────
 if [[ "$CARD_MODE" -eq 1 ]]; then
-  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Das vierte Bild ist eine abfotografierte HelloFresh-Rezeptkarte mit einem Foto des fertigen Gerichts darauf. Bitte generiere mir ein neues Bild im Stil der ersten drei, das genau das Gericht zeigt, das auf der Karte abgebildet ist — ignoriere das Karten-Layout, den Text und den Karten-Hintergrund."
-  RETRY_PROMPT="Bitte nochmal — fokussiere nur auf das Gericht, das auf der fotografierten Rezeptkarte zu sehen ist. Stil und Komposition wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht)."
+  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Das vierte Bild ist eine abfotografierte HelloFresh-Rezeptkarte mit einem Foto des fertigen Gerichts darauf. Generiere mir ein neues Bild im Stil der ersten drei, das das Gericht von der Karte zeigt — alle Hauptzutaten müssen drauf sein, aber mit einer natürlichen, leicht variierten Anordnung (nicht 1:1 wie auf der Karte). Das Gericht soll authentisch wirken, als wäre es gerade frisch angerichtet worden, nicht wie eine exakte Reproduktion. Ignoriere das Karten-Layout, den Text und den Karten-Hintergrund."
+  RETRY_PROMPT="Bitte nochmal — alle Hauptzutaten der fotografierten Karte drauf, aber natürlich-variiert angerichtet (nicht 1:1). Stil wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht)."
 else
-  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Bitte style mir das vierte Bild im gleichen Stil um — wichtig: Komposition und Hauptzutaten exakt wie im Original, nur Stil/Beleuchtung/Tellerwahl anpassen."
-  RETRY_PROMPT="Bitte nochmal — halte die Komposition und Anordnung der Hauptzutaten exakt wie im 4. Quell-Bild. Nur Stil, Licht, Teller (blauer Rand), Hintergrund anpassen."
+  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Generiere mir ein neues Bild im gleichen Stil, das dasselbe Gericht wie das vierte Bild zeigt — alle Hauptzutaten müssen drauf sein, aber mit einer natürlichen, leicht variierten Anordnung (nicht 1:1 wie das Original). Das Gericht soll authentisch wirken, als wäre es gerade frisch angerichtet worden, nicht wie eine exakte Reproduktion. Stil/Beleuchtung/Tellerwahl folgen den ersten drei Bildern."
+  RETRY_PROMPT="Bitte nochmal — alle Hauptzutaten des 4. Bilds müssen drin sein, aber natürlich-variiert angerichtet (nicht 1:1). Stil wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht)."
 fi
 
 send_prompt() {
