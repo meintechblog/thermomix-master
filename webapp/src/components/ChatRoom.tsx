@@ -17,11 +17,15 @@ export function ChatRoom({ initialBacklog }: Props) {
     // intentional: cursor only matters for initial subscribe; live updates come via SSE.
   );
 
-  // auto-scroll on new message
+  // Awaiting reply when the last message is from the user (or sending one right now).
+  const lastMsg = messages[messages.length - 1];
+  const awaitingReply = sending || (lastMsg?.role === "user");
+
+  // auto-scroll on new message OR when typing-indicator appears
   useEffect(() => {
     const el = scrollerRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [messages.length]);
+  }, [messages.length, awaitingReply]);
 
   // SSE subscription
   useEffect(() => {
@@ -100,6 +104,29 @@ export function ChatRoom({ initialBacklog }: Props) {
                 </div>
               </li>
             ))}
+            {awaitingReply && (
+              <li className="flex justify-start">
+                <div className="rounded-2xl rounded-bl-md px-4 py-3 bg-white border border-charcoal-100 shadow-sm">
+                  <div className="flex items-center gap-1.5">
+                    <span
+                      className="w-2 h-2 rounded-full bg-charcoal-400 animate-bounce"
+                      style={{ animationDelay: "0ms", animationDuration: "1s" }}
+                    />
+                    <span
+                      className="w-2 h-2 rounded-full bg-charcoal-400 animate-bounce"
+                      style={{ animationDelay: "150ms", animationDuration: "1s" }}
+                    />
+                    <span
+                      className="w-2 h-2 rounded-full bg-charcoal-400 animate-bounce"
+                      style={{ animationDelay: "300ms", animationDuration: "1s" }}
+                    />
+                    <span className="ml-2 text-[10px] text-charcoal-400">
+                      schreibt…
+                    </span>
+                  </div>
+                </div>
+              </li>
+            )}
           </ul>
         )}
       </div>
