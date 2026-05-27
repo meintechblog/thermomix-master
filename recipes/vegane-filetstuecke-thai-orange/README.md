@@ -8,7 +8,7 @@ mit Jasminreis, Stir-Fry-Gemüse, Cashews, Sesam und Thai-Basilikum · vegan · 
 
 | | |
 |---|---|
-| **Quelle** | HelloFresh Wochenbox, „Vegane Filetstücke in thailändischer Orangensoße", vegan |
+| **Quelle** | HelloFresh Wochenbox, Karte #32 („Vegane Filetstücke in thailändischer Orangensoße", vegan) |
 | **Portionen** | 4 |
 | **Arbeitszeit** | ca. 12 Min. |
 | **Gesamtzeit** | ca. 23 Min. |
