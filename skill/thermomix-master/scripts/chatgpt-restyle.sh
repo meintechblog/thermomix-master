@@ -24,17 +24,23 @@ HF_URL=""
 HUB_PUSH=1
 BACKGROUND=0
 CARD_MODE=0
+DIET=""
+MAIN_INGREDIENTS=""
+GARNISH=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --target)      TARGET="$2"; shift 2 ;;
-    --slug)        SLUG="$2"; shift 2 ;;
-    --nr)          NR="$2"; shift 2 ;;
-    --repo)        REPO="$2"; shift 2 ;;
-    --hf-url)      HF_URL="$2"; shift 2 ;;
-    --no-hub-push) HUB_PUSH=0; shift ;;
-    --background)  BACKGROUND=1; shift ;;
-    --card-mode)   CARD_MODE=1; shift ;;
+    --target)            TARGET="$2"; shift 2 ;;
+    --slug)              SLUG="$2"; shift 2 ;;
+    --nr)                NR="$2"; shift 2 ;;
+    --repo)              REPO="$2"; shift 2 ;;
+    --hf-url)            HF_URL="$2"; shift 2 ;;
+    --no-hub-push)       HUB_PUSH=0; shift ;;
+    --background)        BACKGROUND=1; shift ;;
+    --card-mode)         CARD_MODE=1; shift ;;
+    --diet)              DIET="$2"; shift 2 ;;             # "vegan" | "vegetarisch" | ""
+    --main-ingredients)  MAIN_INGREDIENTS="$2"; shift 2 ;; # short list, comma-sep
+    --garnish)           GARNISH="$2"; shift 2 ;;          # "Zitronenkeile, Kräuter, ..."
     *) echo "Unknown arg: $1" >&2; exit 2 ;;
   esac
 done
@@ -61,6 +67,9 @@ if [[ "$BACKGROUND" -eq 1 ]]; then
     --nr "$NR" \
     --repo "$REPO" \
     ${HF_URL:+--hf-url "$HF_URL"} \
+    ${DIET:+--diet "$DIET"} \
+    ${MAIN_INGREDIENTS:+--main-ingredients "$MAIN_INGREDIENTS"} \
+    ${GARNISH:+--garnish "$GARNISH"} \
     $([ "$HUB_PUSH" -eq 0 ] && echo "--no-hub-push") \
     $([ "$CARD_MODE" -eq 1 ] && echo "--card-mode") \
     > "$LOG" 2>&1 &
@@ -129,12 +138,31 @@ log "pasting target $(basename "$TARGET")"
 paste_img "$TARGET"
 
 # ─── 4. type prompt + send ──────────────────────────────────────────────────
+# Build diet-hint paragraph (Vegan-Bias defense for "Stroganoff/Bolognese/Carbonara/..." gerichte)
+DIET_HINT=""
+if [[ -n "$DIET" ]]; then
+  case "$DIET" in
+    vegan)
+      DIET_HINT=" ⚠ Wichtig: das Rezept ist VEGAN — KEINE Fleisch-/Hähnchen-/Hack-/Speckwürfel. Auch wenn der Gerichtsname klassisch nach Fleisch klingt (Stroganoff/Bolognese/Carbonara o.ä.), sind ALLE proteinhaltigen Stücke pflanzlich."
+      ;;
+    vegetarisch)
+      DIET_HINT=" Wichtig: das Rezept ist vegetarisch — kein Fleisch / kein Fisch."
+      ;;
+  esac
+fi
+
+MAIN_HINT=""
+[[ -n "$MAIN_INGREDIENTS" ]] && MAIN_HINT=" Die Hauptbestandteile sind: $MAIN_INGREDIENTS — diese müssen klar erkennbar im finalen Bild sein."
+
+GARNISH_HINT=""
+[[ -n "$GARNISH" ]] && GARNISH_HINT=" Garnitur-Anker: $GARNISH — diese visuellen Akzente sollen drauf bleiben."
+
 if [[ "$CARD_MODE" -eq 1 ]]; then
-  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Das vierte Bild ist eine abfotografierte HelloFresh-Rezeptkarte mit einem Foto des fertigen Gerichts darauf. Generiere mir ein neues Bild im Stil der ersten drei, das das Gericht von der Karte zeigt — alle Hauptzutaten müssen drauf sein, aber mit einer natürlichen, leicht variierten Anordnung (nicht 1:1 wie auf der Karte). Das Gericht soll authentisch wirken, als wäre es gerade frisch angerichtet worden, nicht wie eine exakte Reproduktion. Ignoriere das Karten-Layout, den Text und den Karten-Hintergrund."
-  RETRY_PROMPT="Bitte nochmal — alle Hauptzutaten der fotografierten Karte drauf, aber natürlich-variiert angerichtet (nicht 1:1). Stil wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht)."
+  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Das vierte Bild ist eine abfotografierte HelloFresh-Rezeptkarte mit einem Foto des fertigen Gerichts darauf. Generiere mir ein neues Bild im Stil der ersten drei, das das Gericht von der Karte zeigt — alle Hauptzutaten müssen drauf sein, aber mit einer natürlichen, leicht variierten Anordnung (nicht 1:1 wie auf der Karte). Das Gericht soll authentisch wirken, als wäre es gerade frisch angerichtet worden, nicht wie eine exakte Reproduktion. Ignoriere das Karten-Layout, den Text und den Karten-Hintergrund.${DIET_HINT}${MAIN_HINT}${GARNISH_HINT}"
+  RETRY_PROMPT="Bitte nochmal — alle Hauptzutaten der fotografierten Karte drauf, aber natürlich-variiert angerichtet (nicht 1:1). Stil wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht).${DIET_HINT}${MAIN_HINT}${GARNISH_HINT}"
 else
-  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Generiere mir ein neues Bild im gleichen Stil, das dasselbe Gericht wie das vierte Bild zeigt — alle Hauptzutaten müssen drauf sein, aber mit einer natürlichen, leicht variierten Anordnung (nicht 1:1 wie das Original). Das Gericht soll authentisch wirken, als wäre es gerade frisch angerichtet worden, nicht wie eine exakte Reproduktion. Stil/Beleuchtung/Tellerwahl folgen den ersten drei Bildern."
-  RETRY_PROMPT="Bitte nochmal — alle Hauptzutaten des 4. Bilds müssen drin sein, aber natürlich-variiert angerichtet (nicht 1:1). Stil wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht)."
+  PROMPT="Die ersten drei Bilder sind unser visueller Stil für die Thermomix-App (warmes Licht, professionelle Food-Fotografie, blauer Tellerrand-Akzent, Top-Down-Perspektive). Generiere mir ein neues Bild im gleichen Stil, das dasselbe Gericht wie das vierte Bild zeigt — alle Hauptzutaten müssen drauf sein, aber mit einer natürlichen, leicht variierten Anordnung (nicht 1:1 wie das Original). Das Gericht soll authentisch wirken, als wäre es gerade frisch angerichtet worden, nicht wie eine exakte Reproduktion. Stil/Beleuchtung/Tellerwahl folgen den ersten drei Bildern.${DIET_HINT}${MAIN_HINT}${GARNISH_HINT}"
+  RETRY_PROMPT="Bitte nochmal — alle Hauptzutaten des 4. Bilds müssen drin sein, aber natürlich-variiert angerichtet (nicht 1:1). Stil wie in den ersten drei Bildern (blauer Teller, Top-Down, warmes Licht).${DIET_HINT}${MAIN_HINT}${GARNISH_HINT}"
 fi
 
 send_prompt() {
@@ -167,31 +195,29 @@ try
     tell process "ChatGPT"
       set mainG to group 2 of splitter group 1 of group 1 of window 1
       set imgArea to scroll area 1 of mainG
-      -- check for "Bild wird erstellt" anywhere in main scroll area
-      set generating to false
+      -- "Bild wird erstellt" / "Generating image" → still rendering
       try
         repeat with t in (static texts of imgArea)
-          if (value of t as text) contains "Bild wird erstellt" or (value of t as text) contains "Generating image" then
-            set generating to true
-            exit repeat
+          set v to value of t as text
+          if v contains "Bild wird erstellt" or v contains "Generating image" then
+            return "generating"
           end if
         end repeat
       end try
-      if generating then
-        return "generating"
-      end if
-      -- look for an image-button with height > 400 (= rendered AI image)
+      -- AI image lives at: scroll area 1 > list 1 > list 1 > group N > group 1 > button 1, size 866x437
+      -- Iterate all chat-bubble groups, look inside each for a tall AXButton.
       try
-        set lst to list 1 of UI element 1 of imgArea
-        repeat with grp in (groups of lst)
-          repeat with btn in (buttons of grp)
+        set outerList to list 1 of imgArea
+        set innerList to list 1 of outerList
+        repeat with bubble in (groups of innerList)
+          try
+            set innerGrp to group 1 of bubble
             try
+              set btn to button 1 of innerGrp
               set sz to size of btn
-              if (item 2 of sz) > 400 then
-                return "done"
-              end if
+              if (item 2 of sz) > 400 then return "done"
             end try
-          end repeat
+          end try
         end repeat
       end try
       return "waiting"
@@ -227,17 +253,16 @@ try
   tell application "System Events"
     tell process "ChatGPT"
       set mainG to group 2 of splitter group 1 of group 1 of window 1
-      set lst to list 1 of UI element 1 of scroll area 1 of mainG
+      set outerList to list 1 of scroll area 1 of mainG
+      set innerList to list 1 of outerList
       set foundBtn to missing value
-      repeat with grp in (groups of lst)
-        repeat with btn in (buttons of grp)
-          try
-            set sz to size of btn
-            if (item 2 of sz) > 400 then
-              set foundBtn to btn
-            end if
-          end try
-        end repeat
+      repeat with bubble in (groups of innerList)
+        try
+          set innerGrp to group 1 of bubble
+          set btn to button 1 of innerGrp
+          set sz to size of btn
+          if (item 2 of sz) > 400 then set foundBtn to btn
+        end try
       end repeat
       if foundBtn is missing value then return "0 0"
       set p to position of foundBtn

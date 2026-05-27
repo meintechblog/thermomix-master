@@ -231,7 +231,18 @@ Bei Pfad A (eigenes Foto) oder Pfad C (kein Foto): Step 2 entfällt — alles se
 
 **2. AI-Restyle im Hintergrund (NUR bei Pfad B — HF-Hauptbild oder Karten-Foto restylen):**
    ```bash
-   # Bei Handy-Foto einer Karte: zusätzlich --card-mode
+   # Diet-Hint (vegan/vegetarisch) — verhindert "Stroganoff = Hähnchen"-Bias
+   DIET=""
+   if echo "$INGREDIENTS_RAW" | grep -qi 'vegan\|veganem\|veganer'; then DIET="vegan";
+   elif ! echo "$INGREDIENTS_RAW" | grep -qiE 'fleisch|hähnchen|hack|speck|wurst|fisch|lachs|garnele'; then DIET="vegetarisch"; fi
+
+   # Hauptbestandteile knapp listen (2-4 items aus INGREDIENTS, ohne Salz/Pfeffer/Öl)
+   MAIN="z.B. Portobello-Pilzscheiben, Champignons, Fusilli"
+
+   # Garnitur, die auf HF-Original-Bild sichtbar ist (Zitronenkeile, Kräuter, Toppings)
+   # Per Read des HF-Bildes erfassen vor dem Dispatch; explizit erhalten beim Retry.
+   GARNISH="z.B. Zitronenkeile, Kräuter, Kürbiskerne"
+
    CARD_MODE_FLAG=""
    [[ -n "$IMAGE_PATH" ]] && CARD_MODE_FLAG="--card-mode"
 
@@ -241,12 +252,19 @@ Bei Pfad A (eigenes Foto) oder Pfad C (kein Foto): Step 2 entfällt — alles se
      --nr "$HF_NR" \
      --repo "$SKILL_REPO" \
      ${HF_URL:+--hf-url "$HF_URL"} \
+     ${DIET:+--diet "$DIET"} \
+     --main-ingredients "$MAIN" \
+     --garnish "$GARNISH" \
      $CARD_MODE_FLAG \
      --background
    ```
    Returnt sofort, schreibt PID nach `.received/hf$HF_NR/.pid`, Log nach `restyle.log`, sentinel `.done` wenn fertig.
 
-   Hinter den Kulissen läuft im BG: paste 3 style-references → paste target → send prompt (Standard ODER Card-Mode-Prompt) → poll auf done (max 120s) → right-click image → copy → PNG extrahieren → JPEG q92 → verify-image-match → bei niedrigem Score 1× Retry mit verschärftem Prompt → hub-push (best-effort).
+   Hinter den Kulissen läuft im BG: paste 3 style-references → paste target → send prompt (mit Diet-Hint + Main-Ingredients + Garnish-Anker) → poll auf done (max 120s) → right-click image → copy → PNG extrahieren → JPEG q92 → verify-image-match → bei niedrigem Score 1× Retry mit verschärftem Prompt (gleiche Anker beibehalten!) → hub-push (best-effort).
+
+   **Lessons aus früheren Runs** (siehe Memory `feedback_restyle_prompt_lessons.md`):
+   - Bei „Stroganoff" / „Bolognese" / „Carbonara" / „Gulasch" und ähnlich klassisch-fleischigen Gerichtsnamen die `--diet vegan` Flag UND die echten Hauptzutaten in `--main-ingredients` setzen. Ohne diese Hinweise interpretiert image-1 das Gericht historisch und produziert Hähnchen/Hack/Speck.
+   - Garnituren auf dem HF-Original (Zitronenkeile, Kräuter, Toppings) in `--garnish` listen, damit sie bei der Generation UND beim Retry nicht weggelassen werden.
 
 **3. Tipps schreiben + 03_add_tips.py editieren + ausführen:** (parallel zu Step 2)
    - 5-8 rezept-spezifische Tipps generieren (kein Boilerplate!) basierend auf:
