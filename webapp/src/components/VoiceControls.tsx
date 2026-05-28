@@ -104,30 +104,37 @@ export function useVoice() {
 
   const recorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const audioUnlockedRef = useRef(false);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioSourceRef = useRef<AudioBufferSourceNode | null>(null);
 
-  // iOS Safari blocks audio.play() unless it's been "unlocked" inside a user-gesture handler.
-  // We call this from the mic-button click, which IS a user gesture — that's enough to bless
-  // subsequent (server-driven, SSE-triggered) audio playback for the rest of the session.
+  // iOS Safari blocks audio.play() unless it's been "unlocked" inside a user-gesture.
+  // Using the Web AudioContext API: once resume() runs inside a gesture, subsequent
+  // buffer-source playbacks work for the rest of the session — even when triggered
+  // by SSE events that have no direct user gesture behind them.
   const unlockAudio = useCallback(() => {
-    if (audioUnlockedRef.current) return;
+    if (audioCtxRef.current) {
+      // already created — just make sure it's running
+      if (audioCtxRef.current.state === "suspended") {
+        audioCtxRef.current.resume().catch(() => {});
+      }
+      return;
+    }
     try {
-      const audio = new Audio(
-        // 1-frame silent WAV (RIFF, mono, 8kHz, 0 samples)
-        "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=",
-      );
-      audio.muted = true;
-      audio
-        .play()
-        .then(() => {
-          audio.pause();
-          audioUnlockedRef.current = true;
-        })
-        .catch(() => {
-          // best-effort: even a failed play() within the gesture still primes the context
-          audioUnlockedRef.current = true;
-        });
+      type WindowWithWebkitAudio = Window & typeof globalThis & {
+        webkitAudioContext?: typeof AudioContext;
+      };
+      const w = window as WindowWithWebkitAudio;
+      const AudioCtx = window.AudioContext || w.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      audioCtxRef.current = ctx;
+      // resume + play one silent buffer to fully prime iOS
+      if (ctx.state === "suspended") ctx.resume().catch(() => {});
+      const silent = ctx.createBuffer(1, 1, 22050);
+      const src = ctx.createBufferSource();
+      src.buffer = silent;
+      src.connect(ctx.destination);
+      src.start(0);
     } catch {}
   }, []);
 
@@ -199,38 +206,50 @@ export function useVoice() {
     if (!SPEECH_URL) return;
     const filtered = filterForTTS(rawText);
     if (!filtered) return;
+    // Stop any currently-playing source first
+    if (audioSourceRef.current) {
+      try { audioSourceRef.current.stop(); } catch {}
+      audioSourceRef.current = null;
+    }
+    let ctx = audioCtxRef.current;
+    if (!ctx) {
+      // No prior user gesture → can't play audio. Skip silently (the bubble is still visible).
+      return;
+    }
     try {
-      // Stop any currently playing audio
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-      setSpeaking(true);
       const blob = await postSynthesize(filtered);
-      const url = URL.createObjectURL(blob);
-      const audio = new Audio(url);
-      audioRef.current = audio;
-      audio.onended = () => {
-        setSpeaking(false);
-        URL.revokeObjectURL(url);
-        audioRef.current = null;
+      const arrayBuf = await blob.arrayBuffer();
+      // Decode + queue. iOS Safari needs decodeAudioData via callback form for old versions.
+      const audioBuf = await new Promise<AudioBuffer>((resolve, reject) => {
+        ctx!.decodeAudioData(arrayBuf.slice(0), resolve, reject);
+      });
+      const source = ctx.createBufferSource();
+      source.buffer = audioBuf;
+      source.connect(ctx.destination);
+      source.onended = () => {
+        if (audioSourceRef.current === source) {
+          audioSourceRef.current = null;
+          setSpeaking(false);
+        }
       };
-      audio.onerror = () => {
-        setSpeaking(false);
-        URL.revokeObjectURL(url);
-        audioRef.current = null;
-      };
-      await audio.play();
+      audioSourceRef.current = source;
+      setSpeaking(true);
+      source.start(0);
     } catch (e: unknown) {
-      setError(`TTS-Fehler: ${(e as Error).message}`);
+      // Suppress NotAllowedError / autoplay errors — these are expected on iOS before unlock.
+      // The user still sees the message bubble; they just don't hear it.
+      const msg = (e as Error).message || "";
+      if (!/not allowed|NotAllowed|user gesture|autoplay/i.test(msg)) {
+        setError(`TTS-Fehler: ${msg}`);
+      }
       setSpeaking(false);
     }
-  }, [mode]);
+  }, []);
 
   const stopSpeaking = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
+    if (audioSourceRef.current) {
+      try { audioSourceRef.current.stop(); } catch {}
+      audioSourceRef.current = null;
     }
     setSpeaking(false);
   }, []);
@@ -265,9 +284,14 @@ export function VoiceControls({ voice, onTranscript, show }: ControlsProps) {
 
   const handleMicClick = async () => {
     voice.unlockAudio(); // prime iOS Safari for later TTS playback (no-op after first call)
+    if (voice.speaking) {
+      // While TTS is playing, the mic-button doubles as a stop-control.
+      voice.stopSpeaking();
+      return;
+    }
     if (voice.recording) {
       const text = await voice.stopRecording();
-      if (text) onTranscript(text, true); // walkie = always auto-send
+      if (text) onTranscript(text, true);
     } else {
       voice.startRecording();
     }
@@ -275,44 +299,43 @@ export function VoiceControls({ voice, onTranscript, show }: ControlsProps) {
 
   return (
     <div className="flex items-center gap-2">
-      {voice.speaking && (
-        <button
-          type="button"
-          onClick={voice.stopSpeaking}
-          className="px-3 py-1.5 text-xs rounded-full bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition"
-          title="TTS-Wiedergabe stoppen"
-        >
-          ⏹ stop
-        </button>
-      )}
       <button
         type="button"
         onClick={handleMicClick}
         disabled={voice.transcribing}
-        aria-label={voice.recording ? "Aufnahme stoppen" : "Walkie-Aufnahme starten"}
+        aria-label={
+          voice.recording ? "Aufnahme stoppen"
+          : voice.speaking ? "Wiedergabe stoppen"
+          : "Walkie-Aufnahme starten"
+        }
         className={
           "w-14 h-14 rounded-full flex items-center justify-center shrink-0 transition shadow-sm " +
           (voice.recording
             ? "bg-red-500 hover:bg-red-600 animate-pulse ring-4 ring-red-200"
             : voice.transcribing
             ? "bg-purple-400 cursor-wait"
+            : voice.speaking
+            ? "bg-blue-500 hover:bg-blue-600 text-white"
             : "bg-purple-600 hover:bg-purple-700 text-white")
         }
         title={
-          voice.recording
-            ? "Reden, nochmal tippen → geht sofort raus"
-            : voice.transcribing
-            ? "Wird transkribiert…"
-            : "Walkie: tippen, reden, nochmal tippen"
+          voice.recording ? "Reden, nochmal tippen → geht sofort raus"
+          : voice.transcribing ? "Wird transkribiert…"
+          : voice.speaking ? "Wiedergabe stoppen"
+          : "Walkie: tippen, reden, nochmal tippen"
         }
       >
         {voice.transcribing ? (
-          // Rotating spinner shown while STT processes the recording
           <svg className="animate-spin text-white" width={26} height={26} viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeOpacity="0.25" strokeWidth="3" />
             <path d="M22 12a10 10 0 0 1-10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
           </svg>
         ) : voice.recording ? (
+          <svg width={18} height={18} viewBox="0 0 14 14" fill="white">
+            <rect width="14" height="14" rx="2" />
+          </svg>
+        ) : voice.speaking ? (
+          // Stop icon — button doubles as TTS-stop while playback runs
           <svg width={18} height={18} viewBox="0 0 14 14" fill="white">
             <rect width="14" height="14" rx="2" />
           </svg>
