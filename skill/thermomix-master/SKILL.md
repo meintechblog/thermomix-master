@@ -336,6 +336,7 @@ Bei Pfad A (eigenes Foto) oder Pfad C (kein Foto): Step 2 entfällt — alles se
 
 **Recipe-README:**
    - `recipes/<slug>/README.md` schreiben — gleiche Struktur wie [Sweet-Chili-Bowl](../../../recipes/sweet-chili-bowl/README.md) oder [Nasi Goreng](../../../recipes/nasi-goreng/README.md):
+     - **H1-Titel mit Karten-Prefix**: `# [#<HF_NR>] <Recipe-Name>` (z. B. `# [#33] Veganes Portobello-Champignon-Stroganoff`). Bei Eigenkreation ohne HF-Quelle: kein Prefix. Konsistent mit dem Cookidoo-Titel-Prefix aus Phase 6 Step 1.
      - Hero + Subtitle
      - Kennzahlen-Tabelle
        - **Quelle-Zeile**: `HelloFresh Wochenbox, Karte #<HF_NR> (<HF_TOKEN>, <diät>)` — die `#<NR>` braucht die Webapp für den HF-Badge + Sort-Feature
