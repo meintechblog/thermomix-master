@@ -15,13 +15,15 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
-      <body className="min-h-screen bg-cream-50 text-charcoal-800">
+      <body className="h-screen flex flex-col bg-cream-50 text-charcoal-800">
         <SiteHeader />
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">{children}</main>
-        <footer className="border-t border-charcoal-100 mt-16 py-8 text-center text-sm text-charcoal-500">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            Thermomix Master · <a href="https://github.com/meintechblog/cookidoo-master" className="hover:text-hero-700">Open Source</a> · MIT
+        <main className="flex-1 overflow-y-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 min-h-full">
+            {children}
           </div>
+        </main>
+        <footer className="shrink-0 border-t border-charcoal-100 py-2 text-center text-xs text-charcoal-500">
+          Thermomix Master · <a href="https://github.com/meintechblog/cookidoo-master" className="hover:text-hero-700">Open Source</a> · MIT
         </footer>
       </body>
     </html>
