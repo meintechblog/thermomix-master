@@ -132,9 +132,9 @@ export function ChatRoom({ initialBacklog }: Props) {
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages.length, awaitingReply]);
 
-  // Auto-speak assistant replies when voice mode is on
+  // Auto-speak assistant replies (walkie-mode always reads them out)
   useEffect(() => {
-    if (voice.mode === "off") return;
+    if (!voice.available) return;
     if (!messages.length) return;
     const last = messages[messages.length - 1];
     if (last.role !== "assistant") return;
@@ -142,7 +142,7 @@ export function ChatRoom({ initialBacklog }: Props) {
     lastSpokenIdRef.current = last.id;
     voice.speakText(last.body);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [messages.length, voice.mode]);
+  }, [messages.length, voice.available]);
 
   useEffect(() => {
     let es: EventSource | null = null;

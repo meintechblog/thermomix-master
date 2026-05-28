@@ -296,7 +296,7 @@ export function VoiceControls({ voice, onTranscript, show }: ControlsProps) {
           (voice.recording
             ? "bg-red-500 hover:bg-red-600 animate-pulse ring-4 ring-red-200"
             : voice.transcribing
-            ? "bg-gray-200"
+            ? "bg-purple-400 cursor-wait"
             : "bg-purple-600 hover:bg-purple-700 text-white")
         }
         title={
@@ -308,7 +308,11 @@ export function VoiceControls({ voice, onTranscript, show }: ControlsProps) {
         }
       >
         {voice.transcribing ? (
-          <span className="text-sm text-gray-500 font-bold">…</span>
+          // Rotating spinner shown while STT processes the recording
+          <svg className="animate-spin text-white" width={26} height={26} viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeOpacity="0.25" strokeWidth="3" />
+            <path d="M22 12a10 10 0 0 1-10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          </svg>
         ) : voice.recording ? (
           <svg width={18} height={18} viewBox="0 0 14 14" fill="white">
             <rect width="14" height="14" rx="2" />
