@@ -98,7 +98,6 @@ export function SiteHeader() {
                   className="block px-2 py-3 text-base text-charcoal-800 hover:bg-cream-100 rounded-lg flex items-center gap-2"
                   onClick={() => setOpen(false)}
                 >
-                  {n.dot && <span className="w-2 h-2 rounded-full bg-hero-500 animate-pulse" />}
                   {n.label}
                 </a>
               </li>
