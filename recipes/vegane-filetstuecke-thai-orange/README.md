@@ -37,16 +37,17 @@ mit Jasminreis, Stir-Fry-Gemüse, Cashews, Sesam und Thai-Basilikum · vegan · 
 - 1 TL Salz
 - 1-2 Prisen Pfeffer
 
-## Zubereitung — 8 Schritte mit interaktiven Koch-Befehlen
+## Zubereitung — 9 Schritte mit interaktiven Koch-Befehlen
 
-1. **2 Orangen** halbieren und auspressen. Den Saft mit **36 g Hoisinsoße** und **50 g Sweet-Chili-Soße** in den Mixtopf geben, **`5 Sek./Stufe 4`** vermengen und in eine kleine Schüssel umfüllen.
-2. **700 g Wasser** und **1 TL Salz** in den Mixtopf geben.
-3. **300 g Jasminreis** in den Gareinsatz geben, **44 g Knoblauch-Ingwer-Zitronengras-Paste** darauf verteilen, einhängen und **`18 Min./Varoma/Stufe 1`** garen.
-4. In der Zwischenzeit **50 g Frühlingszwiebel** waschen und weißen und grünen Teil getrennt in feine Ringe schneiden. **20 g Thai-Basilikum** in feine Streifen schneiden.
-5. In einer großen Pfanne **30 g Öl** stark erhitzen. Den weißen Teil der Frühlingszwiebel, **600 g Stir-Fry Mix** und **320 g vegane Filetstücke** darin 4–6 Min. goldbraun anbraten.
-6. Die Orangen-Mischung dazugießen und 2 Min. glänzend einköcheln lassen. Mit **1 Prise Pfeffer** abschmecken.
-7. Den Gareinsatz mit dem Spatel herausnehmen, den Reis auflockern und auf 4 tiefe Teller verteilen.
-8. Das Stir-Fry darauf anrichten, mit dem grünen Teil der Frühlingszwiebel, **40 g Cashewkernen**, **20 g Sesamsamen** und Thai-Basilikum bestreuen und servieren.
+1. **2 Orangen** halbieren und auspressen.
+2. Den Orangensaft mit **36 g Hoisinsoße** und **50 g Sweet-Chili-Soße** in den Mixtopf geben, **`5 Sek./Stufe 4`** vermengen und in eine kleine Schüssel umfüllen.
+3. **700 g Wasser** und **1 TL Salz** in den Mixtopf geben.
+4. **300 g Jasminreis** in den Gareinsatz geben, **44 g Knoblauch-Ingwer-Zitronengras-Paste** darauf verteilen, einhängen und **`18 Min./Varoma/Stufe 1`** garen.
+5. In der Zwischenzeit **50 g Frühlingszwiebel** waschen und weißen und grünen Teil getrennt in feine Ringe schneiden. **20 g Thai-Basilikum** in feine Streifen schneiden.
+6. In einer großen Pfanne **30 g Öl** stark erhitzen. Den weißen Teil der Frühlingszwiebel, **600 g Stir-Fry Mix** und **320 g vegane Filetstücke** darin 4–6 Min. goldbraun anbraten.
+7. Die Orangen-Mischung dazugießen und 2 Min. glänzend einköcheln lassen. Mit **1 Prise Pfeffer** abschmecken.
+8. Den Gareinsatz mit dem Spatel herausnehmen, den Reis auflockern und auf 4 tiefe Teller verteilen.
+9. Das Stir-Fry darauf anrichten, mit dem grünen Teil der Frühlingszwiebel, **40 g Cashewkernen**, **20 g Sesamsamen** und Thai-Basilikum bestreuen und servieren.
 
 ## Tipps
 
@@ -62,7 +63,7 @@ Die HelloFresh-Kreationen sind grandios — frisch, kreativ, jede Woche was Neue
 
 Für diese Cookidoo-Version:
 
-- **Kurze Ein-Aktion-Schritte** (8 statt vorher 5 Mega-Blöcke): erst die Soße mixen (Mixtopf frei), dann den Reis ansetzen — jeder Schritt eine klare Aktion mit genau den Zutaten, die jetzt gebraucht werden.
+- **Kurze Ein-Aktion-Schritte** (9 statt vorher 5 Mega-Blöcke): erst Orangen pressen, dann die Soße mixen (Mixtopf frei), dann den Reis ansetzen — jeder Schritt eine klare Aktion mit genau den Zutaten, die jetzt gebraucht werden.
 - **Zwei interaktive Koch-Befehl-Chips**: `5 Sek./Stufe 4` (Orangen-Soße vermengen), `18 Min./Varoma/Stufe 1` (Reis dampfgaren mit Aroma-Paste) — beide werden im Cookidoo-Render zu antippbaren Chips.
 - **Spezifische Mengen** + **Adjektive nach Komma** (`vegane Filetstücke, Hähnchen-Art`, `Cashewkerne, geröstet`, `Thai-Basilikum, frisch`) nach Native-Vorwerk-Schema.
 

@@ -205,6 +205,40 @@ def check_step_structure(steps, ingredients):
     return findings
 
 
+def check_fused_operations(steps):
+    """Catch the class of bug a length/chip count misses: a manual-prep operation
+    fused with a SEPARATE machine/pan operation in one step.
+
+    Good (NOT flagged): manual prep folded into a *running* machine step via
+    'Währenddessen …' / 'In der Zwischenzeit …' — that is the intended native pattern.
+    Bad (flagged): a step that first does a standalone manual prep (e.g. 'Tofu in
+    Scheiben hobeln.') and THEN starts a new operation (a Mixtopf chip, or heating a
+    pan + frying) without that parallel-prep marker. Those should be two steps.
+
+    Heuristic, so WARN not BLOCK. Examples it would have caught on 2026-05-29:
+      - Thai #32 step 1: '… auspressen. … in den Mixtopf geben, 5 Sek./Stufe 4 …'
+      - Räuchertofu #25 step 10: '… hobeln. In einer Pfanne … erhitzen und … anbraten.'
+    """
+    PREP_VERB = re.compile(r"\b(auspress\w+|hobel\w+|würfel\w+|raspel\w+|press\w+)\b\.?\s*$", re.I)
+    NEW_PAN = re.compile(r"in einer? (?:großen )?Pfanne[^.]*\b(erhitz\w+|anbrat\w+|brat\w+)", re.I)
+    PARALLEL_MARKER = re.compile(r"^\s*(Währenddessen|In der Zwischenzeit)", re.I)
+    findings = []
+    for i, step in enumerate(steps, 1):
+        if PARALLEL_MARKER.search(step):
+            continue  # deliberate parallel prep into a running machine step — fine
+        sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", step) if s.strip()]
+        if len(sentences) < 2:
+            continue
+        prep_sentence = any(PREP_VERB.search(s) for s in sentences[:-1])
+        if not prep_sentence:
+            continue
+        rest = " ".join(sentences)
+        has_new_op = _count_chips(step) >= 1 or NEW_PAN.search(rest)
+        if has_new_op:
+            findings.append(("WARN", f"Step {i}: manual prep fused with a separate machine/pan operation — split into two steps (or fold the prep into a running step via 'Währenddessen …')."))
+    return findings
+
+
 def main():
     if len(sys.argv) != 2:
         print("usage: audit-recipe.py recipe.json", file=sys.stderr); sys.exit(64)
@@ -223,6 +257,7 @@ def main():
 
     all_findings = []
     all_findings += check_step_structure(steps, ingredients)
+    all_findings += check_fused_operations(steps)
     all_findings += check_per_step_uniqueness(steps)
     all_findings += check_adjacent_endings(steps)
     all_findings += check_compound_conflicts(steps, ingredients)

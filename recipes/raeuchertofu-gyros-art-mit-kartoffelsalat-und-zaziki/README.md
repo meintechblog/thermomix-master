@@ -40,7 +40,7 @@ dazu Drillinge, Dill-Petersilie-Oliven-Salat, selbstgemachtes Zaziki · vegan ·
 - 3 TL Salz
 - 1-2 Prisen Pfeffer
 
-## Zubereitung — 12 Schritte mit interaktiven Koch-Befehlen
+## Zubereitung — 13 Schritte mit interaktiven Koch-Befehlen
 
 1. Backofen auf **220 °C** Ober-/Unterhitze vorheizen.
 2. **1200 g Kartoffeln** waschen, halbieren oder vierteln und mit **20 g Öl**, einem Drittel der Gewürzmischung **„Hello Souflaki"**, **1 TL Salz** und **1 Prise Pfeffer** mischen. 25–30 Min. backen.
@@ -51,9 +51,10 @@ dazu Drillinge, Dill-Petersilie-Oliven-Salat, selbstgemachtes Zaziki · vegan ·
 7. Gurkenwürfel und ein Viertel der Zwiebelstreifen unterheben und marinieren lassen.
 8. Mixtopf spülen. **1 Gurke** in groben Stücken in den Mixtopf geben und **`2 Sek./Stufe 4`** zerkleinern.
 9. **50 g vegane Mayonnaise**, **100 g veganes cremiges Sojaprodukt**, den Saft von 2 Zitronenspalten und **1 TL Salz** zugeben, **`20 Sek./Stufe 3`** zu Zaziki verrühren und umfüllen.
-10. **350 g geräucherten Tofu** in feine Scheiben hobeln. In einer Pfanne **20 g Öl** erhitzen und die Scheiben mit den restlichen Zwiebelstreifen 4–5 Min. goldbraun anbraten.
-11. Die restliche Gewürzmischung **„Hello Souflaki"** zugeben, 1 Min. anbraten, mit **50 g Sojasoße** und **1 TL Zucker** ablöschen und 30 Sek. einköcheln lassen.
-12. Die gebackenen Kartoffeln zum Dressing geben und unterheben. Kartoffelsalat und Tofu auf 4 Tellern anrichten, Zaziki daraufgeben und servieren.
+10. **350 g geräucherten Tofu** in feine Scheiben hobeln.
+11. **20 g Öl** in einer Pfanne erhitzen und die Tofuscheiben mit den restlichen Zwiebelstreifen 4–5 Min. goldbraun anbraten.
+12. Die restliche Gewürzmischung **„Hello Souflaki"** zugeben, 1 Min. anbraten, mit **50 g Sojasoße** und **1 TL Zucker** ablöschen und 30 Sek. einköcheln lassen.
+13. Die gebackenen Kartoffeln zum Dressing geben und unterheben. Kartoffelsalat und Tofu auf 4 Tellern anrichten, Zaziki daraufgeben und servieren.
 
 ## Tipps
 
@@ -69,7 +70,7 @@ Die HelloFresh-Kreationen sind grandios — frisch, kreativ, jede Woche was Neue
 
 Für diese Cookidoo-Version:
 
-- **Kurze Ein-Aktion-Schritte** (12 statt vorher 5 Mega-Blöcke): jeder Schritt sagt in 2 Sekunden, was rein muss, was zu schnibbeln ist und welcher Koch-Befehl läuft — so wie native Thermomix-Rezepte aufgebaut sind.
+- **Kurze Ein-Aktion-Schritte** (13 statt vorher 5 Mega-Blöcke): jeder Schritt sagt in 2 Sekunden, was rein muss, was zu schnibbeln ist und welcher Koch-Befehl läuft — so wie native Thermomix-Rezepte aufgebaut sind.
 - **Vier interaktive Koch-Befehl-Chips**: `3 Sek./Stufe 7` (Kräuter hacken), `2 Sek./Stufe 5` (Oliven grob hacken), `2 Sek./Stufe 4` (Gurke fürs Zaziki zerkleinern), `20 Sek./Stufe 3` (Zaziki verrühren) — jeder wird im Cookidoo-Render zum antippbaren Chip.
 - **Gurke eindeutig**: 1 Gurke fürs Zaziki, 1 Gurke gewürfelt für den Salat — keine mehrdeutige „die eine/andere Hälfte"-Formulierung mehr.
 - **Spezifische Mengen** + **Adjektive nach Komma** (`Kartoffeln, Drillinge`, `Dill, frisch`, `Kalamata-Oliven, ohne Stein`) nach Native-Vorwerk-Schema.
