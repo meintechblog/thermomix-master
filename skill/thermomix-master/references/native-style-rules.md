@@ -24,22 +24,49 @@ Ein Step dreht sich um **genau eine** Aktion: ein Mixtopf-Chip ODER eine Pfannen
 ODER eine Ofen-Aktion ODER ein Anrichte-Schritt. **Nie zwei Chips in einem Step.**
 „Kräuter hacken UND Oliven hacken UND Dressing rühren" = drei Steps, nicht einer.
 
-### 2. Steps sind KURZ — 40-130 Zeichen Zielkorridor
-Nativer Median ≈ 90 Zeichen. Harte Obergrenze ~180 — und die nur für den
-Anricht-/Garnier-Schluss-Step oder einen Köchel-Step mit vielen Zutaten auf einmal.
-Wenn ein Step > 180 Zeichen hat: er macht zu viel, splitten.
+### 2. Länge ist KEINE harte Grenze — „eine aktive Operation pro Step" ist das Gesetz
+> **Korrigiert 2026-05-29** nach frischem Dump von 12 echten Top-Rezepten der
+> Cookidoo-Startseite (`research/native-top-recipes-2026-05-29.md`). Die alte Regel
+> „40-130, hart bei 180" war **zu streng**: native Rezepte haben routinemäßig Steps
+> von 200-380 Zeichen, und das sind keine Fehler.
 
-| Zeichen | Bewertung |
+Der eigentliche Maßstab ist **nicht die Zeichenzahl**, sondern: **macht der Step
+genau eine aktive Sache, die der Anwender am Gerät ausführt?** (ein Mixtopf-Chip ODER
+eine Pfannen-Aktion ODER ein Anricht-Schritt — plus die natürliche Nacharbeit dazu wie
+`umfüllen`, `Mixtopf spülen`, `mit dem Spatel nach unten schieben`).
+
+Ein Step **darf lang sein** (>180, bis ~380), wenn die Länge aus einer von zwei
+legitimen Quellen kommt:
+
+1. **Laufender Chip + Parallel-Handarbeit** — ein Gar-/Koch-Chip läuft (z. B.
+   `20 Min./Varoma/Stufe 1`), und per `In dieser Zeit …` / `Währenddessen …` faltet
+   man manuelle Prep oder eine Pfannen-Aktion hinein. Der Anwender hat ja **Leerlauf**,
+   während die Maschine arbeitet — hier ist Text völlig OK. *(Native-Beleg: Quinoasalat
+   Step 3, 305c: „… 20 Min. kochen. In dieser Zeit Cherry-Tomaten halbieren, Hähnchen
+   anbraten …")*
+2. **Finaler Anricht-/Servier-Step** — der letzte Step bündelt fast immer letzte
+   Mixtopf-Aktion + Anrichten + `servieren` und ist nativ 200-380c lang. Völlig normal.
+
+| Situation | Bewertung |
 |---|---|
-| 30-130 | ✓ ideal |
-| 130-180 | ok, wenn genau eine Operation |
-| > 180 | ✗ splitten (Ausnahme: finaler Anricht-Step) |
+| Eine aktive Operation, kurz (40-180c) | ✓ ideal |
+| Laufender Chip + `In dieser Zeit` Parallelarbeit (auch 200-380c) | ✓ nativ |
+| Finaler Anricht-/Servier-Step (auch 200-380c) | ✓ nativ |
+| **Zwei aktive Maschinen-/Pfannen-Operationen hintereinander** in einem Step | ✗ splitten |
+| Mehrere **sequenzielle aktive Handgriffe** ohne laufende Maschine zusammengequetscht | ✗ splitten |
 
-### 3. Step-Zahl = Anzahl Operationen, NICHT Zutatenzahl
-Es gibt **keine** Ziel-Step-Zahl. Zähle die echten Operationen (jeder Chip, jede
-Pfannen-/Ofen-Phase, jedes Anrichten) — das ist die Step-Zahl. Typisch landet man bei
-**6-10 kurzen Steps**. Viele kurze Steps sind *besser* als wenige dichte. Niemals
-zusammenquetschen um eine Zahl zu treffen.
+Der Räuchertofu-Graus war Fall 4+5: aktive Operationen aneinandergereiht, ohne dass
+eine Maschine die Wartezeit füllt. *Das* ist unbenutzbar — nicht die reine Länge.
+
+### 3. Step-Zahl = Anzahl der aktiven Operationen, NICHT Zutatenzahl
+Es gibt **keine** Ziel-Step-Zahl. Zähle die echten aktiven Operationen (jeder
+Mixtopf-Chip, jede eigenständige Pfannen-/Ofen-Phase, das Anrichten) — das ist die
+Step-Zahl. **Frische Ground-Truth:** native Top-Rezepte liegen bei **3-7 Steps**
+(Median ~4 bei einfachen Gerichten, bis ~7 bei Mehrkomponenten). Unsere
+Usability-optimierte Variante darf etwas granularer sein (Zutaten inkrementell, Anrichten
+als eigener Step) und landet typisch bei **6-12 Steps** — aber **nie künstlich
+zerhacken** (einen Chip von seinem `umfüllen`/`spülen` trennen bringt nichts) und **nie
+zusammenquetschen** um eine Zahl zu treffen.
 
 ### 4. Zutaten kommen INKREMENTELL rein
 Nicht 6 Zutaten in einen Step kippen. Jede Zutat erscheint **mit ihrer Menge in genau

@@ -178,30 +178,37 @@ def _count_chips(step: str) -> int:
     return len(re.findall(r"\b\d+(?:[-–]\d+)?\s+(?:Sek|Min)\.\/", step))
 
 
+PARALLEL_MARKER_RE = re.compile(r"\b(Währenddessen|In der Zwischenzeit|In dieser Zeit)\b", re.I)
+
+
 def check_step_structure(steps, ingredients):
-    """New philosophy (2026-05-28): one operation per step, ~40-130 chars, many short
-    steps beat few dense ones. We no longer warn on HIGH step counts — only on steps
-    that are too LONG (cram multiple operations) or carry more than one cooking chip.
+    """Philosophy (refined 2026-05-29 against fresh native top-recipe dump): the gate is
+    "one ACTIVE operation per step", NOT a char limit. Native recipes routinely have
+    200-380-char steps when the length comes from (a) a running chip + parallel manual
+    work folded in via 'In dieser Zeit …', or (b) the final assembly/serve step. So we
+    no longer BLOCK on length — only WARN on an *unjustified* long step (not the final
+    step, no parallel-prep marker). The real two-operations tell is >1 cooking chip in
+    one step → that IS a blocker. See native-style-rules.md rule 2.
     """
     findings = []
     n_step = len(steps)
     last_idx = n_step - 1
-    long_steps = 0
+    flagged = 0
     for i, step in enumerate(steps):
         L = len(step)
         chips = _count_chips(step)
-        # The final plating/garnish step is allowed to be longer.
-        soft_max = STEP_LEN_SOFT_MAX + 60 if i == last_idx else STEP_LEN_SOFT_MAX
-        if L > STEP_LEN_HARD_MAX:
-            findings.append(("BLOCK", f"Step {i+1}: {L} chars — way too dense, crams multiple operations. Split it (target 40-130)."))
-            long_steps += 1
-        elif L > soft_max:
-            findings.append(("WARN", f"Step {i+1}: {L} chars — long, likely more than one operation. Consider splitting (target 40-130)."))
-            long_steps += 1
+        justified = (i == last_idx) or PARALLEL_MARKER_RE.search(step) or chips >= 1
+        if L > STEP_LEN_HARD_MAX and not justified:
+            findings.append(("WARN", f"Step {i+1}: {L} chars and no running chip / parallel marker / final-step — likely crams several active handgriffs. Split it."))
+            flagged += 1
+        elif L > STEP_LEN_SOFT_MAX and not justified:
+            findings.append(("WARN", f"Step {i+1}: {L} chars — long with no chip running. Check it is one active operation, else split."))
+            flagged += 1
         if chips > 1:
-            findings.append(("WARN", f"Step {i+1}: {chips} cooking-command chips in one step — one operation per step. Split into {chips} steps."))
-    if long_steps == 0:
-        findings.append(("OK", f"{n_step} steps, all within length budget (one operation each)"))
+            findings.append(("BLOCK", f"Step {i+1}: {chips} cooking-command chips in one step = two active machine operations. Split into {chips} steps."))
+            flagged += 1
+    if flagged == 0:
+        findings.append(("OK", f"{n_step} steps, each one active operation (length OK where a chip runs or it's the final step)"))
     return findings
 
 

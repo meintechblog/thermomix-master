@@ -102,19 +102,35 @@ Wenn das Rezept aus einer fremden Quelle stammt (HelloFresh-Karte, Buch, Webseit
 
 Cookidoo macht die URL klickbar im Render-View.
 
-### 8. Step-Granularität: EINE Operation pro Step, kurz (REVIDIERT 2026-05-28)
+### 8. Step-Granularität: EINE AKTIVE Operation pro Step (REVIDIERT 2026-05-29)
 
-> ⚠️ **Die alte „Median 5 Steps / 250-550 Zeichen"-Regel war falsch** und hat
-> Mega-Steps produziert, durch die Jörg am Thermomix nicht durchkam (Räuchertofu #25).
-> Korrektur nach Analyse der **echten per-Schritt-Segmentierung** von ~12 Cookidoo-
-> Rezepten (`research/native-step-corpus.md`): native Steps sind **kurz**.
+> ⚠️ **Zwei Korrekturen, beide aus echten Daten:**
+> 1. *2026-05-28*: Die alte „Median 5 Steps / 250-550 Zeichen"-Regel war falsch —
+>    Mega-Steps, durch die Jörg am Thermomix nicht durchkam (Räuchertofu #25).
+> 2. *2026-05-29*: Die Gegen-Überkorrektur „40-130, hart bei 180" war **zu streng**.
+>    Frischer Dump von 12 Top-Rezepten der Cookidoo-Startseite
+>    (`research/native-top-recipes-2026-05-29.md`) zeigt: native Steps gehen
+>    routinemäßig 200-380 Zeichen, und das sind keine Fehler.
 
-Echte Regel:
-- **Ein Step = eine Operation** (ein Chip / eine Pfannen- / Ofen- / Anricht-Aktion). Nie zwei Chips.
-- **40-130 Zeichen** pro Step (nativer Median ≈ 90). Hart bei ~180.
-- **Step-Zahl = Anzahl Operationen**, nicht Zutatenzahl → typisch **6-10 kurze Steps**.
-- Zutaten **inkrementell** zugeben; die **Maschine macht die Prep** (zerkleinern/hacken im Mixtopf).
-- Manuelle Prep nur per `Währenddessen …` in einen laufenden Maschinen-Step falten.
+Echte Regel (Maßstab ist die **Operation**, nicht die Zeichenzahl):
+- **Ein Step = eine AKTIVE Operation**, die der Anwender am Gerät ausführt (ein
+  Mixtopf-Chip / eine Pfannen-Aktion / das Anrichten) + die natürliche Nacharbeit
+  (`umfüllen`, `Mixtopf spülen`, `mit dem Spatel nach unten schieben`). **Nie zwei
+  Chips, nie zwei aktive Maschinen-/Pfannen-Operationen** in einem Step.
+- **Länge ist KEINE harte Grenze.** Ein Step darf lang sein (bis ~380c), wenn die Länge
+  aus (a) einem **laufenden Chip + Parallel-Handarbeit** per `In dieser Zeit …` (User hat
+  Leerlauf) oder (b) dem **finalen Anricht-/Servier-Step** kommt. Unjustifizierte lange
+  Steps (mehrere aktive Handgriffe ohne laufende Maschine) → splitten.
+- **Step-Zahl = Anzahl aktiver Operationen.** Native: **3-7 Steps**. Unsere
+  Usability-Variante (Zutaten inkrementell, Anrichten separat) → typisch **6-12**.
+  Keine Zielzahl, nie künstlich zerhacken, nie zusammenquetschen.
+- Zutaten **inkrementell** zugeben; die **Maschine macht die Prep** (zerkleinern/hacken
+  im Mixtopf). Manuelle Prep per `Währenddessen …` / `In dieser Zeit …` in einen
+  laufenden Maschinen-Step falten.
+
+Audit (`scripts/audit-recipe.py`) setzt das um: Länge → nur WARN wenn unjustifiziert
+(kein Chip, kein Parallel-Marker, nicht der Schluss-Step); **2 Chips in einem Step =
+BLOCK**; `check_fused_operations` fängt „Hand-Prep + neue Pfannen-/Mixtopf-Op".
 
 Beleg (native „Champignonrahmsauce", 5 Steps à 50-178 Zeichen):
 `Zwiebeln + Knoblauch zerkleinern` → `Öl zugeben, dünsten. Währenddessen Champignons schneiden` →
