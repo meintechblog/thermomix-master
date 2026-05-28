@@ -262,17 +262,21 @@ export function VoiceControls({ voice, onTranscript }: ControlsProps) {
     }
   };
 
-  // visual labels for the mode-toggle
   const modeLabel: Record<VoiceMode, string> = {
     off: "Text",
     tts: "Text + 🔊",
     walkie: "🎙️ Walkie",
   };
   const modeColor: Record<VoiceMode, string> = {
-    off: "bg-gray-100 text-gray-600",
-    tts: "bg-blue-100 text-blue-700",
-    walkie: "bg-purple-100 text-purple-700",
+    off: "bg-gray-100 text-gray-700 border-gray-200",
+    tts: "bg-blue-100 text-blue-800 border-blue-200",
+    walkie: "bg-purple-100 text-purple-800 border-purple-300",
   };
+
+  // Bigger button when walkie-mode is active so it's the obvious primary action.
+  const isPrimary = voice.mode === "walkie";
+  const micSize = isPrimary ? "w-14 h-14" : "w-12 h-12";
+  const micIconSize = isPrimary ? 24 : 20;
 
   return (
     <div className="flex items-center gap-2">
@@ -280,7 +284,7 @@ export function VoiceControls({ voice, onTranscript }: ControlsProps) {
         <button
           type="button"
           onClick={voice.stopSpeaking}
-          className="px-2 py-1 text-[10px] rounded-full bg-red-50 text-red-700 border border-red-200"
+          className="px-3 py-1.5 text-xs rounded-full bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition"
           title="TTS-Wiedergabe stoppen"
         >
           ⏹ stop
@@ -289,8 +293,8 @@ export function VoiceControls({ voice, onTranscript }: ControlsProps) {
       <button
         type="button"
         onClick={cycleMode}
-        className={`px-2 py-1 text-[10px] rounded-full transition ${modeColor[voice.mode]}`}
-        title="Voice-Modus wechseln"
+        className={`px-3 py-1.5 text-xs rounded-full border transition ${modeColor[voice.mode]}`}
+        title="Voice-Modus wechseln (Text → Text + 🔊 → Walkie)"
       >
         {modeLabel[voice.mode]}
       </button>
@@ -298,30 +302,37 @@ export function VoiceControls({ voice, onTranscript }: ControlsProps) {
         type="button"
         onClick={handleMicClick}
         disabled={voice.transcribing}
+        aria-label={voice.recording ? "Aufnahme stoppen" : "Aufnahme starten"}
         className={
-          "w-10 h-10 rounded-full flex items-center justify-center transition " +
+          `${micSize} rounded-full flex items-center justify-center shrink-0 transition shadow-sm ` +
           (voice.recording
-            ? "bg-red-500 hover:bg-red-600 animate-pulse"
+            ? "bg-red-500 hover:bg-red-600 animate-pulse ring-4 ring-red-200"
             : voice.transcribing
             ? "bg-gray-200"
-            : "bg-blue-100 hover:bg-blue-200")
+            : isPrimary
+            ? "bg-purple-600 hover:bg-purple-700 text-white"
+            : "bg-blue-600 hover:bg-blue-700 text-white")
         }
         title={
           voice.recording
             ? "Aufnahme beenden + transkribieren"
             : voice.transcribing
             ? "Wird transkribiert…"
-            : "Aufnahme starten"
+            : voice.mode === "walkie"
+            ? "Walkie: tippen, reden, nochmal tippen — geht sofort raus"
+            : voice.mode === "tts"
+            ? "Aufnahme starten (Antwort wird vorgelesen)"
+            : "Aufnahme starten (Text geht ins Feld)"
         }
       >
         {voice.transcribing ? (
-          <span className="text-xs text-gray-500">…</span>
+          <span className="text-sm text-gray-500 font-bold">…</span>
         ) : voice.recording ? (
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="white">
+          <svg width={micIconSize * 0.7} height={micIconSize * 0.7} viewBox="0 0 14 14" fill="white">
             <rect width="14" height="14" rx="2" />
           </svg>
         ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-blue-700">
+          <svg width={micIconSize} height={micIconSize} viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zm5 10a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V22h2v-3.08A7 7 0 0 0 19 12h-2z" />
           </svg>
         )}
