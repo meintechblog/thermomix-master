@@ -302,34 +302,15 @@ Nach dem ersten 8-Step-Rezept Deep-Research auf 12 native Vorwerk-Bowls/Currys/P
 
 Mein erstes Rezept hatte 14 Zutaten und **8 Steps** — die native Median-Erwartung wären **5 Steps** gewesen. Native Rezepte gruppieren Vorbereitungsphasen aggressiver in einen einzigen „Vorbereitung"-Step und bündeln parallele Tasks in einen „In der Zwischenzeit ..."-Step.
 
-### Native Verb-Vokabular
+### Native Verb-Vokabular + Zutaten-Format + Step-Längen
 
-Native Vorwerk-Steps sind **kompakter** und nutzen technische Verben, die der Thermomix-Display kennt:
-- `einwiegen` (in den Gareinsatz/Mixtopf) — nicht „einfüllen"
-- `einhängen` (Gareinsatz) — nicht „einsetzen"
-- `aufsetzen` / `absetzen` (Varoma) — nicht „aufstellen / abnehmen"
-- `mithilfe des Spatels herausnehmen` — nicht nur „herausnehmen"
-- `unterheben` (Sesamöl etc.) — nicht „dazugeben"
-- `auf X Bowls/Tellern verteilen` — nicht „in Schüsseln anrichten"
-- `... servieren` als Schluss-Verb — nicht „Guten Appetit!"
-- `In der Zwischenzeit ...` als Lead-in für Parallel-Schritte
+→ **Konsolidiert in** [`skill/thermomix-master/references/native-style-rules.md`](skill/thermomix-master/references/native-style-rules.md) (Master-Source — wird vom Skill direkt referenziert, hier nur die Forschungs-Herkunft).
 
-### Native Zutaten-Format
-
-- **Adjektive nach Komma**: `1 rote Chilischote, frisch` (nicht „1 frische rote Chilischote")
-- **Modifikator nach Komma**: `1 Limette, gewachst` (nicht „1 Limette (gewachst), in 6 Spalten geschnitten" — der Verb-Teil gehört in den Step!)
-- **Spezifische Mengen** statt Catch-all: `2 TL Salz`, `25 g Öl`, `1-2 Prisen Pfeffer`, `1 Prise Zucker` (statt „Salz, Pfeffer, Zucker, Öl nach Bedarf")
-- **Bindestrich-Soßen**: `Sriracha-Sauce`, `Sweet-Chili-Soße`, `Teriyakisoße`
-
-### Step-Längen-Verteilung
-
-Native Steps für 14-17-Zutaten-Rezepte haben **250-550 Zeichen pro Step**. Mein 5-Step-Rewrite landete bei 253, 308, 314, 425, 536 Zeichen — passt zur nativen Verteilung. Kürzere Steps (< 200 Zeichen) sind selten und meist nur „Anrichten"-Schluss.
-
-### Was native Rezepte NICHT haben
-
-- `Guten Appetit!` — wird in 0 von 12 native Rezepten gefunden
-- Doppelpunkte vor Listen („Toppings: Reis, Bohnen ...") — native nutzt Fließtext
-- Hinweise in Klammern direkt in der Zutatenliste — native packt sie in den Step
+Was die Reverse-Engineering-Recherche aus 12 nativen Vorwerk-Bowls/Currys/Pfannen ergab (Stand der Skill-Reference, dort vollständig + aktuell):
+- Verben: `einwiegen`, `einhängen`, `aufsetzen`/`absetzen`, `mithilfe des Spatels herausnehmen`, `unterheben`, `auf X Bowls/Tellern verteilen`, `... servieren`, `In der Zwischenzeit ...`
+- Zutaten: Adjektive nach Komma, Verb-Teile in den Step, spezifische Mengen statt Catch-all, Bindestrich-Soßen
+- Step-Längen: native Range 250-550 Zeichen für 14-17-Zutaten-Rezepte (mein 5-Step-Rewrite landete bei 253/308/314/425/536 — passt)
+- Niemals: `Guten Appetit!` (0 von 12), Doppelpunkte vor Listen, Hinweise in Klammern in der Zutatenliste
 
 ## Locale-Awareness
 

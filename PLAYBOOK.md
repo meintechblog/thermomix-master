@@ -124,22 +124,9 @@ Beispiel-Mapping nach Rewrite (Sweet-Chili-Bowl, 17 Zutaten):
 
 ### 9. Native Verb-Vokabular + Zutaten-Format
 
-Native Steps nutzen **technische Verben** die der Thermomix-Display kennt:
-- `einwiegen` (in Gareinsatz/Mixtopf) — nicht „einfüllen"
-- `einhängen` (Gareinsatz) — nicht „einsetzen"
-- `aufsetzen` / `absetzen` (Varoma) — nicht „aufstellen / abnehmen"
-- `mithilfe des Spatels herausnehmen` — nicht nur „herausnehmen"
-- `unterheben` — nicht „dazugeben"
-- `auf X Bowls verteilen` — nicht „in Schüsseln anrichten"
-- `... servieren` (Schluss) — nicht „Guten Appetit!"
+→ **Master-Liste**: [`skill/thermomix-master/references/native-style-rules.md`](skill/thermomix-master/references/native-style-rules.md) — vollständige Statt/Native-Tabelle, Zutaten-Format, Step-Längen-Verteilung, was native Rezepte NICHT haben.
 
-Zutaten-Format: **Modifikatoren nach Komma**, Verb-Teile gehören in den Step:
-
-| Bad (HF-Style) | Good (Native-Style) |
-|---|---|
-| `1 rote Chilischote` | `1 rote Chilischote, frisch` |
-| `1 Limette (gewachst), in 6 Spalten geschnitten` | `1 Limette, gewachst` (Schneiden im Step) |
-| `Salz, Pfeffer, Zucker, Öl nach Bedarf` | `2 TL Salz` + `25 g Öl` + `1-2 Prisen Pfeffer` + `1 Prise Zucker` (vier Zeilen) |
+Faustregel zur Erinnerung: `einwiegen`, `einhängen`, `aufsetzen`/`absetzen`, `mithilfe des Spatels herausnehmen`, `unterheben`, `auf X Bowls verteilen`, `... servieren`. Adjektive immer nach Komma (`1 rote Chilischote, frisch`), Verb-Teile gehören in den Step.
 
 ## Konsistenz-Audit-Schritt vor Publish
 
