@@ -38,24 +38,26 @@ dazu Spitzpaprika, Tomatensoße & Salat mit Senf-Dressing · vegan · 4 Portione
 - 1-2 Prisen Pfeffer
 - 1 Prise Zucker
 
-## Zubereitung — 5 Schritte mit interaktiven Koch-Befehlen
+## Zubereitung — 10 Schritte mit interaktiven Koch-Befehlen
 
-1. Backofen auf 220 °C Ober-/Unterhitze (200 °C Umluft) vorheizen. Zwiebeln halbieren und in 0,5 cm Streifen schneiden. Spitzpaprikas halbieren, entkernen und in 2 cm Stücke schneiden. Auberginen längs halbieren und in 0,5 cm Halbmonde schneiden. Knoblauch fein hacken.
-2. In einer großen Pfanne **40 g Olivenöl** erhitzen, Zwiebeln, Paprika und Auberginen darin 4-6 Min. scharf anbraten. **12 g „Hello Buon Appetito"** hinzugeben und 30 Sek. weiter anbraten. Mit **1 Prise Salz** und **1 Prise Pfeffer** würzen.
-3. **140 g Tomatenmark**, **50 g Tomatenpesto**, die Hälfte des Knoblauchs, **20 g Olivenöl**, **1 Prise Salz**, **1 Prise Pfeffer** und **1 Prise Zucker** in den Mixtopf geben und **`10 Sek./Stufe 5`** pürieren.
-4. Sauerteig-Pinsateig auf einem mit Backpapier belegten Backblech ausrollen, Tomatensoße aus Schritt 3 darauf verteilen und Gemüse aus Schritt 2 darauf verteilen. Im Ofen 16-18 Min. goldbraun backen.
-5. In der Zwischenzeit **60 g Olivenöl**, **15 g Weißweinessig**, **17 g süßen Senf** und restlichen Knoblauch in einer Schüssel verquirlen. Blattsalatmischung dazugeben und vermengen. Pinsa nach Belieben in Stücke schneiden, auf 4 Teller verteilen und mit Salat servieren.
+1. Backofen auf **220 °C** Ober-/Unterhitze vorheizen.
+2. **2 rote Zwiebeln** in 0,5 cm Streifen, **2 rote Spitzpaprikas** entkernt in 2 cm Stücke und **2 Auberginen** in 0,5 cm Halbmonde schneiden.
+3. In einer großen Pfanne **40 g Olivenöl** erhitzen und die Zwiebeln, Paprika und Auberginen 4–6 Min. scharf anbraten.
+4. **12 g Gewürzmischung „Hello Buon Appetito"** zugeben, 30 Sek. weiter anbraten und mit je 1 Prise Salz und Pfeffer würzen.
+5. **4 Knoblauchzehen** in den Mixtopf geben, **`5 Sek./Stufe 7`** zerkleinern und die Hälfte für das Dressing beiseitestellen.
+6. **140 g Tomatenmark**, **50 g Tomatenpesto**, **20 g Olivenöl**, je 1 Prise Salz und Pfeffer und **1 Prise Zucker** zum restlichen Knoblauch geben und **`10 Sek./Stufe 5`** pürieren.
+7. **520 g Sauerteig-Pinsateig** mit dem Backpapier auf ein Backblech rollen, die Tomatensoße daraufstreichen und das Gemüse darauf verteilen.
+8. Die Pinsa im Ofen 16–18 Min. goldbraun backen.
+9. In dieser Zeit **60 g Olivenöl**, **15 g Weißweinessig**, **17 g süßen Senf** und den beiseitegestellten Knoblauch verquirlen, **100 g Blattsalatmischung** zugeben und vermengen.
+10. Die Pinsa in Stücke schneiden, auf 4 Teller verteilen und mit dem Salat servieren.
 
 ## Tipps
 
-- **Auberginen-Halbmonde NICHT zu dünn schneiden** (mind. 0,5 cm) — sonst verbrennen sie in der heißen Pfanne bevor sie weich werden. Bei 0,5-1 cm: außen knusprig, innen cremig.
-- **Pfanne wirklich HEISS vorheizen** — Antipasti-Gemüse muss „brutzeln" wenn es reinkommt, sonst kocht's statt anzubraten und wird matschig statt aromatisch.
-- **Hello Buon Appetito ERST am Ende dazugeben** (30 Sek. mitbraten) — die getrockneten Kräuter werden bitter wenn man sie 4-6 Min. mitbrät.
-- **Tomatensoße im Mixtopf** (statt nur verrühren) — die kurze Pürier-Aktion homogenisiert Tomatenmark + Pesto + Knoblauch zu einer streichfähigen Paste die sich gleichmäßig auf dem Pinsateig verteilen lässt.
-- **Knoblauch teilen**: Hälfte in die Tomatensoße, Hälfte ins Dressing roh. Gibt zwei Geschmacks-Ebenen (geröstet vs frisch-scharf) statt nur einer.
-- **Backpapier UNTER den Teig**, NICHT auf die Pinsa — der Boden braucht direkten Blech-Kontakt um knusprig zu werden. Backpapier nimmt die Hitze raus.
-- **Variation**: Mozzarella-Stücke vor dem Backen mit drauf (gibt klassischere Pizza-Note). Oder Kapern + Oliven für Mediterran-Plus. Oder Ziegenkäse-Bröckchen.
-- **Reste**: Pinsa wird matschig im Kühlschrank — am besten alles am Abend essen oder Stücke in den Toaster (2 Min., dann knusprig wie frisch).
+- Auberginen-Halbmonde mind. 0,5 cm dick — sonst verbrennen sie, bevor sie weich sind.
+- Pfanne richtig heiß — das Gemüse muss brutzeln, sonst wird es matschig.
+- „Hello Buon Appetito" erst am Ende 30 Sek. mitbraten — sonst werden die Kräuter bitter.
+- Knoblauch teilen — Hälfte geröstet in die Soße, Hälfte roh ins Dressing.
+- Backpapier unter den Teig, nicht darauf — der Boden braucht Blech-Kontakt zum Knusprigwerden.
 
 ## Warum diese Cookidoo-Adaption
 
@@ -67,7 +69,7 @@ Für diese Cookidoo-Version habe ich:
 - **Native Verben**: `pürieren`, `ausrollen`, `verquirlen`, `auf 4 Teller verteilen`, `... servieren`.
 - **Spezifische Mengen** statt Catch-all: `2 TL Salz`, `1-2 Prisen Pfeffer`, `1 Prise Zucker` als separate Zutatenzeilen — nicht „Salz, Pfeffer nach Geschmack" wie die HelloFresh-Karte.
 - **Interaktiver Koch-Befehl-Chip**: `10 Sek./Stufe 5` für die Tomatensoße — im Cookidoo-Render kein Plain-Text-String, sondern hervorgehobener Chip. Der Thermomix führt ihn beim Antippen direkt aus.
-- **Step-Granularität nach Native-Standard**: 5 Steps statt 6 in der Original-Karte (das HF-Step „Teig ausrollen" wurde mit „Belegen + Backen" zusammengefasst).
+- **Step-Granularität nach Native-Standard**: 10 kurze Ein-Aktion-Schritte (Median ~116 statt vorher ~223 Zeichen). Der Knoblauch wird jetzt im Mixtopf zerkleinert (zweiter Koch-Befehl-Chip) und die Hälfte fürs Dressing beiseitegestellt — statt von Hand zu hacken.
 
 Erstellt mit dem Open-Source-Toolkit [thermomix-master](https://github.com/meintechblog/thermomix-master), das beliebige Rezepte in ~2-5 Minuten in native-quality Cookidoo-Eigene-Rezepte umwandelt.
 

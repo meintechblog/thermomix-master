@@ -22,7 +22,7 @@ dazu gelber Reis, Erdnüsse & Limette · vegan · 4 Portionen
 ## Zutaten (4P)
 
 - 300 g Basmatireis
-- 2 Karotten
+- 4 Karotten
 - 4 Schalotten
 - 2 rote Spitzpaprikas
 - 2 rote Chilischoten, frisch
@@ -39,25 +39,30 @@ dazu gelber Reis, Erdnüsse & Limette · vegan · 4 Portionen
 - 2 TL Salz
 - 1-2 Prisen Pfeffer
 
-## Zubereitung — 6 Schritte mit interaktiven Koch-Befehlen
+## Zubereitung — 14 Schritte mit interaktiven Koch-Befehlen
 
-1. Limetten in 8 Spalten schneiden. Schalotten halbieren und in feine Streifen schneiden. Karotten schälen, längs vierteln und fein würfeln. Spitzpaprikas halbieren, entkernen und in feine Streifen schneiden. Chilischoten (Achtung: scharf!) halbieren, nach Belieben entkernen und fein hacken.
-2. Gareinsatz einhängen, **Basmatireis** einwiegen und kurz abspülen. **4 g „Hello Curry"-Gewürzmischung** darüberstreuen und vermengen. Gareinsatz einsetzen. **900 g Wasser**, **1 TL Salz** und 5 g Öl in den Mixtopf geben und **`18 Min./Varoma/Stufe 1`** dampfgaren. Gareinsatz mithilfe des Spatels herausnehmen und abgedeckt 5 Min. ruhen lassen.
-3. Mixtopf leeren. Die Hälfte der Schalottenstreifen, **140 g Tomatenmark**, Chilischoten, Saft von 4 Limettenspalten, **60 g Öl**, **1 TL Salz** und 1 Prise Pfeffer in den Mixtopf geben und **`10 Sek./Stufe 6`** zu einer stückigen Masse pürieren. In eine Schüssel umfüllen.
-4. In einer großen Pfanne **20 g Öl** erhitzen. Vegane Filetstücke mit **20 g Mehl** bestäuben, in die Pfanne geben und 5-6 Min. rundherum goldbraun braten. Herausnehmen und beiseitestellen.
-5. Erneut **20 g Öl** in der Pfanne erhitzen. Würzpaste aus Schritt 3 dazugeben und 1 Min. anbraten. Restliche Schalottenstreifen, Karotten und Paprika dazugeben und 4-5 Min. mitbraten. Filetstücke, **36 g Ketjap Manis** und **50 g Sojasoße** dazugeben und 1 Min. mitbraten. Mit **300 g Wasser** ablöschen und 3-4 Min. köcheln lassen, bis die Soße eindickt. Mit Pfeffer abschmecken.
-6. Reis mit einer Gabel auflockern und auf 4 tiefe Teller verteilen. Nasi-Pfanne daneben anrichten, mit **40 g Erdnüssen** toppen und mit den restlichen Limettenspalten servieren.
+1. **2 Limetten** in je 4 Spalten schneiden.
+2. **4 Schalotten** halbieren und in feine Streifen schneiden.
+3. **4 Karotten** schälen, längs vierteln und fein würfeln. **2 rote Spitzpaprikas** entkernen und in feine Streifen schneiden.
+4. Gareinsatz einhängen, **300 g Basmatireis** einwiegen, kalt abspülen, **4 g Gewürzmischung „Hello Curry"** darüberstreuen und vermengen.
+5. **900 g Wasser** und **1 TL Salz** in den Mixtopf geben, den Gareinsatz einsetzen und **`18 Min./Varoma/Stufe 1`** dampfgaren.
+6. Den Gareinsatz mit dem Reis mithilfe des Spatels herausnehmen und abgedeckt 5 Min. ruhen lassen.
+7. Mixtopf leeren. Die Hälfte der Schalottenstreifen, **140 g Tomatenmark**, **2 halbierte rote Chilischoten** (nach Belieben entkernt), den Saft von 4 Limettenspalten, **60 g Öl**, **1 TL Salz** und 1 Prise Pfeffer in den Mixtopf geben und **`10 Sek./Stufe 6`** zu einer stückigen Masse pürieren. In eine Schüssel umfüllen.
+8. In einer großen Pfanne **20 g Öl** erhitzen. **320 g vegane Filetstücke** mit **20 g Mehl** bestäuben und in die Pfanne geben.
+9. Die Filetstücke 5–6 Min. rundherum goldbraun braten, herausnehmen und beiseitestellen.
+10. Erneut **20 g Öl** in der Pfanne erhitzen, die Würzpaste zugeben und 1 Min. anbraten.
+11. Die restlichen Schalottenstreifen, Karotten und Paprika zugeben und 4–5 Min. mitbraten.
+12. Die Filetstücke, **36 g Ketjap Manis** und **50 g Sojasoße** zugeben und 1 Min. mitbraten.
+13. Mit **300 g Wasser** ablöschen, 3–4 Min. köcheln lassen, bis die Soße eindickt, und mit Pfeffer abschmecken.
+14. Den Reis mit einer Gabel auflockern und auf 4 tiefe Teller verteilen. Die Nasi-Pfanne daneben anrichten, mit **40 g Erdnüssen** toppen und mit den restlichen Limettenspalten servieren.
 
 ## Tipps
 
-- **„Hello Curry" direkt mit dem Reis vermengen** (nicht ins Wasser) — die Aromen haften am Reis und färben ihn schön gelb, statt im Wasser verloren zu gehen.
-- **Reis VOR dem Garen** im Gareinsatz unter dem Hahn klar abspülen — weniger Stärke = lockerer, nicht klebriger Reis.
-- **Tomatenmark mit Öl anbraten**, BEVOR Gemüse dazukommt — entfaltet erst dadurch das volle Umami-Aroma. 60-90 Sek. bei mittlerer Hitze reichen.
-- **Filetstücke mit Mehl bestäuben** vor dem Braten — die Stärke karamellisiert in der Pfanne und gibt eine schöne goldbraune Kruste plus etwas mehr „Biss".
-- **Pürieren NUR 10 Sek./Stufe 6** — die Würzpaste soll stückig bleiben, nicht zu Soße werden. Lieber kürzer und nachschauen.
-- **Schärfe-Kontrolle**: Wenn die Chili-Pürée im Mixtopf landet, verteilt sich die Schärfe gleichmäßig — schwer zu dosieren. Bei Kids/Empfindlichen: nur die halbe Chilischote in die Paste, den Rest separat reichen.
-- **Variation**: Tofu in Würfeln (180 g) statt Planted-Filetstücke — gleiche Mehl-Methode, 6-7 Min. braten. Oder Tempeh für noch mehr Protein.
-- **Reste**: max. 1 Tag im Kühlschrank. Reis und Pfanne getrennt aufbewahren, in der Pfanne mit 1 Schuss Wasser aufwärmen, damit die Soße nicht eindickt.
+- „Hello Curry" direkt mit dem Reis vermengen, nicht ins Wasser — färbt den Reis gelb, das Aroma bleibt dran.
+- Reis vor dem Garen klar abspülen — lockerer statt klebrig.
+- Tomatenmark mit Öl anbraten, bevor das Gemüse dazukommt — bringt erst das volle Umami.
+- Filetstücke mit Mehl bestäuben — gibt eine goldbraune Kruste und mehr Biss.
+- Würzpaste nur 10 Sek./Stufe 6 — soll stückig bleiben, nicht zu Soße werden.
 
 ## Warum diese Cookidoo-Adaption
 
@@ -66,7 +71,7 @@ Die HelloFresh-Kreationen sind grandios — frisch, kreativ, jede Woche was Neue
 Für diese Cookidoo-Version habe ich die Karte deshalb komplett in **echtes Thermomix-Wording** übersetzt:
 
 - **Native Verben** statt generischer Anweisungen: `einwiegen`, `einhängen`, `aufsetzen`, `dampfgaren`, `pürieren`, `mithilfe des Spatels herausnehmen`, `auf 4 Teller verteilen`, `... servieren` — die Verben, die der Thermomix-Display und Cookidoo selbst auch in originalen Vorwerk-Rezepten verwenden.
-- **Step-Granularität nach Native-Standard**: 6 Steps wie in der Original-Karte, aber anders verteilt — zwei davon (Reis dampfgaren, Würzpaste pürieren) sind echte Thermomix-Schritte mit `Min./.../Stufe`-Chips, drei laufen in der Pfanne. Im Original waren alle 6 Steps Pfannen-/Topf-Schritte mit Pürierstab.
+- **Step-Granularität nach Native-Standard**: 14 kurze Ein-Aktion-Schritte (Median ~100 statt vorher ~271 Zeichen). Zwei davon (Reis dampfgaren, Würzpaste pürieren) sind echte Thermomix-Schritte mit `Min./.../Stufe`-Chips, der Rest läuft als klar getrennte Pfannen-Schritte. Mengen gegen die HelloFresh-Quelle abgeglichen: **4 Karotten** (vorher fälschlich 2 — HF nutzt schon bei 2 Portionen zwei Karotten).
 - **Thermomix statt Pürierstab**: Original-Karte sagt „mithilfe eines Pürierstabs zu einer stückigen Masse pürieren" — bei uns macht der Mixtopf das in `10 Sek./Stufe 6`. Ein Gerät weniger zum Abwaschen.
 - **Spezifische Mengen** statt Catch-all: `2 TL Salz`, `100 g Öl`, `1-2 Prisen Pfeffer` als separate Zutatenzeilen — nicht „Salz, Pfeffer, Öl nach Geschmack" wie die HelloFresh-Karte. Damit kennt der Thermomix die Mengen exakt.
 - **Interaktive Koch-Befehl-Chips**: `18 Min./Varoma/Stufe 1` und `10 Sek./Stufe 6` sind im Cookidoo-Render keine Plain-Text-Strings, sondern hervorgehobene Chips. Der Thermomix erkennt sie und führt sie beim Antippen direkt aus — der Reis wird wirklich 18 Minuten auf Varoma/Stufe 1 dampfgegart und die Würzpaste in 10 Sek. auf Stufe 6 püriert, ohne dass man am Display Werte eintippen muss.
