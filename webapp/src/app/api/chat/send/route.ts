@@ -1,4 +1,4 @@
-import { chatInsert } from "@/lib/db";
+import { chatInsert } from "@/lib/chat-db";
 import { z } from "zod";
 
 export const runtime = "nodejs";

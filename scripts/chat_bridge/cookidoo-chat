@@ -51,9 +51,12 @@ def cmd_reply(args: list[str]) -> int:
 
 
 def cmd_ping(_args: list[str]) -> int:
-    import urllib.request
     try:
-        with urllib.request.urlopen(f"{BASE}/api/chat/inbox", timeout=5) as r:
+        req = urllib.request.Request(
+            f"{BASE}/api/chat/inbox",
+            headers={"Authorization": f"Bearer {TOKEN}"} if TOKEN else {},
+        )
+        with urllib.request.urlopen(req, timeout=5) as r:
             print(f"ok status={r.status}")
             return 0
     except Exception as e:

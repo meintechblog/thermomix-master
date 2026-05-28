@@ -1,4 +1,4 @@
-import { chatInsert } from "@/lib/db";
+import { chatInsert } from "@/lib/chat-db";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -13,7 +13,6 @@ function authOk(req: Request): boolean {
 
 const Body = z.object({ body: z.string().min(1).max(20000) });
 
-// POST — assistant (Mac-side) drops a reply that the browser will pick up via SSE.
 export async function POST(req: Request) {
   if (!authOk(req)) return Response.json({ error: "unauthorized" }, { status: 401 });
   let parsed;
