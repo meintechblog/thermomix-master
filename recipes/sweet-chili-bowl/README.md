@@ -1,4 +1,4 @@
-# Sweet-Chili-Bowl mit glasierter Aubergine
+# [#33] Sweet-Chili-Bowl mit glasierter Aubergine
 
 dazu Sesam-Reis, Gurkensalat & Sriracha-Mayo · vegan · ca. 610 kcal/Portion
 

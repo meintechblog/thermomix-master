@@ -1,4 +1,4 @@
-# Ingwer-Süßkartoffel-Eintopf mit Tofu
+# [#66] Ingwer-Süßkartoffel-Eintopf mit Tofu
 
 dazu Baby-Grünkohl, Kokosmilch, Limette · vegan · 4 Portionen
 

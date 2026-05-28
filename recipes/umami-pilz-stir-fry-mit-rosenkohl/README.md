@@ -1,4 +1,4 @@
-# Umami-Pilz-Stir-Fry mit Rosenkohl
+# [#18] Umami-Pilz-Stir-Fry mit Rosenkohl
 
 dazu Basmatireis, Koriander & Erdnüsse · vegan · 4 Portionen
 
