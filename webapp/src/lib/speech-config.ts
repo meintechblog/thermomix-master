@@ -2,7 +2,7 @@
 // To regenerate: ~/.claude/skills/webapp-chat-bridge/scripts/install.sh --force --speech-url ...
 // If SPEECH_CONFIG.url is empty, the voice UI stays hidden.
 export const SPEECH_CONFIG = {
-  url: "http://192.168.3.127:8765",
+  url: "/speech",
   lang: "de",
   ttsVoice: "de_DE-thorsten-medium",
 };
