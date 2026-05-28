@@ -14,8 +14,8 @@ PREP_MIN = 15     # Arbeitszeit in minutes (Portobello-Champignon-Stroganoff, 4P
 TOTAL_MIN = 35    # Gesamtzeit in minutes (Portobello-Champignon-Stroganoff, 4P — HelloFresh PT30M, 4P etwas länger)
 # === END EDIT ===
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
-STATE_FILE = pathlib.Path.home() / "cookidoo-automation/current_recipe.txt"
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
+STATE_FILE = pathlib.Path.home() / "thermomix-automation/current_recipe.txt"
 
 
 def click_visible(page, sel):

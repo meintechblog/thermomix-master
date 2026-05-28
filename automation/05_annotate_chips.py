@@ -13,14 +13,14 @@ annotations server-side.
 After this script, your recipe behaves like a native Vorwerk recipe — the Thermomix
 auto-executes cooking commands and links each ingredient mention to its quantity.
 
-Edit nothing — uses the recipe ID from ~/cookidoo-automation/current_recipe.txt.
+Edit nothing — uses the recipe ID from ~/thermomix-automation/current_recipe.txt.
 """
 import pathlib, sys, json
 import os
 from playwright.sync_api import sync_playwright
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
-STATE_FILE = pathlib.Path.home() / "cookidoo-automation/current_recipe.txt"
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
+STATE_FILE = pathlib.Path.home() / "thermomix-automation/current_recipe.txt"
 
 
 def main():

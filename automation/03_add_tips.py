@@ -36,8 +36,8 @@ TIPS = (
 )
 # === END EDIT ===
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
-STATE_FILE = pathlib.Path.home() / "cookidoo-automation/current_recipe.txt"
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
+STATE_FILE = pathlib.Path.home() / "thermomix-automation/current_recipe.txt"
 
 
 def main():

@@ -6,7 +6,7 @@ across all subsequent scripts so you don't have to re-login.
 import pathlib
 from playwright.sync_api import sync_playwright
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
 pathlib.Path(USER_DATA).mkdir(parents=True, exist_ok=True)
 
 

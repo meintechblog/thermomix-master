@@ -81,11 +81,11 @@ After that the webapp is on port 80 of the LXC's IP. The autoupdate timer pulls 
 
 ## Cookidoo login
 
-The Playwright profile lives at `~/cookidoo-automation/profile/` on the LXC. Copy from your dev machine once:
+The Playwright profile lives at `~/thermomix-automation/profile/` on the LXC. Copy from your dev machine once:
 
 ```bash
 # From local Mac → LXC:
-rsync -az ~/cookidoo-automation/profile/ root@<lxc-ip>:/root/cookidoo-automation/profile/
+rsync -az ~/thermomix-automation/profile/ root@<lxc-ip>:/root/thermomix-automation/profile/
 ```
 
 After that, all pipeline scripts (`01_create_recipe.py` through `06_publish.py`) work inside the LXC.

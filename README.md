@@ -62,7 +62,7 @@ git clone https://github.com/meintechblog/thermomix-master.git
 cd thermomix-master
 python3 automation/00_setup_profile.py
 # Im Browser bei cookidoo.de einloggen, Cookie-Banner akzeptieren, Fenster schließen.
-# Login persistiert in ~/cookidoo-automation/profile/ — danach nie wieder nötig.
+# Login persistiert in ~/thermomix-automation/profile/ — danach nie wieder nötig.
 ```
 
 ### Option A — als Claude-Code-Skill (empfohlen)

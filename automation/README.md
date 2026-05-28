@@ -15,9 +15,9 @@ Chronologisch nummerierte Playwright-Scripts für den End-to-End-Workflow.
 
 ## Gemeinsame Konventionen
 
-- Alle Scripts nutzen ein persistentes Playwright-Profil: `~/cookidoo-automation/profile/` (per `.gitignore` ausgenommen)
+- Alle Scripts nutzen ein persistentes Playwright-Profil: `~/thermomix-automation/profile/` (per `.gitignore` ausgenommen)
 - Cookie-Banner-Akzeptanz und Login werden im Profil persistiert; nach `00_setup_profile.py` läuft alles ohne weitere User-Interaktion
-- Die Recipe-ID wird in `~/cookidoo-automation/current_recipe.txt` gespeichert von Script 01, damit nachfolgende Scripts sie lesen können
+- Die Recipe-ID wird in `~/thermomix-automation/current_recipe.txt` gespeichert von Script 01, damit nachfolgende Scripts sie lesen können
 - Locale ist auf `de-DE` hardcoded — für andere Locales die URL-Pfade anpassen
 
 ## Ein Lauf von Anfang bis Ende

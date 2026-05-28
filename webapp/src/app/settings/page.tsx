@@ -8,7 +8,7 @@ export default function SettingsPage() {
         <section>
           <h2 className="font-display text-xl font-bold mb-2">Cookidoo-Account</h2>
           <p className="text-sm text-charcoal-600 mb-3">
-            Der Cookidoo-Login wird als Playwright-Profil unter <code className="text-xs bg-cream-100 px-1.5 py-0.5 rounded">~/cookidoo-automation/profile/</code> gespeichert.
+            Der Cookidoo-Login wird als Playwright-Profil unter <code className="text-xs bg-cream-100 px-1.5 py-0.5 rounded">~/thermomix-automation/profile/</code> gespeichert.
             Aktuell wird er beim Container-Setup vom Host übertragen — UI-Login-Management kommt in einer späteren Version.
           </p>
           <div className="text-sm text-charcoal-500">Status: <span className="font-medium text-charcoal-800">aus Profil-Verzeichnis übernommen</span></div>

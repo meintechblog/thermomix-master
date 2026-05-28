@@ -2,7 +2,7 @@
 
 EDIT THE THREE CONSTANTS at the top, then run.
 
-After completion, the new recipe ID is stored in ~/cookidoo-automation/current_recipe.txt
+After completion, the new recipe ID is stored in ~/thermomix-automation/current_recipe.txt
 for the rest of the pipeline (02_upload_image.py, 03_add_tips.py, 04_set_times.py,
 05_annotate_chips.py).
 
@@ -69,8 +69,8 @@ STEPS = [
 ]
 # === END EDIT ===
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
-STATE_FILE = pathlib.Path.home() / "cookidoo-automation/current_recipe.txt"
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
+STATE_FILE = pathlib.Path.home() / "thermomix-automation/current_recipe.txt"
 
 
 def click_first_visible(page, selector):

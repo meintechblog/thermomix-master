@@ -12,7 +12,7 @@ git clone https://github.com/meintechblog/thermomix-master.git ~/thermomix-maste
 cd ~/thermomix-master
 python3 automation/00_setup_profile.py
 # Im Browser bei cookidoo.de einloggen, Cookie-Banner akzeptieren, Fenster schließen.
-# Profil persistiert in ~/cookidoo-automation/profile/
+# Profil persistiert in ~/thermomix-automation/profile/
 ```
 
 ## Workflow pro Rezept

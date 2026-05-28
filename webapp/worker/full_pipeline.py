@@ -29,8 +29,8 @@ Headless always (env var THERMOMIX_HEADLESS=1 set by caller — required on LXC)
 import os, sys, json, pathlib, time
 from playwright.sync_api import sync_playwright
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
-STATE_FILE = pathlib.Path.home() / "cookidoo-automation/current_recipe.txt"
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
+STATE_FILE = pathlib.Path.home() / "thermomix-automation/current_recipe.txt"
 HEADLESS = os.environ.get("THERMOMIX_HEADLESS", "1") == "1"
 
 

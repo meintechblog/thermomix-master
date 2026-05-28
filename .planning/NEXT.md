@@ -148,7 +148,7 @@ Pfad: `~/.claude/projects/-Users-hulki-codex-thermomix-master/memory/MEMORY.md`
 - Playwright (in webapp + via skill) für Cookidoo-Automation und Screenshots
 - launchd-Daemon `com.hulki.cookidoo.chatbridge` aktiv (KeepAlive)
 - SSH-Zugang `root@192.168.3.223` für LXC-Autoupdate-Trigger
-- `~/cookidoo-automation/profile/` — eingeloggte Cookidoo-Playwright-Session
+- `~/thermomix-automation/profile/` — eingeloggte Cookidoo-Playwright-Session
 - claude-peers-MCP läuft im Repo (`claudepeers`-Alias)
 
 ---

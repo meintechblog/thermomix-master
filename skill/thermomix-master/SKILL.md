@@ -31,7 +31,7 @@ den Rest — kein manuelles Foto-Schicken, kein Mid-Workflow-Approval.
 
 **Vorbedingungen** (Setup-Sache, einmal pro Maschine):
 - Toolkit-Repo unter `~/codex/thermomix-master/` (oder via SKILL_REPO env)
-- `~/cookidoo-automation/profile/` mit eingeloggter Cookidoo-Session
+- `~/thermomix-automation/profile/` mit eingeloggter Cookidoo-Session
 - ChatGPT.app eingeloggt + Bedienungshilfen-Permission + `cliclick` (`brew install cliclick`) — nötig für den AI-Restyle in Pfad B
 - SSH-Zugang zu `root@192.168.3.223` für LXC-Autoupdate-Trigger (optional, sonst Fallback auf 10-Min-Timer)
 </objective>

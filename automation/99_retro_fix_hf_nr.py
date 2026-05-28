@@ -40,7 +40,7 @@ RECIPES = [
 ]
 # === END EDIT ===
 
-USER_DATA = str(pathlib.Path.home() / "cookidoo-automation/profile")
+USER_DATA = str(pathlib.Path.home() / "thermomix-automation/profile")
 
 
 def click_visible(page, sel: str) -> bool:
