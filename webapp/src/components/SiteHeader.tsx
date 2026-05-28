@@ -5,9 +5,23 @@ import { useState } from "react";
 const NAV = [
   { href: "/", label: "Rezepte" },
   { href: "/pinned", label: "Queue" },
-  { href: "/chat", label: "Chat", dot: true },
   { href: "/settings", label: "Einstellungen" },
 ];
+
+function WalkieButton() {
+  return (
+    <a
+      href="/chat"
+      aria-label="Walkie-Talkie"
+      title="Walkie-Talkie öffnen"
+      className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-full bg-purple-600 text-white shadow hover:bg-purple-700 transition active:scale-95"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3zm5 10a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V22h2v-3.08A7 7 0 0 0 19 12h-2z" />
+      </svg>
+    </a>
+  );
+}
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -28,11 +42,13 @@ export function SiteHeader() {
           </div>
         </a>
 
+        {/* Walkie-Talkie (always visible, primary CTA) */}
+        <WalkieButton />
+
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-charcoal-700">
           {NAV.map(n => (
             <a key={n.href} href={n.href} className="hover:text-hero-700 transition flex items-center gap-1.5">
-              {n.dot && <span className="w-2 h-2 rounded-full bg-hero-500 animate-pulse" />}
               {n.label}
             </a>
           ))}
