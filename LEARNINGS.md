@@ -319,8 +319,30 @@ Alte (obsolete) Tabelle als Mahnmal:
 Was die Reverse-Engineering-Recherche aus 12 nativen Vorwerk-Bowls/Currys/Pfannen ergab (Stand der Skill-Reference, dort vollständig + aktuell):
 - Verben: `einwiegen`, `einhängen`, `aufsetzen`/`absetzen`, `mithilfe des Spatels herausnehmen`, `unterheben`, `auf X Bowls/Tellern verteilen`, `... servieren`, `In der Zwischenzeit ...`
 - Zutaten: Adjektive nach Komma, Verb-Teile in den Step, spezifische Mengen statt Catch-all, Bindestrich-Soßen
-- Step-Längen: **40-130 Zeichen pro Step** (eine Operation), NICHT 250-550 (das war der Web-Prosa-Messfehler, siehe Korrektur oben)
+- Step-Längen: **eine aktive Operation pro Step** — Länge ist KEIN harter Cap (verfeinert 2026-05-29, siehe Eintrag unten). NICHT 250-550 als Mega-Step, aber lange chip-/anricht-justifizierte Steps sind nativ.
 - Niemals: `Guten Appetit!` (0 von 12), Doppelpunkte vor Listen, Hinweise in Klammern in der Zutatenliste
+
+## Step-Granularität — VERFEINERT 2026-05-29 (Länge ist kein Hard-Cap)
+
+> Frischer Dump von 12 Top-Rezepten der Cookidoo-**Startseite** (`research/native-top-recipes-2026-05-29.md`,
+> via `automation/98_research_top_recipes.py`) korrigierte die 28.5.-Regel an einem Punkt:
+> die „40-130, hart bei 180"-Grenze war **zu streng**. Echte Top-Rezepte haben routinemäßig
+> Steps von 200-380 Zeichen — und das sind keine Fehler.
+
+Maßstab ist die **aktive Operation**, nicht die Zeichenzahl:
+- Ein Step lang sein DARF, wenn die Länge aus (a) einem laufenden Chip + Parallelarbeit
+  (`In dieser Zeit …` / `In den letzten X Min.`) oder (b) dem finalen Anricht-Step kommt.
+- Der Feind ist NICHT Länge, sondern **zwei aktive Maschinen-/Pfannen-Operationen** bzw.
+  mehrere sequenzielle aktive Handgriffe ohne laufende Maschine in einem Step.
+- Native Step-Zahl 3-7; unsere Usability-Variante (Zutaten inkrementell, Anrichten separat) 6-17.
+
+Audit (`scripts/audit-recipe.py`) setzt das um: Länge nur WARN wenn unjustifiziert; **2 Chips/Step = BLOCK**;
+`check_fused_operations` fängt „Hand-Prep + neue Maschinen-/Pfannen-Op"; Parallel-Marker erkennt
+`Währenddessen` / `In der Zwischenzeit` / `In dieser Zeit` / `In den letzten`.
+
+**Großer Rebuild 2026-05-29:** alle 9 Rezepte auf diese Regel umgebaut (Mediane 110-314c → 85-144c),
+dabei 4 Mengen-Bugs über HF-Quellabgleich gefixt (z.B. Nasi Karotten 2→4, Sweet-Chili 1→2 Limetten).
+Lehre: Rebuild bestehender Rezepte IMMER gegen die HF-Originalquelle (WebFetch), nicht nur READMEs umschreiben.
 
 ## Locale-Awareness
 

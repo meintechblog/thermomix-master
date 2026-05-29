@@ -76,13 +76,13 @@ Toolkit (Open Source):
 https://github.com/meintechblog/thermomix-master
 ```
 
-## 8. Step-Granularität: kurz + eine Operation pro Step (siehe native-style-rules.md)
+## 8. Step-Granularität: eine AKTIVE Operation pro Step (siehe native-style-rules.md)
 
-**Ersetzt die alte „median 5 Steps / 250-550 Zeichen"-Regel — die war falsch.**
+**Ersetzt die alte „median 5 Steps / 250-550 Zeichen"-Regel UND die Gegen-Überkorrektur „hart bei 180" (zu streng — verfeinert 2026-05-29 gegen `research/native-top-recipes-2026-05-29.md`).**
 
-- Ein Step = **genau eine** Operation (ein Chip / eine Pfannen- / Ofen- / Anricht-Aktion).
-- Ziel **40-130 Zeichen** pro Step, hart bei ~180 (Ausnahme: finaler Anricht-Step).
-- Step-Zahl = **Anzahl Operationen**, nicht Zutatenzahl. Typisch **6-10 kurze Steps**.
+- Ein Step = **genau eine AKTIVE** Operation (ein Chip / eine Pfannen- / Ofen- / Anricht-Aktion) + natürliche Nacharbeit (umfüllen/spülen/Spatel). Nie zwei Chips, nie zwei aktive Maschinen-/Pfannen-Operationen.
+- **Länge ist KEINE harte Grenze.** Lang (bis ~380c) ist OK bei (a) laufendem Chip + Parallelarbeit per `In dieser Zeit …` / `In den letzten X Min.` oder (b) finalem Anricht-Step. Unjustifiziert lange Steps (mehrere aktive Handgriffe ohne laufende Maschine) → splitten.
+- Step-Zahl = **Anzahl aktiver Operationen**. Native 3-7, Usability-Variante 6-17 — keine Ziel-Zahl.
 - Zutaten **inkrementell** zugeben, jede mit Menge im Step ihrer Verwendung.
 - Manuelle Prep nur wenn nötig, dann per `Währenddessen …` in einen laufenden Step falten.
 

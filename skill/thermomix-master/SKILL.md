@@ -134,15 +134,17 @@ Bei Pfad B: nichts weiter in Phase 2.5 — AI-Restyle läuft in Phase 6 Step 2 i
 
 Konkret für jedes Rezept (Details + Belege in der native-style-rules.md):
 
-1. **Step-Anzahl ergibt sich aus Operationen, nicht aus Zutatenzahl.** Zähle die echten
-   Operationen (jeder Chip, jede Pfannen-/Ofen-Phase, jedes Anrichten) — das ist die
-   Step-Zahl. Typisch **6-10 kurze Steps**. KEINE Ziel-Zahl, KEIN Zusammenquetschen.
+1. **Step-Anzahl ergibt sich aus aktiven Operationen, nicht aus Zutatenzahl.** Zähle die
+   echten aktiven Operationen (jeder Chip, jede Pfannen-/Ofen-Phase, jedes Anrichten) — das
+   ist die Step-Zahl. Native 3-7, Usability-Variante 6-17. KEINE Ziel-Zahl, KEIN Zusammenquetschen.
 
-2. **EINE Operation pro Step, 40-130 Zeichen.** Nie zwei Chips in einem Step. Zutaten
-   **inkrementell** zugeben (jede mit Menge im Step ihrer Verwendung). Maschine macht die
-   Prep (zerkleinern/hacken im Mixtopf), manuelle Prep nur per `Währenddessen …` in einen
-   laufenden Maschinen-Step falten. Der Anwender soll pro Step in 2 Sek. sehen: was rein,
-   was schnibbeln, welcher Befehl.
+2. **EINE aktive Operation pro Step. Länge ist KEIN harter Cap** (verfeinert 2026-05-29 —
+   native Steps gehen bis ~380c). Nie zwei Chips, nie zwei aktive Maschinen-/Pfannen-Ops in
+   einem Step. Lang ist OK bei laufendem Chip + Parallelarbeit (`In dieser Zeit …` /
+   `In den letzten X Min.`) oder beim finalen Anricht-Step. Zutaten **inkrementell** zugeben
+   (jede mit Menge im Step ihrer Verwendung). Maschine macht die Prep (zerkleinern/hacken im
+   Mixtopf), manuelle Prep per `Währenddessen …` in einen laufenden Maschinen-Step falten.
+   Der Anwender soll pro Step in 2 Sek. sehen: was rein, was schnibbeln, welcher Befehl.
 
 3. **Native Verben einsetzen**:
    - `füllen → einwiegen` (in Gareinsatz/Mixtopf)

@@ -1,94 +1,88 @@
 # NEXT — thermomix-master Session-Handoff
 
-**Stand:** 2026-05-28, Nachmittag · Session-Wrap nach **Repo-Merge `cookidoo-master` → `thermomix-master`** + Post-Migration-Audit + Cleanup. Bei „weiter" hier weitermachen.
+**Stand:** 2026-05-29, Abend · Session-Wrap nach **großem Rezept-Rework (alle 9 Rezepte neu)** + **Security-Sweep** + Doku-Konsistenz. Bei „weiter" hier weitermachen.
 
 ---
 
 ## Vorab: bin ich richtig?
 
-- Repo-Heimat: `/Users/hulki/codex/thermomix-master/` (Mac), `/opt/thermomix-master/` (LXC 192.168.3.223), `meintechblog/thermomix-master` (GitHub)
-- Mensch: **Jörg** Hofmann. Hub-Bot: **Hulki** (`agent-master`). Andere Repos haben eigene Peers — siehe globales `~/.claude/CLAUDE.md`.
-- Wenn du nicht weißt was heute war: lies zuerst `memory/project_rename_migration_2026-05-28.md` — komplette Übersicht aller Änderungen.
+- Repo-Heimat: `/Users/hulki/codex/thermomix-master/` (Mac), `/opt/thermomix-master/` (LXC 192.168.3.223), `meintechblog/thermomix-master` (GitHub, **public**)
+- Mensch: **Jörg** Hofmann. Hub-Bot: **Hulki** (`agent-master`). Reply immer nur auf dem eingehenden Kanal (hier: Terminal-Session → in-session, keine outbox).
+- Bei Unklarheit zum Gesamtkontext zuerst lesen: `memory/project_recipe_rebuild_status.md` + `memory/project_native_step_grammar.md`.
 
 ---
 
-## Was alles läuft (Stand 2026-05-28)
+## Was heute (2026-05-29) passiert ist
 
-### Cookidoo-Pipeline (Mac)
-- Skill `thermomix-master` (`~/.claude/skills/thermomix-master/` → Symlink ins Repo)
-- Playwright-Profil: `~/thermomix-automation/profile/` mit eingeloggter Cookidoo-Session
-- State-File: `~/thermomix-automation/current_recipe.txt`
-- Pipeline-Scripts: `automation/01_create_recipe.py` bis `06_publish.py`, plus `99_retro_fix_hf_nr.py`
-- Test 2026-05-28: Playwright-Login funktioniert nach mv ✓
+### 1. Rezept-Rework — ALLE 9 Rezepte native-granular neu gebaut ✅
+- Mediane von 110–314c → **85–144c**, alle live auf Cookidoo + Webapp deployed, committet & gepusht.
+- Methode: **zurück zur HF-Originalquelle** (WebFetch der HF-URL), native-granular Steps, `audit-recipe.py` auf 0 Blocker, dann `99_replace_steps_helper.py` + `05_annotate_chips.py` + `03_add_tips.py`, README regen.
+- **4 Mengen-Bugs gefixt** (nur via HF-Abgleich gefunden): Nasi Karotten 2→4, Sweet-Chili 1→2 Limetten + Schale, Umami Wasser 900→700 + Koriander 10→20.
+- Tipps überall auf ~5 telegrafische Zeilen gekürzt (Jörgs Feedback).
+- Step-JSONs/Tips liegen in `.received/rebuild/*.{steps.json,tips.txt}` (lokal, gitignored).
 
-### Webapp (LXC `192.168.3.223`)
-- 4 systemd-units active: `thermomix-{chat,webapp,worker}.service` + `thermomix-autoupdate.timer`
-- Webroot: `/opt/thermomix-master/`, deploy-Script `webapp/deploy/install.sh` (idempotent, ruft sich selbst via Auto-Update-Timer)
-- HTTPS-Reverse-Proxy via nginx (Self-Signed-Cert `cookidoo-selfsigned.crt` bleibt absichtlich, CN=`cookidoo-master.local`)
-- `/speech/` proxied auf `192.168.3.127:8765` (local-speech-service auf Hulki-Host)
-- 9 Rezepte sichtbar, davon 8 HF-sourced mit `[#NN]`-Titel-Prefix + `hfCardNumber`-Badge
+### 2. Regel-Verfeinerung + Doku-Konsistenz ✅
+- Frische Ground-Truth: `research/native-top-recipes-2026-05-29.md` (12 echte Cookidoo-Top-Rezepte, via `automation/98_research_top_recipes.py`).
+- **Kern-Korrektur:** Länge ist KEIN Hard-Cap. Maßstab = „eine AKTIVE Operation pro Step". Lang OK bei laufendem Chip + Parallelarbeit oder finalem Anricht-Step. Native 3–7 Steps, unsere Usability-Variante 6–17.
+- Konsistent gezogen in: `native-style-rules.md`, `quality-checks.md` (Regel 8), `PLAYBOOK.md` (Regel 8), `SKILL.md`, `LEARNINGS.md`, `README.md` (Rezept-Tabelle + Faustregeln), `audit-recipe.py`.
+- `audit-recipe.py` gehärtet: Länge nur WARN wenn unjustifiziert; **2 Chips/Step = BLOCK**; neuer `check_fused_operations` (Hand-Prep+Maschinen-Op); Parallel-Marker erkennt `Währenddessen`/`In der Zwischenzeit`/`In dieser Zeit`/`In den letzten`.
 
-### Chat-Bridge
-- Daemon: `com.hulki.thermomix.chatbridge` (launchd auf Mac)
-- Reply-CLI: `./scripts/chat_bridge/thermomix-chat reply "..."`
-- Queue-Dir: `~/.thermomix-pending-chat/`
-- ENV-Prefix: `THERMOMIX_*` (alle Konstanten)
-
-### Peer-Identity
-- Ich (peer-id wechselt pro Session) bin der einzige authoritative thermomix-master-Peer
-- Hulki (`agent-master-hub`) routet WA-Cookidoo/Thermomix-Anfragen zu mir
-- Cross-Repo-Anfragen via `list_peers` + `send_message`
+### 3. Security-Sweep (Hub-koordiniert) ✅
+- Jörgs WA-Nummer war im public Repo (Working-Tree + History, in einem Hulki-Brief). → `git filter-repo` purge, force-push, verifiziert 0 PII/Secrets, Repo nach Bereinigung wieder **public**.
+- `.planning/inbox/` + `.planning/archive/` jetzt **gitignored + untracked** — Peer-Briefe landen nie wieder im Repo. Getrackt in `.planning/` bleibt nur diese NEXT.md.
 
 ---
 
-## Rezepte-Portfolio — 9 live auf Cookidoo + Webapp
+## Rezepte-Portfolio — 9 live (Cookidoo + Webapp), Stand 2026-05-29
 
-| # | Rezept | Slug | Karte |
+| Rezept | Slug | Steps | Cookidoo-ID |
 |---|---|---|---|
-| 1 | Umami-Pilz-Stir-Fry mit Rosenkohl | `umami-pilz-stir-fry-mit-rosenkohl` | #18 |
-| 2 | Frische Sauerteig-Pinsa mit Aubergine | `frische-sauerteig-pinsa-mit-aubergine` | #25 (KW19/Y26) |
-| 3 | Räuchertofu Gyros-Art mit Kartoffelsalat und Zaziki | `raeuchertofu-gyros-art-mit-kartoffelsalat-und-zaziki` | #25 (KW02/Y24) |
-| 4 | Vegane Filetstücke in thailändischer Orangensoße | `vegane-filetstuecke-thai-orange` | #32 |
-| 5 | Sweet-Chili-Bowl mit glasierter Aubergine | `sweet-chili-bowl` | #33 (Y26) |
-| 6 | Veganes Portobello-Champignon-Stroganoff | `veganes-portobello-champignon-stroganoff` | #33 (Y25) |
-| 7 | Nasi Goreng mit veganen Filetstücken | `nasi-goreng` | #64 |
-| 8 | Ingwer-Süßkartoffel-Eintopf mit Tofu | `ingwer-suesskartoffel-eintopf-mit-tofu` | #66 |
-| 9 | Veganer Hackbraten mit Semmelknödeln (Eigenkreation) | `veganer-hackbraten-…` | — |
-
-Doppelte `#25` und `#33` sind kein Bug — Wochenbox-Position rotiert pro Woche. Siehe `memory/project_hf_card_number_vs_url_r.md`.
+| Umami-Pilz-Stir-Fry #18 | `umami-pilz-stir-fry-mit-rosenkohl` | 12 | `01KRQ3TEB572NJEE7GB4FDRFG5` |
+| Pinsa #25 | `frische-sauerteig-pinsa-mit-aubergine` | 10 | `01KRQ44JTZ8ETRE7N6PBB4Q0Q8` |
+| Räuchertofu #25 | `raeuchertofu-gyros-art-mit-kartoffelsalat-und-zaziki` | 13 | `01KSMJK60SXV36SCX77T7N5ZV6` |
+| Thai-Orange #32 | `vegane-filetstuecke-thai-orange` | 9 | `01KSMKBJ3XW0C5K5NYYVMVFZXC` |
+| Sweet-Chili-Bowl #33 | `sweet-chili-bowl` | 15 | `01KRNNR72NTN1C0PTD67PA8W7D` |
+| Stroganoff #33 | `veganes-portobello-champignon-stroganoff` | 11 | `01KSMWEF8YNKG04Z4TTE9E72EA` |
+| Nasi Goreng #64 | `nasi-goreng` | 14 | `01KRQ1JCX58H8QGDSBB47XVP5B` |
+| Ingwer-Süßkartoffel #66 | `ingwer-suesskartoffel-eintopf-mit-tofu` | 9 | `01KRQ4A91QAT7SEKVZ5WK31JGW` |
+| Veganer Hackbraten (Eigenkreation) | `veganer-hackbraten-…` | 17 | `01KRRA70F256JS1FJH8SHY4G6D` |
 
 ---
 
-## Was als „weiter" anliegen könnte (nichts kritisches!)
+## Offen / mögliche nächste Schritte (nichts kritisches)
 
-Keine HIGH-Findings mehr offen. Restliche Quirks aus dem Handover-Brief (alle low-risk, bewusst aufgeschoben):
+1. **Jörg-Review der neuen Rezepte** — er wollte 2–3 in Webapp/Cookidoo gegenchecken. Falls bei einem was auffällt: Step-JSON in `.received/rebuild/` anpassen → `audit-recipe.py` → live nachziehen (Pipeline siehe `memory/project_recipe_rebuild_status.md`).
+2. **`.planning/NEXT.md` aus public Repo nehmen?** — enthält LAN-IP 192.168.3.223 + interne Pfade (laut Hub nicht-kritisch). Offen, ob Jörg `.planning/` ganz aus public will. (Frage steht.)
+3. **Neues HelloFresh-Rezept eintragen** — Pipeline ready: `/thermomix-master <hellofresh-url>`.
+4. Alt-Quirks (low-risk, bewusst aufgeschoben): `thermomix-webapp.service` TimeoutStopSec=10; iOS-TTS-brittle. Siehe `memory/project_thermomix_open_quirks.md`.
 
-1. **`thermomix-webapp.service` TimeoutStopSec=10** — quick fix gegen 502-Restart-Fenster bei SSE-Streams. Low-risk, 5min Arbeit. Siehe `memory/project_thermomix_open_quirks.md` Punkt 1.
-2. **Neues HelloFresh-Rezept eintragen** — Pipeline ist ready. Skill-Aufruf: `/thermomix-master <hellofresh-url>` oder `--text` / `--image`.
-3. **Self-Signed-Cert renewal** — gültig bis 2036, kein Druck.
-4. **iOS-TTS-Brittle** — passt vermutlich erst, wenn Safari-Bug auftritt.
+---
 
-Bei neuen Cookidoo-Recipes greift die Skill jetzt automatisch:
-- Titel mit `[#NN] <Name> (HelloFresh)`
-- Erste Zeile im Tipps-Block: `Karte #NN — <Name>`
-- Recipe-README mit H1 `# [#NN] <Name>`
-- Quelle-Zeile mit `Karte #NN (HF_Y..R..W..)`
-- HF-Badge in der Webapp rendert automatisch
+## Pipeline zum Rebuild/Neubau eines Rezepts (getestet 2026-05-29)
+
+1. HF-Quelle ziehen (WebFetch der HF-URL aus dem README) — Mengen verifizieren, NICHT nur README umschreiben.
+2. `.received/rebuild/<slug>.steps.json` schreiben (`{"ingredients":[…],"steps":[…]}`), native-granular.
+3. `python3 skill/thermomix-master/scripts/audit-recipe.py <file>` → 0 Blocker.
+4. `echo "<COOKIDOO_ID>" > ~/thermomix-automation/current_recipe.txt`
+5. `python3 automation/99_replace_steps_helper.py <file>` → `05_annotate_chips.py` → `03_add_tips.py <tips.txt>`
+6. README updaten (Zubereitung + Zutaten + Tipps + Warum-Block; Webapp liest README als Source of Truth).
+7. commit + push + `ssh root@192.168.3.223 'systemctl start thermomix-autoupdate.service'`.
 
 ---
 
 ## Memory-Index (für schnellen Zugriff)
 
-- `project_rename_migration_2026-05-28.md` — heute, der Master-Recap der Migration
-- `project_thermomix_open_quirks.md` — 4 bewusste Quirks
-- `project_hf_card_number_vs_url_r.md` — R-Zahl ≠ Karten-Position
+- `project_recipe_rebuild_status.md` — Rebuild-Stand (ALLE 9 fertig) + Pipeline + Gotchas. ERSTER Anlaufpunkt.
+- `project_native_step_grammar.md` — die Step-Regel (inkl. 29.5.-Längen-Korrektur).
+- `feedback_recipe_step_usability.md` — Jörgs Usability-Kernfeedback.
+- `project_recipe_scaling_fraction_trap.md` — Bruchteil-Falle beim Skalieren.
+- `project_thermomix_open_quirks.md` — 4 bewusste Low-Risk-Quirks.
+- `project_rename_migration_2026-05-28.md` — cookidoo→thermomix-Migration.
+- `project_hf_card_number_vs_url_r.md` — R-Zahl ≠ Karten-Position.
 
 ---
 
 ## Nichts mehr zu tun?
 
-Wenn alles grün ist und du auf neuen Input wartest:
-- `set_summary("thermomix-master: idle, Stand <HEAD>, alle Audit-Findings durch")`
-- `list_peers` + warten
-
-Sonst: kick dich rein in einen der „weiter könnte"-Punkte oben.
+Alles grün: 9 Rezepte neu+live, Repo sauber+public, Doku konsistent, Memory aktuell.
+`set_summary(...)` + `list_peers` + warten. Sonst: einen „Offen"-Punkt oben aufgreifen.

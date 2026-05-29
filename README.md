@@ -29,15 +29,15 @@ Komplettes Reverse-Engineering — DOM, Custom-Elements, Bundle-Strings, Save-Qu
 
 | Karte | Rezept | Steps · Zutaten · Chips | Live auf Cookidoo | HelloFresh-Original |
 |---|---|---|---|---|
-| #18 | [Umami-Pilz-Stir-Fry mit Rosenkohl](recipes/umami-pilz-stir-fry-mit-rosenkohl/) | 5 · 19 · 2 (`Varoma` + `Verquirlen`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ3TEB572NJEE7GB4FDRFG5) | [Original](https://www.hellofresh.de/recipes/umami-pilz-stir-fry-mit-rosenkohl-6904cb849140c7b54fef9a2e) |
-| #25 | [Frische Sauerteig-Pinsa mit Aubergine](recipes/frische-sauerteig-pinsa-mit-aubergine/) | 5 · 16 · 1 (`Pürieren`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ44JTZ8ETRE7N6PBB4Q0Q8) | [Original](https://www.hellofresh.de/recipes/frische-sauerteig-pinsa-mit-aubergine-6978d31f6aaab04ab65108b0) |
-| #25 | [Räuchertofu Gyros-Art mit Kartoffelsalat und Zaziki](recipes/raeuchertofu-gyros-art-mit-kartoffelsalat-und-zaziki/) | 5 · 18 · 3 (`Stufe 3` + `Stufe 7` + `Stufe 5`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMJK60SXV36SCX77T7N5ZV6) | [Original](https://www.hellofresh.de/recipes/souflaki-rauchertofu-mit-kartoffelsalat-and-zaziki-64e860a94e40d5c6cb1a53fe) |
-| #32 | [Vegane Filetstücke in thailändischer Orangensoße](recipes/vegane-filetstuecke-thai-orange/) | 5 · 15 · 2 (`Varoma` + `Stufe 4`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMKBJ3XW0C5K5NYYVMVFZXC) | [Original](https://www.hellofresh.at/recipes/orange-chicken-vegan-68ac617f7e1f6c64ca682316) |
-| #33 | [Sweet-Chili-Bowl mit glasierter Aubergine](recipes/sweet-chili-bowl/) | 5 · 17 · 2 (`Varoma` + `Linkslauf`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D) | [Original](https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd) |
-| #33 | [Veganes Portobello-Champignon-Stroganoff](recipes/veganes-portobello-champignon-stroganoff/) | 5 · 17 · 2 (`Linkslauf` + `Stufe 7`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMWEF8YNKG04Z4TTE9E72EA) | [Original](https://www.hellofresh.de/recipes/veganes-portobello-champignon-stroganoff-67dd36a6aaa74aa3f95880bf) |
-| #64 | [Nasi Goreng mit veganen Filetstücken](recipes/nasi-goreng/) | 6 · 17 · 2 (`Varoma` + `Pürieren`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ1JCX58H8QGDSBB47XVP5B) | [Original](https://www.hellofresh.de/recipes/nasi-goreng-mit-veganen-filetstucken-64e461d2e1f123211ed56789) |
-| #66 | [Ingwer-Süßkartoffel-Eintopf mit Tofu](recipes/ingwer-suesskartoffel-eintopf-mit-tofu/) | 5 · 14 · 2 (`Varoma` + `Linkslauf`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ4A91QAT7SEKVZ5WK31JGW) | [Original](https://www.hellofresh.de/recipes/ingwer-susskartoffel-eintopf-mit-tofu-68fa30ecff3933d87e3fe9d9) |
-| — | [Veganer Hackbraten mit Semmelknödeln, Schwarzbier-Pilz-Rahm & Apfel-Rotkohl](recipes/veganer-hackbraten-mit-semmelknoedeln-schwarzbier-pilz-rahm-und-apfel-rotkohl/) | 6 · 30 · 5 (`Linkslauf` + `Stufe 5` + `50 °C`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRRA70F256JS1FJH8SHY4G6D) | Eigenkreation |
+| #18 | [Umami-Pilz-Stir-Fry mit Rosenkohl](recipes/umami-pilz-stir-fry-mit-rosenkohl/) | 12 · 19 · 2 (`Varoma` + `Stufe 3`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ3TEB572NJEE7GB4FDRFG5) | [Original](https://www.hellofresh.de/recipes/umami-pilz-stir-fry-mit-rosenkohl-6904cb849140c7b54fef9a2e) |
+| #25 | [Frische Sauerteig-Pinsa mit Aubergine](recipes/frische-sauerteig-pinsa-mit-aubergine/) | 10 · 16 · 2 (`Stufe 7` + `Pürieren`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ44JTZ8ETRE7N6PBB4Q0Q8) | [Original](https://www.hellofresh.de/recipes/frische-sauerteig-pinsa-mit-aubergine-6978d31f6aaab04ab65108b0) |
+| #25 | [Räuchertofu Gyros-Art mit Kartoffelsalat und Zaziki](recipes/raeuchertofu-gyros-art-mit-kartoffelsalat-und-zaziki/) | 13 · 18 · 4 (`Stufe 3` + `Stufe 7` + `Stufe 5`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMJK60SXV36SCX77T7N5ZV6) | [Original](https://www.hellofresh.de/recipes/souflaki-rauchertofu-mit-kartoffelsalat-and-zaziki-64e860a94e40d5c6cb1a53fe) |
+| #32 | [Vegane Filetstücke in thailändischer Orangensoße](recipes/vegane-filetstuecke-thai-orange/) | 9 · 15 · 2 (`Varoma` + `Stufe 4`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMKBJ3XW0C5K5NYYVMVFZXC) | [Original](https://www.hellofresh.at/recipes/orange-chicken-vegan-68ac617f7e1f6c64ca682316) |
+| #33 | [Sweet-Chili-Bowl mit glasierter Aubergine](recipes/sweet-chili-bowl/) | 15 · 17 · 2 (`Varoma` + `Linkslauf`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D) | [Original](https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd) |
+| #33 | [Veganes Portobello-Champignon-Stroganoff](recipes/veganes-portobello-champignon-stroganoff/) | 11 · 17 · 2 (`Linkslauf` + `Stufe 7`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMWEF8YNKG04Z4TTE9E72EA) | [Original](https://www.hellofresh.de/recipes/veganes-portobello-champignon-stroganoff-67dd36a6aaa74aa3f95880bf) |
+| #64 | [Nasi Goreng mit veganen Filetstücken](recipes/nasi-goreng/) | 14 · 17 · 2 (`Varoma` + `Pürieren`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ1JCX58H8QGDSBB47XVP5B) | [Original](https://www.hellofresh.de/recipes/nasi-goreng-mit-veganen-filetstucken-64e461d2e1f123211ed56789) |
+| #66 | [Ingwer-Süßkartoffel-Eintopf mit Tofu](recipes/ingwer-suesskartoffel-eintopf-mit-tofu/) | 9 · 14 · 3 (`Stufe 7` + `Varoma` + `Linkslauf`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ4A91QAT7SEKVZ5WK31JGW) | [Original](https://www.hellofresh.de/recipes/ingwer-susskartoffel-eintopf-mit-tofu-68fa30ecff3933d87e3fe9d9) |
+| — | [Veganer Hackbraten mit Semmelknödeln, Schwarzbier-Pilz-Rahm & Apfel-Rotkohl](recipes/veganer-hackbraten-mit-semmelknoedeln-schwarzbier-pilz-rahm-und-apfel-rotkohl/) | 17 · 27 · 5 (`Linkslauf` + `Stufe 5` + `50 °C`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRRA70F256JS1FJH8SHY4G6D) | Eigenkreation |
 
 ### Beweis: native-quality Chips im Rezept
 
@@ -83,7 +83,7 @@ Pro neuem Rezept einfach in Claude Code aufrufen:
 Der Skill:
 1. Scrapet die HelloFresh-Karte (Zutaten + Steps + Foto-URL + Nährwerte)
 2. Skaliert auf 4 Portionen
-3. Adaptiert auf native Thermomix-Style (5-6 Steps für 14-17 Zutaten, native Verben, spezifische Mengen, interaktive Koch-Befehl-Chips)
+3. Adaptiert auf native Thermomix-Style (kurze Ein-Aktion-Schritte — Step-Zahl = Anzahl Operationen, native Verben, spezifische Mengen, interaktive Koch-Befehl-Chips)
 4. Auditiert per-step uniqueness + cross-step endings + chip-syntax
 5. Holt von dir das eigene Foto + Bestätigung
 6. Pipeline ausführen (01→06), Recipe live auf Cookidoo PUBLIC
@@ -99,7 +99,7 @@ mkdir -p recipes/{slug}
 cp ~/eigenes-foto.jpg recipes/{slug}/hero.jpg
 
 # 2. INGREDIENTS + STEPS in automation/01_create_recipe.py editieren
-#    (Faustregel: 5 Steps bei 14-17 Zutaten — siehe PLAYBOOK.md Regel 8)
+#    (Regel: eine AKTIVE Operation pro Step, Länge kein Hard-Cap — siehe PLAYBOOK.md Regel 8)
 
 # 3. Pipeline durchlaufen (~2 Min. End-to-End):
 python3 automation/01_create_recipe.py     # Anlage + Zutaten + Plain-Text-Steps
@@ -122,7 +122,7 @@ thermomix-master/
 ├── LEARNINGS.md          ← Reverse-Engineering: APIs, DOM, Custom-Elements, Edge-Cases
 ├── automation/           ← 7 Pipeline-Scripts (00_setup_profile → 06_publish) + 1 Helper (99_replace_steps_helper)
 ├── skill/                ← Claude-Code-Skill `thermomix-master` (Symlink-bar nach ~/.claude/skills/)
-├── research/             ← Deep-Research aus 12 nativen Vorwerk-Rezepten (Step-Median, Verben)
+├── research/             ← Native-Step-Korpus (2× 12 echte Cookidoo-Rezepte: Step-Struktur, Verben, Längen)
 ├── recipes/              ← Pro Rezept: Quellfoto, Markdown, Cookidoo-Link, Tipps-Narrativ
 │   └── sweet-chili-bowl/ ← Das canonical example
 └── docs/assets/          ← Screenshots fürs README
