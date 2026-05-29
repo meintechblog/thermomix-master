@@ -9,8 +9,8 @@
 # Usage:
 #   chatgpt-restyle.sh \
 #     --target /path/to/hf-original.jpg \
-#     --slug   vegane-filetstuecke-thai-orange \
-#     --nr     32 \
+#     --slug   sweet-chili-bowl \
+#     --nr     33 \
 #     --repo   /Users/hulki/codex/thermomix-master \
 #     [--hf-url <url>] [--no-hub-push] [--background]
 #

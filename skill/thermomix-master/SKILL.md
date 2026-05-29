@@ -82,6 +82,30 @@ User pastet das Rezept. Parse heuristisch (Zutaten in Bullet-Liste, Steps als nu
 
 Wenn die Karte keine HF-Nummer auf der Vorderseite zeigt, nutze die Aufnahmezeit-Reihenfolge im Repo (`ls -t recipes/` als Heuristik für Karten-Position) oder lasse `HF_NR` leer.
 
+## Phase 1.5 — Thermomix-Eignungs-Gate (PFLICHT, vor jeder Konvertierung)
+
+> ⚠️ Gelernt 2026-05-29 (HelloFresh #32 „Thai-Orange"): Ein reines Pfannen-/Handarbeits-
+> Rezept zu konvertieren erzeugt ein wertloses und sogar **verwirrendes** Rezept —
+> manuelle Prep-Steps zeigen am Gerät nur den leeren Mixtopf + „Weiter", keine Aktion.
+> Der User stand vor „2 Orangen halbieren und auspressen" und wusste nicht, ob er die
+> Orangen in den Mixtopf reindrücken soll. Volldetail: `PLAYBOOK.md` → „0. Pre-Check (GATE)".
+
+Direkt nach dem Raw-Extract prüfen, BEVOR skaliert/adaptiert/gepublisht wird:
+
+1. **HelloFresh-Merkmal:** Trägt die Quelle das Thermomix-Merkmal? (`…-thermomix-…` im
+   Slug/URL, „Thermomix®" auf der Karte, HF-Thermomix-Rezeptset.) Fehlt es → starkes Signal
+   für „kein TM-Rezept".
+2. **Substanz-Check:** Gibt es ≥1 echte **Mixtopf-Kern-Operation** (zerkleinern, emulgieren,
+   Dampfgaren mit Gareinsatz, köcheln/erhitzen auf Stufe/Temp)? Pures auspressen / in der
+   Pfanne braten / von Hand anrichten zählt NICHT. Nur-Reis-dampfgaren + Rest in der Pfanne =
+   grenzwertig.
+3. **Entscheidung:**
+   - ✅ TM-tauglich → weiter mit Phase 2.
+   - ❌ Nicht TM-tauglich → **abbrechen.** Dem User per AskUserQuestion kurz erklären warum
+     (kein TM-Mehrwert) und fragen, ob er trotzdem fortfahren will. Default: nicht konvertieren.
+
+Faustregel: Der Thermomix muss im Gericht etwas **Sinnvolles TUN**, nicht nur danebenstehen.
+
 ## Phase 2 — Auf 4 Portionen skalieren (default)
 
 Compute `multiplier = 4 / servings` (HelloFresh-Karten sind meist `servings: 2` → multiplier = 2). Multiplier-Brackets `[1,5 EL | 2 EL]` in den `instructions` zeigen 3P/4P-Varianten — bei 4P kann man die letzte Bracket-Variante direkt nutzen, sonst alle 2P-Mengen × multiplier rechnen.
@@ -145,6 +169,11 @@ Konkret für jedes Rezept (Details + Belege in der native-style-rules.md):
    (jede mit Menge im Step ihrer Verwendung). Maschine macht die Prep (zerkleinern/hacken im
    Mixtopf), manuelle Prep per `Währenddessen …` in einen laufenden Maschinen-Step falten.
    Der Anwender soll pro Step in 2 Sek. sehen: was rein, was schnibbeln, welcher Befehl.
+   - **Menge nicht doppeln** (gelernt 2026-05-29, Jörg): In reinen **Prep-/Handarbeits-Sätzen**
+     die führende Mengenangabe weglassen — der Chip darunter trägt sie schon
+     („**Orangen** halbieren", nicht „**2 Orangen** halbieren"). **Maschinen-Add-Steps** dürfen
+     die Menge inline behalten (`300 g Jasminreis in den Gareinsatz geben`). Zutat bleibt 1×
+     pro Step als Chip annotiert. Detail: `PLAYBOOK.md` → Regel 10.
 
 3. **Native Verben einsetzen**:
    - `füllen → einwiegen` (in Gareinsatz/Mixtopf)

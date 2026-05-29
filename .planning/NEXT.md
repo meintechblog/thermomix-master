@@ -31,16 +31,23 @@
 - Jörgs WA-Nummer war im public Repo (Working-Tree + History, in einem Hulki-Brief). → `git filter-repo` purge, force-push, verifiziert 0 PII/Secrets, Repo nach Bereinigung wieder **public**.
 - `.planning/inbox/` + `.planning/archive/` jetzt **gitignored + untracked** — Peer-Briefe landen nie wieder im Repo. Getrackt in `.planning/` bleibt nur diese NEXT.md.
 
+### 4. #32 Thai-Orange entfernt + Thermomix-Eignungs-Gate eingeführt ✅ (Nachmittag, WA-getriggert)
+- Jörg merkte beim Kochen: **#32 ist gar kein Thermomix-Rezept** (reines Pfannen-/Handarbeitsgericht). Konkreter Auslöser: Step 1 „2 Orangen halbieren und auspressen" zeigt am Gerät nur den leeren Mixtopf + „Weiter" (keine Maschinen-Aktion) → Jörg unklar, ob er die Orangen in den Mixtopf reindrücken soll. Antwort: nein, reine Handarbeit, Saft auffangen, kommt erst Step 2 in den Topf.
+- **#32 vollständig entfernt:** Cookidoo (live gelöscht), Webapp (`recipes/`-Dir weg), README-Portfolio, `hellofresh-card-numbers.md`, `99_retro_fix_hf_nr.py`, `.received/hf32` + `.received/rebuild/thai.*`, restyle-Script-Beispiel.
+- **Learning 1 — Thermomix-Eignungs-Gate (Pre-Check):** Neu in `PLAYBOOK.md` (Abschnitt „0. Pre-Check (GATE)") + `SKILL.md` (Phase 1.5). VOR jeder Konvertierung prüfen: HF-Thermomix-Merkmal + ≥1 echte Mixtopf-Kern-Operation. Sonst nicht konvertieren. „Der Thermomix muss im Gericht etwas Sinnvolles TUN, nicht nur danebenstehen."
+- **Learning 2 — Beschreibungs-Konvention:** Mengen in reinen Prep-/Handarbeits-Sätzen NICHT doppeln (Chip darunter trägt sie). Neu als Regel 10 in `PLAYBOOK.md` + Phase 3 in `SKILL.md`. Gilt für künftige Rezepte.
+
 ---
 
-## Rezepte-Portfolio — 9 live (Cookidoo + Webapp), Stand 2026-05-29
+## Rezepte-Portfolio — 8 live (Cookidoo + Webapp), Stand 2026-05-29
+
+> #32 Thai-Orange am 2026-05-29 **entfernt** — kein Thermomix-Rezept (siehe „Was passiert ist" #4).
 
 | Rezept | Slug | Steps | Cookidoo-ID |
 |---|---|---|---|
 | Umami-Pilz-Stir-Fry #18 | `umami-pilz-stir-fry-mit-rosenkohl` | 12 | `01KRQ3TEB572NJEE7GB4FDRFG5` |
 | Pinsa #25 | `frische-sauerteig-pinsa-mit-aubergine` | 10 | `01KRQ44JTZ8ETRE7N6PBB4Q0Q8` |
 | Räuchertofu #25 | `raeuchertofu-gyros-art-mit-kartoffelsalat-und-zaziki` | 13 | `01KSMJK60SXV36SCX77T7N5ZV6` |
-| Thai-Orange #32 | `vegane-filetstuecke-thai-orange` | 9 | `01KSMKBJ3XW0C5K5NYYVMVFZXC` |
 | Sweet-Chili-Bowl #33 | `sweet-chili-bowl` | 15 | `01KRNNR72NTN1C0PTD67PA8W7D` |
 | Stroganoff #33 | `veganes-portobello-champignon-stroganoff` | 11 | `01KSMWEF8YNKG04Z4TTE9E72EA` |
 | Nasi Goreng #64 | `nasi-goreng` | 14 | `01KRQ1JCX58H8QGDSBB47XVP5B` |
@@ -72,7 +79,7 @@
 
 ## Memory-Index (für schnellen Zugriff)
 
-- `project_recipe_rebuild_status.md` — Rebuild-Stand (ALLE 9 fertig) + Pipeline + Gotchas. ERSTER Anlaufpunkt.
+- `project_recipe_rebuild_status.md` — Rebuild-Stand (8 live, #32 entfernt) + Pipeline + Gotchas. ERSTER Anlaufpunkt.
 - `project_native_step_grammar.md` — die Step-Regel (inkl. 29.5.-Längen-Korrektur).
 - `feedback_recipe_step_usability.md` — Jörgs Usability-Kernfeedback.
 - `project_recipe_scaling_fraction_trap.md` — Bruchteil-Falle beim Skalieren.
@@ -84,5 +91,5 @@
 
 ## Nichts mehr zu tun?
 
-Alles grün: 9 Rezepte neu+live, Repo sauber+public, Doku konsistent, Memory aktuell.
+Alles grün: 8 Rezepte live (#32 entfernt), Repo sauber+public, Doku konsistent, Memory aktuell.
 `set_summary(...)` + `list_peers` + warten. Sonst: einen „Offen"-Punkt oben aufgreifen.

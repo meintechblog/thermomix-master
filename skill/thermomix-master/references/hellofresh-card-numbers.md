@@ -14,7 +14,6 @@ HelloFresh hat **zwei Nummerierungen**, die beide gerne mit `#NN` notiert werden
 | Pinsa | #25 | R25 | ja |
 | Räuchertofu (KW22) | #25 | R33 (aus Y24) | nein |
 | Stroganoff | #33 | R32 | nein |
-| Thai-Orange | #32 | R32 (vermutet) | ja |
 
 **Ground Truth für die Cookidoo-Identifikation ist die Wochenbox-Position**, weil das ist, was Jörg auf den HelloFresh-Lieferpaketen lesen kann, wenn er am Thermomix steht und einen Karton aus dem Kühlschrank holt.
 

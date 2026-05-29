@@ -25,14 +25,13 @@ Komplettes Reverse-Engineering — DOM, Custom-Elements, Bundle-Strings, Save-Qu
 
 ## Status
 
-✅ **Voll funktional + neun Rezepte öffentlich auf Cookidoo:**
+✅ **Voll funktional + acht Rezepte öffentlich auf Cookidoo:**
 
 | Karte | Rezept | Steps · Zutaten · Chips | Live auf Cookidoo | HelloFresh-Original |
 |---|---|---|---|---|
 | #18 | [Umami-Pilz-Stir-Fry mit Rosenkohl](recipes/umami-pilz-stir-fry-mit-rosenkohl/) | 12 · 19 · 2 (`Varoma` + `Stufe 3`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ3TEB572NJEE7GB4FDRFG5) | [Original](https://www.hellofresh.de/recipes/umami-pilz-stir-fry-mit-rosenkohl-6904cb849140c7b54fef9a2e) |
 | #25 | [Frische Sauerteig-Pinsa mit Aubergine](recipes/frische-sauerteig-pinsa-mit-aubergine/) | 10 · 16 · 2 (`Stufe 7` + `Pürieren`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ44JTZ8ETRE7N6PBB4Q0Q8) | [Original](https://www.hellofresh.de/recipes/frische-sauerteig-pinsa-mit-aubergine-6978d31f6aaab04ab65108b0) |
 | #25 | [Räuchertofu Gyros-Art mit Kartoffelsalat und Zaziki](recipes/raeuchertofu-gyros-art-mit-kartoffelsalat-und-zaziki/) | 13 · 18 · 4 (`Stufe 3` + `Stufe 7` + `Stufe 5`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMJK60SXV36SCX77T7N5ZV6) | [Original](https://www.hellofresh.de/recipes/souflaki-rauchertofu-mit-kartoffelsalat-and-zaziki-64e860a94e40d5c6cb1a53fe) |
-| #32 | [Vegane Filetstücke in thailändischer Orangensoße](recipes/vegane-filetstuecke-thai-orange/) | 9 · 15 · 2 (`Varoma` + `Stufe 4`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMKBJ3XW0C5K5NYYVMVFZXC) | [Original](https://www.hellofresh.at/recipes/orange-chicken-vegan-68ac617f7e1f6c64ca682316) |
 | #33 | [Sweet-Chili-Bowl mit glasierter Aubergine](recipes/sweet-chili-bowl/) | 15 · 17 · 2 (`Varoma` + `Linkslauf`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRNNR72NTN1C0PTD67PA8W7D) | [Original](https://www.hellofresh.de/recipes/sweet-chili-bowl-mit-glasierter-aubergine-thermomix-695b7cae2a2e2effad1837dd) |
 | #33 | [Veganes Portobello-Champignon-Stroganoff](recipes/veganes-portobello-champignon-stroganoff/) | 11 · 17 · 2 (`Linkslauf` + `Stufe 7`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KSMWEF8YNKG04Z4TTE9E72EA) | [Original](https://www.hellofresh.de/recipes/veganes-portobello-champignon-stroganoff-67dd36a6aaa74aa3f95880bf) |
 | #64 | [Nasi Goreng mit veganen Filetstücken](recipes/nasi-goreng/) | 14 · 17 · 2 (`Varoma` + `Pürieren`) | [öffentlich](https://cookidoo.de/created-recipes/public/recipes/de-DE/01KRQ1JCX58H8QGDSBB47XVP5B) | [Original](https://www.hellofresh.de/recipes/nasi-goreng-mit-veganen-filetstucken-64e461d2e1f123211ed56789) |

@@ -15,6 +15,35 @@ python3 automation/00_setup_profile.py
 # Profil persistiert in ~/thermomix-automation/profile/
 ```
 
+## 0. Pre-Check (GATE): Ist das überhaupt ein Thermomix-Rezept?
+
+> ⚠️ **Pflicht-Gate, VOR allem anderen — gelernt am 2026-05-29 (HelloFresh #32 „Thai-Orange").**
+> Ein reines Pfannen-/Handarbeits-Rezept durch die Konvertierung zu zwingen erzeugt
+> ein wertloses, sogar **verwirrendes** Rezept: Die manuellen Prep-Steps („2 Orangen
+> halbieren und auspressen") zeigen am Gerät nur den **leeren Mixtopf + „Weiter"**,
+> KEINE Maschinen-Aktion (Zeit/Temp/Stufe). Jörg stand beim Kochen vor genau diesem
+> Schritt und wusste nicht, ob er die Orangen in den Mixtopf **reindrücken** soll —
+> weil das Topf-Bild eine Maschinen-Operation suggeriert, wo gar keine ist. Der
+> Thermomix-Mehrwert war null (kein einziger sinnvoller Chip im Kern des Gerichts).
+
+**Bevor du auch nur `recipes/{slug}` anlegst, prüfe die Thermomix-Eignung:**
+
+1. **HelloFresh weist es aus.** Echte Thermomix-Karten tragen das Merkmal explizit
+   („Thermomix®" auf der Karte, `…-thermomix-…` im Karten-Slug/URL, eigenes
+   Thermomix-Rezeptset). Fehlt das → es ist ein Pfannen-/Topf-Rezept, kein TM-Rezept.
+2. **Substanz-Check.** Gibt es mindestens **eine echte Mixtopf-Operation im Kern** des
+   Gerichts (zerkleinern, emulgieren, Dampfgaren mit Gareinsatz, köcheln/erhitzen auf
+   Stufe/Temp)? Pures „auspressen / in der Pfanne anbraten / von Hand anrichten" zählt
+   **nicht**. Wenn der Thermomix nur Reis dampfgart und sonst alles in der Pfanne läuft,
+   ist die TM-Eignung grenzwertig — kritisch abwägen.
+3. **Entscheidung:**
+   - ✅ TM-tauglich → weiter mit dem Workflow unten.
+   - ❌ Nicht TM-tauglich → **abbrechen, nicht konvertieren.** Dem User kurz sagen warum
+     (z.B. „reines Pfannengericht, kein TM-Mehrwert"). Lieber kein Rezept als ein
+     verwirrendes.
+
+Faustregel: **Der Thermomix muss im Gericht etwas Sinnvolles TUN, nicht nur danebenstehen.**
+
 ## Workflow pro Rezept
 
 ```bash
@@ -35,9 +64,9 @@ python3 automation/06_publish.py           # nur mit EIGENEM Foto!
 
 Gesamtzeit: ~2 Minuten pro Rezept.
 
-## Die 9 nicht-offensichtlichen Qualitätsregeln (aus erstem Live-Run gelernt)
+## Die 10 nicht-offensichtlichen Qualitätsregeln (aus Live-Runs gelernt)
 
-Wer einfach blind eine HelloFresh-Karte in die Step-Texte tippt, bekommt ein „besoffenes" Rezept — die AI-Annotation doppelt Bold-Chips, die Schritte lesen sich repetitiv. Diese acht Regeln sind aus dem ersten Praxis-Iterationszyklus mit Sweet-Chili-Bowl entstanden.
+Wer einfach blind eine HelloFresh-Karte in die Step-Texte tippt, bekommt ein „besoffenes" Rezept — die AI-Annotation doppelt Bold-Chips, die Schritte lesen sich repetitiv. Diese Regeln sind aus den Praxis-Iterationszyklen entstanden (Start: Sweet-Chili-Bowl; Rule 8 revidiert 2026-05-29; Rule 10 ergänzt 2026-05-29).
 
 ### 1. Per-Step Ingredient Uniqueness
 
@@ -159,6 +188,25 @@ Beispiel-Mapping nach Rewrite (Sweet-Chili-Bowl, 17 Zutaten):
 → **Master-Liste**: [`skill/thermomix-master/references/native-style-rules.md`](skill/thermomix-master/references/native-style-rules.md) — vollständige Statt/Native-Tabelle, Zutaten-Format, Step-Längen-Verteilung, was native Rezepte NICHT haben.
 
 Faustregel zur Erinnerung: `einwiegen`, `einhängen`, `aufsetzen`/`absetzen`, `mithilfe des Spatels herausnehmen`, `unterheben`, `auf X Bowls verteilen`, `... servieren`. Adjektive immer nach Komma (`1 rote Chilischote, frisch`), Verb-Teile gehören in den Step.
+
+### 10. Mengen im Beschreibungstext NICHT doppeln (Chip trägt die Menge)
+
+> Gelernt 2026-05-29 (Jörg-Feedback): „Oben in der Beschreibung reicht es zu schreiben
+> ‚Orangen halbieren…' — weil darunter ist ja dann die Anzahl angegeben."
+
+Unter jedem Step rendert Cookidoo die verlinkten Zutaten als **Chips mit Menge**
+(`2 Orangen`, `300 g Jasminreis`). Die **führende Mengenangabe im reinen Prep-/
+Handarbeits-Satz** ist damit redundant — sie steht direkt darunter nochmal.
+
+**Bad**: „**2 Orangen** halbieren und auspressen, Saft auffangen."
+**Good**: „**Orangen** halbieren und auspressen, Saft auffangen." → Chip darunter zeigt `2 Orangen`.
+
+- Gilt v.a. für **manuelle Prep-Sätze** („… schneiden", „… halbieren", „… waschen").
+- **Maschinen-Add-Steps** dürfen die Menge inline behalten, wenn sie zur Aktion gehört
+  und native so klingt (`300 g Jasminreis in den Gareinsatz geben` — hier ist die Menge
+  Teil der Einwiege-Handlung). Im Zweifel: Aktion + Zutatenname im Text, Menge dem Chip
+  überlassen.
+- Die Zutat muss weiter als **Chip annotiert** werden (Rule 1 bleibt gültig: 1× pro Step).
 
 ## Konsistenz-Audit-Schritt vor Publish
 
